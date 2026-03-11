@@ -1,0 +1,104 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  theme: 'grafismo' | 'automatizacion' | 'desarrollo' | 'fratelli';
+}
+
+const { title, description, theme } = Astro.props;
+
+const themeMap = {
+  grafismo: {
+    bg: 'var(--grafismo-bg)',
+    surface: 'var(--grafismo-surface)',
+    text: 'var(--grafismo-text)',
+    primary: 'var(--grafismo-primary)',
+    accent: 'var(--grafismo-accent)',
+    border: 'var(--grafismo-border)',
+  },
+  automatizacion: {
+    bg: 'var(--auto-bg)',
+    surface: 'var(--auto-surface)',
+    text: 'var(--auto-text)',
+    primary: 'var(--auto-primary)',
+    accent: 'var(--auto-accent)',
+    border: 'var(--auto-border)',
+  },
+  desarrollo: {
+    bg: 'var(--dev-bg)',
+    surface: 'var(--dev-surface)',
+    text: 'var(--dev-text)',
+    primary: 'var(--dev-primary)',
+    accent: 'var(--dev-accent)',
+    border: 'var(--dev-border)',
+  },
+  fratelli: {
+    bg: 'var(--fratelli-bg)',
+    surface: 'var(--fratelli-surface)',
+    text: 'var(--fratelli-text)',
+    primary: 'var(--fratelli-primary)',
+    accent: 'var(--fratelli-primary)',
+    border: 'var(--fratelli-border)',
+  },
+};
+
+const colors = themeMap[theme];
+---
+
+<BaseLayout title={title} description={description}>
+  <div
+    class="section-page"
+    style={`
+      --section-bg: ${colors.bg};
+      --section-surface: ${colors.surface};
+      --section-text: ${colors.text};
+      --section-primary: ${colors.primary};
+      --section-accent: ${colors.accent};
+      --section-border: ${colors.border};
+    `}
+  >
+    <nav class="section-back">
+      <a href="/" class="back-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5" /><path d="M12 19l-7-7 7-7" />
+        </svg>
+        <span>Volver</span>
+      </a>
+    </nav>
+    <slot />
+  </div>
+</BaseLayout>
+
+<style>
+  .section-page {
+    background-color: var(--section-bg);
+    color: var(--section-text);
+    min-height: 100vh;
+  }
+
+  .section-back {
+    position: fixed;
+    top: var(--space-m);
+    left: var(--gutter);
+    z-index: 100;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--step--1);
+    color: var(--section-text);
+    opacity: 0.6;
+    transition: opacity var(--duration-fast) var(--ease-out);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .back-link:hover {
+    opacity: 1;
+  }
+</style>

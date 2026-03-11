@@ -1,0 +1,260 @@
+---
+import SectionHeading from '../global/SectionHeading.astro';
+import { experience, skills } from '../../data/experience';
+---
+
+<section class="about section" id="sobre-mi">
+  <div class="container">
+    <div class="about__grid">
+      <!-- Left: Photo + Identity -->
+      <div class="about__identity" data-animate="slide-left">
+        <div class="about__photo">
+          <div class="about__photo-placeholder">
+            <span class="mono">GL</span>
+          </div>
+        </div>
+        <div class="about__quick">
+          <h3 class="about__name">Guillermo López</h3>
+          <p class="about__role mono">del Castillo-Olivares</p>
+          <p class="about__location">Madrid, España</p>
+        </div>
+      </div>
+
+      <!-- Right: Bio + Experience + Skills -->
+      <div class="about__content" data-animate="slide-right">
+        <SectionHeading label="Sobre mí" title="Perfil profesional" />
+
+        <div class="about__bio">
+          <p>
+            Grafista televisivo con más de 5 años de experiencia en cadenas nacionales
+            (Mediaset, RTVE, Movistar+). Actualmente en Mediaset España, donde combino
+            la rigurosidad del directo con la capacidad de crear piezas de alto impacto visual.
+          </p>
+          <p>
+            He integrado herramientas de inteligencia artificial en mis flujos de producción,
+            construyo plataformas web funcionales y soy cofundador de Fratelli Pazzi — un
+            negocio real que demuestra que entiendo marca, producto y sistema como una sola cosa.
+          </p>
+        </div>
+
+        <!-- Experience timeline -->
+        <div class="about__experience">
+          <h4 class="about__subtitle mono">Trayectoria</h4>
+          <div class="about__timeline">
+            {experience.map((exp) => (
+              <div class="timeline__item">
+                <div class="timeline__header">
+                  <span class="timeline__company">{exp.company}</span>
+                  <span class="timeline__period mono">{exp.period}</span>
+                </div>
+                <span class="timeline__role">{exp.role}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="about__skills">
+          <h4 class="about__subtitle mono">Competencias</h4>
+          <div class="about__skill-groups">
+            {Object.entries(skills).map(([category, items]) => (
+              <div class="skill-group">
+                <span class="skill-group__label mono">{category}</span>
+                <div class="skill-group__tags">
+                  {items.map((skill) => (
+                    <span class="skill-tag">{skill}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about__grid {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+
+  /* Identity column */
+  .about__identity {
+    position: sticky;
+    top: calc(var(--space-3xl) + 60px);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+  }
+
+  .about__photo-placeholder {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about__photo-placeholder span {
+    font-size: var(--step-4);
+    color: var(--color-text-secondary);
+    opacity: 0.3;
+  }
+
+  .about__name {
+    font-size: var(--step-1);
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .about__role {
+    font-size: var(--step--1);
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .about__location {
+    font-size: var(--step--1);
+    color: var(--color-text-secondary);
+    margin-top: var(--space-3xs);
+  }
+
+  /* Content column */
+  .about__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+
+  .about__bio {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+    color: var(--color-text-secondary);
+    line-height: 1.75;
+  }
+
+  .about__subtitle {
+    font-size: var(--step--2);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-accent);
+    margin-bottom: var(--space-m);
+  }
+
+  /* Timeline */
+  .about__timeline {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+  }
+
+  .timeline__item {
+    padding: var(--space-s) var(--space-m);
+    border-left: 2px solid var(--color-border);
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .timeline__item:hover {
+    border-left-color: var(--color-accent);
+  }
+
+  .timeline__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-s);
+    margin-bottom: var(--space-3xs);
+  }
+
+  .timeline__company {
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .timeline__period {
+    font-size: var(--step--2);
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  .timeline__role {
+    font-size: var(--step--1);
+    color: var(--color-text-secondary);
+  }
+
+  /* Skills */
+  .about__skill-groups {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+  }
+
+  .skill-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .skill-group__label {
+    font-size: var(--step--2);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-secondary);
+  }
+
+  .skill-group__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3xs);
+  }
+
+  .skill-tag {
+    display: inline-block;
+    padding: 0.25em 0.75em;
+    font-size: var(--step--2);
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  .skill-tag:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 768px) {
+    .about__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+
+    .about__identity {
+      position: static;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .about__photo-placeholder {
+      width: 120px;
+      flex-shrink: 0;
+    }
+
+    .timeline__header {
+      flex-direction: column;
+      gap: var(--space-3xs);
+    }
+  }
+</style>

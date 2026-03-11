@@ -1,0 +1,438 @@
+---
+import SectionLayout from '../layouts/SectionLayout.astro';
+import { fratelliProjects } from '../data/projects';
+---
+
+<SectionLayout
+  title="Fratelli Pazzi — Guillermo López"
+  description="Creación integral de marca real: identidad, plataforma digital, producto y experiencia de cliente."
+  theme="fratelli"
+>
+  <!-- Hero -->
+  <section class="fratelli-hero">
+    <div class="fratelli-hero__content container">
+      <span class="fratelli-label mono" data-animate="fade-up">Marca Real · Producto · Negocio</span>
+
+      <h1 class="fratelli-hero__title" data-animate="fade-up">
+        Fratelli<br />
+        <span class="fratelli-hero__accent">Pazzi</span>
+      </h1>
+
+      <p class="fratelli-hero__subtitle" data-animate="fade-up">
+        Una pizzería napolitana real en Las Rozas, Madrid. Creé la marca,
+        diseñé la identidad, construí la plataforma digital y gestiono
+        la experiencia completa del negocio.
+      </p>
+
+      <a href="https://www.fratellipazzi.es" target="_blank" rel="noopener noreferrer" class="fratelli-hero__link mono" data-animate="fade-up">
+        fratellipazzi.es →
+      </a>
+    </div>
+  </section>
+
+  <!-- Numbers -->
+  <section class="fratelli-numbers section">
+    <div class="container">
+      <div class="fratelli-numbers__grid" data-animate="stagger">
+        <div class="number-card">
+          <span class="number-card__value">4.7</span>
+          <span class="number-card__unit">★</span>
+          <span class="number-card__label mono">Google Reviews</span>
+        </div>
+        <div class="number-card">
+          <span class="number-card__value">300+</span>
+          <span class="number-card__label mono">Clientes</span>
+        </div>
+        <div class="number-card">
+          <span class="number-card__value">48h</span>
+          <span class="number-card__label mono">Fermentación</span>
+        </div>
+        <div class="number-card">
+          <span class="number-card__value">450°C</span>
+          <span class="number-card__label mono">Horno de leña</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand story -->
+  <section class="fratelli-story section">
+    <div class="container">
+      <div class="fratelli-story__header" data-animate="fade-up">
+        <span class="fratelli-section-label mono">La historia</span>
+        <h2 class="fratelli-section-title">De la idea al negocio real</h2>
+      </div>
+
+      <div class="fratelli-story__content" data-animate="fade-up">
+        <p class="fratelli-story__lead">
+          Fratelli Pazzi no nació como un proyecto de portfolio. Nació como un
+          negocio real con producto real, clientes reales y decisiones reales.
+        </p>
+        <p>
+          Creé toda la identidad visual de la marca, diseñé la paleta cromática
+          y el sistema gráfico, construí la plataforma web desde cero con menú
+          interactivo, sistema de pedidos online y un programa de fidelización
+          con acumulación de puntos.
+        </p>
+        <p>
+          Es la demostración de que entiendo el ciclo completo: desde
+          la identidad de marca hasta la operativa de negocio, pasando por
+          la tecnología que lo sostiene.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What I built -->
+  <section class="fratelli-built section">
+    <div class="container">
+      <div class="fratelli-built__header" data-animate="fade-up">
+        <span class="fratelli-section-label mono">Alcance</span>
+        <h2 class="fratelli-section-title">Todo lo que construí</h2>
+      </div>
+
+      <div class="fratelli-built__grid" data-animate="stagger">
+        {fratelliProjects.map((project) => (
+          <article class="fratelli-card">
+            <div class="fratelli-card__visual">
+              <div class="fratelli-card__placeholder">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+                </svg>
+              </div>
+            </div>
+            <div class="fratelli-card__info">
+              <h3 class="fratelli-card__title">{project.title}</h3>
+              <p class="fratelli-card__desc">{project.description}</p>
+              <div class="fratelli-card__tags">
+                {project.tags.map((tag) => (
+                  <span class="fratelli-tag mono">{tag}</span>
+                ))}
+              </div>
+              {project.link && (
+                <a href={project.link} target="_blank" rel="noopener noreferrer" class="fratelli-card__link mono">
+                  Ver web →
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="fratelli-cta section">
+    <div class="container">
+      <div class="fratelli-cta__inner" data-animate="fade-up">
+        <h2 class="fratelli-cta__title">¿Quieres probarlo?</h2>
+        <p class="fratelli-cta__text">
+          Visita la web, haz un pedido o pásate por Las Rozas.
+          Todo lo que ves aquí funciona de verdad.
+        </p>
+        <a href="https://www.fratellipazzi.es" target="_blank" rel="noopener noreferrer" class="fratelli-cta__btn mono">
+          Visitar fratellipazzi.es →
+        </a>
+      </div>
+    </div>
+  </section>
+</SectionLayout>
+
+<style>
+  /* ── Hero ── */
+  .fratelli-hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    background: var(--fratelli-bg);
+  }
+
+  .fratelli-hero__content {
+    position: relative;
+    z-index: 1;
+    padding-top: calc(var(--space-3xl) + 100px);
+    padding-bottom: var(--space-3xl);
+  }
+
+  .fratelli-label {
+    display: inline-block;
+    font-size: var(--step--2);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--fratelli-primary);
+    margin-bottom: var(--space-l);
+  }
+
+  .fratelli-hero__title {
+    font-size: clamp(3rem, 2rem + 7vw, 8rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: var(--fratelli-text);
+    margin-bottom: var(--space-l);
+  }
+
+  .fratelli-hero__accent {
+    color: var(--fratelli-primary);
+  }
+
+  .fratelli-hero__subtitle {
+    font-size: var(--step-1);
+    line-height: 1.5;
+    color: var(--fratelli-text);
+    opacity: 0.7;
+    max-width: 50ch;
+    margin-bottom: var(--space-l);
+  }
+
+  .fratelli-hero__link {
+    display: inline-block;
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--fratelli-primary);
+    padding: 0.6em 1.5em;
+    border: 1px solid var(--fratelli-border);
+    border-radius: var(--radius-sm);
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  .fratelli-hero__link:hover {
+    border-color: var(--fratelli-primary);
+    background: rgba(211, 121, 104, 0.1);
+    transform: translateX(4px);
+  }
+
+  /* ── Section headings ── */
+  .fratelli-section-label {
+    display: block;
+    font-size: var(--step--2);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--fratelli-primary);
+    margin-bottom: var(--space-xs);
+  }
+
+  .fratelli-section-title {
+    font-size: var(--step-3);
+    color: var(--fratelli-text);
+    margin-bottom: var(--space-s);
+  }
+
+  /* ── Numbers ── */
+  .fratelli-numbers__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-s);
+  }
+
+  .number-card {
+    padding: var(--space-l);
+    border: 1px solid var(--fratelli-border);
+    border-radius: var(--radius-md);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3xs);
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .number-card:hover {
+    border-color: var(--fratelli-primary);
+  }
+
+  .number-card__value {
+    font-family: 'Syne Variable', sans-serif;
+    font-size: var(--step-3);
+    font-weight: 800;
+    color: var(--fratelli-highlight);
+    line-height: 1;
+  }
+
+  .number-card__unit {
+    font-size: var(--step-1);
+    color: var(--fratelli-highlight);
+  }
+
+  .number-card__label {
+    font-size: var(--step--2);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--fratelli-text);
+    opacity: 0.6;
+  }
+
+  /* ── Story ── */
+  .fratelli-story__header {
+    margin-bottom: var(--space-xl);
+  }
+
+  .fratelli-story__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+    max-width: 65ch;
+  }
+
+  .fratelli-story__lead {
+    font-size: var(--step-1);
+    color: var(--fratelli-text);
+    font-weight: 500;
+    line-height: 1.45;
+  }
+
+  .fratelli-story__content p:not(.fratelli-story__lead) {
+    color: var(--fratelli-text);
+    opacity: 0.7;
+    line-height: 1.75;
+  }
+
+  /* ── Built / Projects ── */
+  .fratelli-built__header {
+    margin-bottom: var(--space-xl);
+  }
+
+  .fratelli-built__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-m);
+  }
+
+  .fratelli-card {
+    border: 1px solid var(--fratelli-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .fratelli-card:hover {
+    border-color: var(--fratelli-primary);
+  }
+
+  .fratelli-card__visual {
+    aspect-ratio: 16/9;
+  }
+
+  .fratelli-card__placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--fratelli-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--fratelli-primary);
+    opacity: 0.3;
+  }
+
+  .fratelli-card__info {
+    padding: var(--space-m);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .fratelli-card__title {
+    font-size: var(--step-1);
+    color: var(--fratelli-text);
+    font-weight: 700;
+  }
+
+  .fratelli-card__desc {
+    font-size: var(--step--1);
+    color: var(--fratelli-text);
+    opacity: 0.7;
+    line-height: 1.65;
+  }
+
+  .fratelli-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3xs);
+    margin-top: var(--space-2xs);
+  }
+
+  .fratelli-tag {
+    font-size: var(--step--2);
+    padding: 0.2em 0.6em;
+    border: 1px solid var(--fratelli-border);
+    border-radius: var(--radius-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--fratelli-text);
+    opacity: 0.6;
+  }
+
+  .fratelli-card__link {
+    display: inline-block;
+    margin-top: var(--space-xs);
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--fratelli-primary);
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+
+  .fratelli-card__link:hover {
+    transform: translateX(4px);
+  }
+
+  /* ── CTA ── */
+  .fratelli-cta {
+    border-top: 1px solid var(--fratelli-border);
+  }
+
+  .fratelli-cta__inner {
+    text-align: center;
+    max-width: 540px;
+    margin-inline: auto;
+  }
+
+  .fratelli-cta__title {
+    font-size: var(--step-3);
+    color: var(--fratelli-highlight);
+    margin-bottom: var(--space-s);
+  }
+
+  .fratelli-cta__text {
+    color: var(--fratelli-text);
+    opacity: 0.7;
+    margin-bottom: var(--space-l);
+    line-height: 1.7;
+  }
+
+  .fratelli-cta__btn {
+    display: inline-block;
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--fratelli-bg);
+    background: var(--fratelli-primary);
+    padding: 0.75em 2em;
+    border-radius: var(--radius-sm);
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  .fratelli-cta__btn:hover {
+    background: var(--fratelli-secondary);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    .fratelli-numbers__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .fratelli-built__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .fratelli-numbers__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

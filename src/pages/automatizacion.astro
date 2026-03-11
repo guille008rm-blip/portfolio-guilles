@@ -1,0 +1,460 @@
+---
+import SectionLayout from '../layouts/SectionLayout.astro';
+import { automatizacionProjects } from '../data/projects';
+---
+
+<SectionLayout
+  title="Automatización e IA — Guillermo López"
+  description="Procesos inteligentes de producción visual: desde la ideación con ChatGPT hasta la postproducción con After Effects."
+  theme="automatizacion"
+>
+  <!-- Hero -->
+  <section class="auto-hero">
+    <div class="auto-hero__content container">
+      <span class="auto-label mono" data-animate="fade-up">Sistema · Eficiencia · Inteligencia</span>
+
+      <h1 class="auto-hero__title" data-animate="fade-up">
+        Automatización<br />
+        <span class="auto-hero__accent">e IA</span>
+      </h1>
+
+      <p class="auto-hero__subtitle" data-animate="fade-up">
+        No uso IA por moda. La integro como herramienta real de producción
+        para generar imagen, vídeo y contenido con criterio profesional.
+      </p>
+    </div>
+
+    <!-- Grid pattern background -->
+    <div class="auto-hero__grid-bg" aria-hidden="true"></div>
+  </section>
+
+  <!-- Workflow diagram -->
+  <section class="auto-workflow section">
+    <div class="container">
+      <div class="auto-workflow__header" data-animate="fade-up">
+        <span class="auto-section-label mono">Proceso</span>
+        <h2 class="auto-section-title">De la idea al resultado</h2>
+        <p class="auto-section-desc">
+          Mi flujo de trabajo combina conceptualización humana, generación por IA
+          y acabado profesional en postproducción.
+        </p>
+      </div>
+
+      <div class="workflow" data-animate="stagger">
+        <div class="workflow__step">
+          <div class="workflow__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
+          <span class="workflow__number mono">01</span>
+          <h3 class="workflow__title">Concepto</h3>
+          <p class="workflow__desc">Definición de la idea, referencias visuales y dirección creativa del proyecto.</p>
+        </div>
+
+        <div class="workflow__arrow" aria-hidden="true">→</div>
+
+        <div class="workflow__step">
+          <div class="workflow__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+            </svg>
+          </div>
+          <span class="workflow__number mono">02</span>
+          <h3 class="workflow__title">Prompt + ChatGPT</h3>
+          <p class="workflow__desc">Ingeniería de prompts y conceptualización con ChatGPT para definir la estructura visual.</p>
+        </div>
+
+        <div class="workflow__arrow" aria-hidden="true">→</div>
+
+        <div class="workflow__step">
+          <div class="workflow__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
+            </svg>
+          </div>
+          <span class="workflow__number mono">03</span>
+          <h3 class="workflow__title">Generación IA</h3>
+          <p class="workflow__desc">Nano Banana 2 para imagen y Kling para vídeo. Generación iterativa hasta conseguir el resultado buscado.</p>
+        </div>
+
+        <div class="workflow__arrow" aria-hidden="true">→</div>
+
+        <div class="workflow__step">
+          <div class="workflow__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+            </svg>
+          </div>
+          <span class="workflow__number mono">04</span>
+          <h3 class="workflow__title">After Effects</h3>
+          <p class="workflow__desc">Postproducción profesional: ajustes de color, composición, timing y acabado final broadcast-ready.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tool stack -->
+  <section class="auto-stack section">
+    <div class="container">
+      <div class="auto-stack__header" data-animate="fade-up">
+        <span class="auto-section-label mono">Herramientas</span>
+        <h2 class="auto-section-title">Stack de IA</h2>
+      </div>
+
+      <div class="auto-stack__grid" data-animate="stagger">
+        <div class="stack-card">
+          <div class="stack-card__header">
+            <span class="stack-card__name">ChatGPT</span>
+            <span class="stack-card__type mono">LLM</span>
+          </div>
+          <p class="stack-card__desc">Conceptualización, prompts, iteración creativa y dirección del proceso.</p>
+        </div>
+        <div class="stack-card">
+          <div class="stack-card__header">
+            <span class="stack-card__name">Nano Banana 2</span>
+            <span class="stack-card__type mono">Imagen</span>
+          </div>
+          <p class="stack-card__desc">Generación de imagen de alta calidad para assets de producción visual.</p>
+        </div>
+        <div class="stack-card">
+          <div class="stack-card__header">
+            <span class="stack-card__name">Kling</span>
+            <span class="stack-card__type mono">Vídeo</span>
+          </div>
+          <p class="stack-card__desc">Generación de vídeo con IA para piezas de motion y contenido audiovisual.</p>
+        </div>
+        <div class="stack-card">
+          <div class="stack-card__header">
+            <span class="stack-card__name">After Effects</span>
+            <span class="stack-card__type mono">Post</span>
+          </div>
+          <p class="stack-card__desc">Acabado profesional, composición, ajustes y entrega final en calidad broadcast.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="auto-projects section">
+    <div class="container">
+      <div class="auto-projects__header" data-animate="fade-up">
+        <span class="auto-section-label mono">Aplicación real</span>
+        <h2 class="auto-section-title">Casos de uso</h2>
+      </div>
+
+      <div class="auto-projects__list" data-animate="stagger">
+        {automatizacionProjects.map((project) => (
+          <article class="auto-project-card">
+            <div class="auto-project-card__visual">
+              <div class="auto-project-card__placeholder">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+                </svg>
+              </div>
+            </div>
+            <div class="auto-project-card__info">
+              <h3 class="auto-project-card__title">{project.title}</h3>
+              <p class="auto-project-card__desc">{project.description}</p>
+              <div class="auto-project-card__tags">
+                {project.tags.map((tag) => (
+                  <span class="auto-tag mono">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</SectionLayout>
+
+<style>
+  /* ── Hero ── */
+  .auto-hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    background: var(--auto-bg);
+    overflow: hidden;
+  }
+
+  .auto-hero__grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse 50% 50% at 70% 50%, black, transparent);
+    -webkit-mask-image: radial-gradient(ellipse 50% 50% at 70% 50%, black, transparent);
+  }
+
+  .auto-hero__content {
+    position: relative;
+    z-index: 1;
+    padding-top: calc(var(--space-3xl) + 100px);
+    padding-bottom: var(--space-3xl);
+  }
+
+  .auto-label {
+    display: inline-block;
+    font-size: var(--step--2);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--auto-accent);
+    margin-bottom: var(--space-l);
+  }
+
+  .auto-hero__title {
+    font-size: clamp(3rem, 2rem + 7vw, 8rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: var(--auto-primary);
+    margin-bottom: var(--space-l);
+  }
+
+  .auto-hero__accent {
+    color: var(--auto-accent);
+  }
+
+  .auto-hero__subtitle {
+    font-size: var(--step-1);
+    line-height: 1.5;
+    color: var(--auto-text-secondary);
+    max-width: 50ch;
+  }
+
+  /* ── Section headings ── */
+  .auto-section-label {
+    display: block;
+    font-size: var(--step--2);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--auto-accent);
+    margin-bottom: var(--space-xs);
+  }
+
+  .auto-section-title {
+    font-size: var(--step-3);
+    color: var(--auto-primary);
+    margin-bottom: var(--space-s);
+  }
+
+  .auto-section-desc {
+    color: var(--auto-text-secondary);
+    max-width: 55ch;
+    line-height: 1.7;
+  }
+
+  /* ── Workflow ── */
+  .auto-workflow__header {
+    margin-bottom: var(--space-xl);
+  }
+
+  .workflow {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-s);
+  }
+
+  .workflow__step {
+    flex: 1;
+    padding: var(--space-l);
+    background: var(--auto-surface);
+    border: 1px solid var(--auto-border);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .workflow__step:hover {
+    border-color: var(--auto-accent);
+  }
+
+  .workflow__icon {
+    color: var(--auto-accent);
+    margin-bottom: var(--space-3xs);
+  }
+
+  .workflow__number {
+    font-size: var(--step--2);
+    color: var(--auto-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .workflow__title {
+    font-size: var(--step-0);
+    color: var(--auto-primary);
+    font-weight: 700;
+  }
+
+  .workflow__desc {
+    font-size: var(--step--1);
+    color: var(--auto-text-secondary);
+    line-height: 1.6;
+  }
+
+  .workflow__arrow {
+    font-size: var(--step-1);
+    color: var(--auto-accent);
+    opacity: 0.4;
+    padding-top: var(--space-xl);
+    flex-shrink: 0;
+  }
+
+  /* ── Stack ── */
+  .auto-stack__header {
+    margin-bottom: var(--space-xl);
+  }
+
+  .auto-stack__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-s);
+  }
+
+  .stack-card {
+    padding: var(--space-m);
+    background: var(--auto-surface);
+    border: 1px solid var(--auto-border);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .stack-card:hover {
+    border-color: var(--auto-accent);
+  }
+
+  .stack-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .stack-card__name {
+    font-family: 'Syne Variable', sans-serif;
+    font-size: var(--step-0);
+    font-weight: 600;
+    color: var(--auto-primary);
+  }
+
+  .stack-card__type {
+    font-size: var(--step--2);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--auto-accent);
+    padding: 0.15em 0.5em;
+    border: 1px solid var(--auto-border);
+    border-radius: var(--radius-sm);
+  }
+
+  .stack-card__desc {
+    font-size: var(--step--1);
+    color: var(--auto-text-secondary);
+    line-height: 1.6;
+  }
+
+  /* ── Projects ── */
+  .auto-projects__header {
+    margin-bottom: var(--space-xl);
+  }
+
+  .auto-projects__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+  }
+
+  .auto-project-card {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: var(--space-l);
+    padding: var(--space-l);
+    background: var(--auto-surface);
+    border: 1px solid var(--auto-border);
+    border-radius: var(--radius-md);
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .auto-project-card:hover {
+    border-color: var(--auto-accent);
+  }
+
+  .auto-project-card__placeholder {
+    width: 100%;
+    aspect-ratio: 1;
+    background: var(--auto-bg);
+    border: 1px solid var(--auto-border);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--auto-accent);
+    opacity: 0.3;
+  }
+
+  .auto-project-card__info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    justify-content: center;
+  }
+
+  .auto-project-card__title {
+    font-size: var(--step-1);
+    color: var(--auto-primary);
+    font-weight: 700;
+  }
+
+  .auto-project-card__desc {
+    font-size: var(--step--1);
+    color: var(--auto-text-secondary);
+    line-height: 1.65;
+  }
+
+  .auto-project-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3xs);
+    margin-top: var(--space-2xs);
+  }
+
+  .auto-tag {
+    font-size: var(--step--2);
+    padding: 0.2em 0.6em;
+    border: 1px solid var(--auto-border);
+    border-radius: var(--radius-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--auto-text-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .workflow {
+      flex-direction: column;
+    }
+
+    .workflow__arrow {
+      padding-top: 0;
+      text-align: center;
+    }
+
+    .auto-project-card {
+      grid-template-columns: 1fr;
+    }
+
+    .auto-project-card__placeholder {
+      max-width: 200px;
+    }
+  }
+</style>

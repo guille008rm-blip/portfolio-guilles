@@ -1,0 +1,127 @@
+---
+import SectionHeading from '../global/SectionHeading.astro';
+---
+
+<section class="value section" id="propuesta">
+  <div class="container">
+    <SectionHeading label="Propuesta de valor" title="Imagen, sistema y ejecución" />
+
+    <div class="value__grid">
+      <div class="value__text" data-animate="slide-left">
+        <p class="value__lead">
+          No soy solo diseñador, ni solo desarrollador, ni solo alguien con un negocio.
+          Soy la persona que conecta imagen, sistema, tecnología y producto real.
+        </p>
+        <p>
+          Llevo más de 5 años creando gráfica en directo para las cadenas de televisión más
+          importantes de España — Mediaset, RTVE, Movistar. He diseñado cabeceras en prime time,
+          he producido motion graphics bajo la presión del directo y he aprendido que la
+          excelencia visual se mide en segundos.
+        </p>
+        <p>
+          Pero no me quedé ahí. Integré inteligencia artificial en mis procesos de producción,
+          construí webs funcionales desde cero y creé un negocio real — Fratelli Pazzi — donde
+          la marca, el producto y el sistema digital son una sola cosa.
+        </p>
+      </div>
+
+      <aside class="value__highlights" data-animate="slide-right">
+        <div class="value__highlight">
+          <span class="value__number">5+</span>
+          <span class="value__label mono">Años en TV</span>
+        </div>
+        <div class="value__highlight">
+          <span class="value__number">3</span>
+          <span class="value__label mono">Cadenas nacionales</span>
+        </div>
+        <div class="value__highlight">
+          <span class="value__number">4</span>
+          <span class="value__label mono">Disciplinas</span>
+        </div>
+        <div class="value__highlight">
+          <span class="value__number">1</span>
+          <span class="value__label mono">Negocio propio</span>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<style>
+  .value__grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+
+  .value__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+  }
+
+  .value__lead {
+    font-size: var(--step-1);
+    line-height: 1.45;
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  .value__text p:not(.value__lead) {
+    color: var(--color-text-secondary);
+    line-height: 1.75;
+  }
+
+  .value__highlights {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-m);
+  }
+
+  .value__highlight {
+    padding: var(--space-m);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .value__highlight:hover {
+    border-color: var(--color-accent);
+  }
+
+  .value__number {
+    font-family: 'Syne Variable', 'Syne', sans-serif;
+    font-size: var(--step-3);
+    font-weight: 800;
+    color: var(--color-accent);
+    line-height: 1;
+  }
+
+  .value__label {
+    font-size: var(--step--2);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .value__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+
+    .value__highlights {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .value__highlights {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

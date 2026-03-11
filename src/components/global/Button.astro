@@ -1,0 +1,98 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  external?: boolean;
+  download?: boolean;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  external = false,
+  download = false,
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+const externalAttrs = external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+---
+
+<Tag
+  href={href}
+  class:list={['btn', `btn--${variant}`, `btn--${size}`]}
+  download={download || undefined}
+  {...externalAttrs}
+>
+  <slot />
+</Tag>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all var(--duration-fast) var(--ease-out);
+    white-space: nowrap;
+  }
+
+  /* Sizes */
+  .btn--sm {
+    font-size: var(--step--2);
+    padding: 0.5em 1.2em;
+  }
+
+  .btn--md {
+    font-size: var(--step--1);
+    padding: 0.75em 1.8em;
+  }
+
+  .btn--lg {
+    font-size: var(--step-0);
+    padding: 0.9em 2.2em;
+  }
+
+  /* Variants */
+  .btn--primary {
+    background: var(--color-primary);
+    color: var(--color-bg);
+    border-radius: var(--radius-sm);
+  }
+
+  .btn--primary:hover {
+    background: var(--color-accent);
+    color: #fff;
+    transform: translateY(-1px);
+  }
+
+  .btn--secondary {
+    background: transparent;
+    color: var(--color-primary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+  }
+
+  .btn--secondary:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    transform: translateY(-1px);
+  }
+
+  .btn--ghost {
+    background: transparent;
+    color: var(--color-text-secondary);
+    padding-inline: 0;
+  }
+
+  .btn--ghost:hover {
+    color: var(--color-primary);
+  }
+</style>

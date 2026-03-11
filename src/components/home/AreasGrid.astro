@@ -1,0 +1,61 @@
+---
+import SectionHeading from '../global/SectionHeading.astro';
+import AreaCard from './AreaCard.astro';
+---
+
+<section class="areas section" id="areas">
+  <div class="container">
+    <SectionHeading
+      label="Portfolio"
+      title="Cuatro disciplinas, una visión"
+      align="center"
+    >
+      Cada área es un territorio propio donde convergen diseño, tecnología y criterio de negocio.
+    </SectionHeading>
+
+    <div class="areas__grid" data-animate="stagger">
+      <AreaCard
+        title="Grafismo en TV"
+        description="Emisión en directo, motion graphics y gráfica televisiva para las principales cadenas de España."
+        href="/grafismo"
+        theme="grafismo"
+        label="01 — Broadcast"
+      />
+      <AreaCard
+        title="Automatización e IA"
+        description="Procesos inteligentes de producción visual con IA generativa, desde el prompt hasta la postproducción."
+        href="/automatizacion"
+        theme="automatizacion"
+        label="02 — Inteligencia"
+      />
+      <AreaCard
+        title="Desarrollo Web"
+        description="Diseño y desarrollo de plataformas digitales funcionales, pensadas como producto."
+        href="/desarrollo"
+        theme="desarrollo"
+        label="03 — Digital"
+      />
+      <AreaCard
+        title="Fratelli Pazzi"
+        description="Un negocio real: marca, producto, sistema digital y experiencia de cliente, todo diseñado desde cero."
+        href="/fratelli-pazzi"
+        theme="fratelli"
+        label="04 — Marca Real"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .areas__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-m);
+  }
+
+  @media (max-width: 768px) {
+    .areas__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

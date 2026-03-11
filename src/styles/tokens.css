@@ -1,0 +1,94 @@
+/* ═══════════════════════════════════════════════════════
+   DESIGN TOKENS — Portfolio Guillermo López
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Escala tipográfica (Perfect Fourth 1.333) ── */
+  --step--2: clamp(0.56rem, 0.53rem + 0.17vw, 0.70rem);
+  --step--1: clamp(0.75rem, 0.70rem + 0.23vw, 0.94rem);
+  --step-0:  clamp(1.00rem, 0.93rem + 0.31vw, 1.25rem);
+  --step-1:  clamp(1.33rem, 1.24rem + 0.41vw, 1.67rem);
+  --step-2:  clamp(1.78rem, 1.65rem + 0.55vw, 2.22rem);
+  --step-3:  clamp(2.37rem, 2.20rem + 0.73vw, 2.96rem);
+  --step-4:  clamp(3.16rem, 2.93rem + 0.98vw, 3.95rem);
+  --step-5:  clamp(4.21rem, 3.91rem + 1.30vw, 5.26rem);
+
+  /* ── Espaciado ── */
+  --space-3xs: clamp(0.25rem, 0.23rem + 0.09vw, 0.31rem);
+  --space-2xs: clamp(0.50rem, 0.46rem + 0.17vw, 0.63rem);
+  --space-xs:  clamp(0.75rem, 0.70rem + 0.26vw, 0.94rem);
+  --space-s:   clamp(1.00rem, 0.93rem + 0.35vw, 1.25rem);
+  --space-m:   clamp(1.50rem, 1.39rem + 0.52vw, 1.88rem);
+  --space-l:   clamp(2.00rem, 1.86rem + 0.70vw, 2.50rem);
+  --space-xl:  clamp(3.00rem, 2.78rem + 1.04vw, 3.75rem);
+  --space-2xl: clamp(4.00rem, 3.71rem + 1.39vw, 5.00rem);
+  --space-3xl: clamp(6.00rem, 5.57rem + 2.09vw, 7.50rem);
+
+  /* ── Layout ── */
+  --max-width: 1280px;
+  --gutter: clamp(1rem, 0.5rem + 2vw, 2.5rem);
+
+  /* ── Breakpoints (ref only, use in media queries) ── */
+  /* sm: 640px / md: 768px / lg: 1024px / xl: 1280px */
+
+  /* ── Transiciones ── */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 200ms;
+  --duration-base: 400ms;
+  --duration-slow: 800ms;
+
+  /* ── Bordes ── */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  /* ══════════════════════════════════════════════════
+     PALETAS POR SECCIÓN
+     ══════════════════════════════════════════════════ */
+
+  /* ── Global / Home (Dark) ── */
+  --color-bg:      #0A0A0F;
+  --color-surface: #12121A;
+  --color-text:    #E5E5E5;
+  --color-text-secondary: #9A9AAF;
+  --color-primary: #FAFAFA;
+  --color-accent:  #3B82F6;
+  --color-border:  rgba(255, 255, 255, 0.08);
+
+  /* ── Grafismo TV ── */
+  --grafismo-bg:      #050510;
+  --grafismo-surface: #0A0A1A;
+  --grafismo-text:    #F0F0F0;
+  --grafismo-primary: #00D4FF;
+  --grafismo-accent:  #FF1744;
+  --grafismo-muted:   #1A1A3A;
+  --grafismo-border:  rgba(0, 212, 255, 0.15);
+
+  /* ── Automatización e IA ── */
+  --auto-bg:      #F5F7FA;
+  --auto-surface: #FFFFFF;
+  --auto-text:    #2D2D3A;
+  --auto-text-secondary: #6B7280;
+  --auto-primary: #1A1A2E;
+  --auto-accent:  #00BFA5;
+  --auto-border:  rgba(0, 0, 0, 0.08);
+
+  /* ── Desarrollo Web ── */
+  --dev-bg:      #F0EDE8;
+  --dev-surface: #FAF8F5;
+  --dev-text:    #3A3A3A;
+  --dev-text-secondary: #6B6B6B;
+  --dev-primary: #2D2D2D;
+  --dev-accent:  #5B7B9A;
+  --dev-border:  rgba(0, 0, 0, 0.06);
+
+  /* ── Fratelli Pazzi ── */
+  --fratelli-bg:      #1E1F1F;
+  --fratelli-surface: #2A2B2B;
+  --fratelli-text:    #FFFFFF;
+  --fratelli-primary: #D37968;
+  --fratelli-secondary: #84AA79;
+  --fratelli-highlight: #FFEBA2;
+  --fratelli-border: rgba(211, 121, 104, 0.2);
+}

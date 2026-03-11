@@ -1,0 +1,432 @@
+---
+import SectionLayout from '../layouts/SectionLayout.astro';
+import { desarrolloProjects } from '../data/projects';
+---
+
+<SectionLayout
+  title="Desarrollo Web — Guillermo López"
+  description="Diseño y desarrollo de plataformas digitales funcionales, con criterio de producto y experiencia de usuario."
+  theme="desarrollo"
+>
+  <!-- Hero -->
+  <section class="dev-hero">
+    <div class="dev-hero__content container">
+      <span class="dev-label mono" data-animate="fade-up">Producto · Interfaz · Experiencia</span>
+
+      <h1 class="dev-hero__title" data-animate="fade-up">
+        Desarrollo<br />
+        <span class="dev-hero__accent">Web</span>
+      </h1>
+
+      <p class="dev-hero__subtitle" data-animate="fade-up">
+        Diseño y construyo plataformas digitales reales. No mockups bonitos
+        sin función: webs que resuelven problemas y que tienen criterio
+        visual de producto.
+      </p>
+    </div>
+  </section>
+
+  <!-- Approach -->
+  <section class="dev-approach section">
+    <div class="container">
+      <div class="dev-approach__header" data-animate="fade-up">
+        <span class="dev-section-label mono">Enfoque</span>
+        <h2 class="dev-section-title">Diseño con criterio, código con propósito</h2>
+        <p class="dev-section-desc">
+          Cada proyecto web nace de entender el negocio, diseñar la experiencia correcta
+          y construirla con tecnología limpia y mantenible.
+        </p>
+      </div>
+
+      <div class="dev-approach__grid" data-animate="stagger">
+        <div class="approach-card">
+          <span class="approach-card__number mono">01</span>
+          <h3 class="approach-card__title">Estrategia</h3>
+          <p class="approach-card__desc">Entender el negocio, el público y los objetivos antes de diseñar un solo pixel.</p>
+        </div>
+        <div class="approach-card">
+          <span class="approach-card__number mono">02</span>
+          <h3 class="approach-card__title">Diseño UI/UX</h3>
+          <p class="approach-card__desc">Interfaces limpias, con jerarquía visual clara y experiencia de usuario cuidada.</p>
+        </div>
+        <div class="approach-card">
+          <span class="approach-card__number mono">03</span>
+          <h3 class="approach-card__title">Desarrollo</h3>
+          <p class="approach-card__desc">Código limpio, rendimiento optimizado y responsive real en todos los dispositivos.</p>
+        </div>
+        <div class="approach-card">
+          <span class="approach-card__number mono">04</span>
+          <h3 class="approach-card__title">Lanzamiento</h3>
+          <p class="approach-card__desc">Deploy, SEO básico y seguimiento post-lanzamiento para iterar sobre resultados.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="dev-projects section">
+    <div class="container">
+      <div class="dev-projects__header" data-animate="fade-up">
+        <span class="dev-section-label mono">Proyectos</span>
+        <h2 class="dev-section-title">Webs reales, resultados reales</h2>
+      </div>
+
+      <div class="dev-projects__list" data-animate="stagger">
+        {desarrolloProjects.map((project) => (
+          <article class="dev-project">
+            <div class="dev-project__mockup">
+              <div class="dev-project__browser">
+                <div class="browser-dots">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="browser-url mono">
+                  {project.link ? new URL(project.link).hostname : 'proyecto.dev'}
+                </div>
+              </div>
+              <div class="dev-project__screen">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+              </div>
+            </div>
+            <div class="dev-project__info">
+              <h3 class="dev-project__title">{project.title}</h3>
+              <p class="dev-project__desc">{project.description}</p>
+              <div class="dev-project__tags">
+                {project.tags.map((tag) => (
+                  <span class="dev-tag mono">{tag}</span>
+                ))}
+              </div>
+              {project.link && (
+                <a href={project.link} target="_blank" rel="noopener noreferrer" class="dev-project__link mono">
+                  Ver web →
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech -->
+  <section class="dev-tech section">
+    <div class="container">
+      <div class="dev-tech__header" data-animate="fade-up">
+        <span class="dev-section-label mono">Tecnología</span>
+        <h2 class="dev-section-title">Herramientas que uso</h2>
+      </div>
+
+      <div class="dev-tech__grid" data-animate="stagger">
+        <div class="tech-item">
+          <span class="tech-item__name">HTML / CSS</span>
+          <div class="tech-item__bar"><div class="tech-item__fill" style="width: 95%"></div></div>
+        </div>
+        <div class="tech-item">
+          <span class="tech-item__name">JavaScript</span>
+          <div class="tech-item__bar"><div class="tech-item__fill" style="width: 80%"></div></div>
+        </div>
+        <div class="tech-item">
+          <span class="tech-item__name">Astro</span>
+          <div class="tech-item__bar"><div class="tech-item__fill" style="width: 75%"></div></div>
+        </div>
+        <div class="tech-item">
+          <span class="tech-item__name">Diseño UI/UX</span>
+          <div class="tech-item__bar"><div class="tech-item__fill" style="width: 90%"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</SectionLayout>
+
+<style>
+  /* ── Hero ── */
+  .dev-hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    background: var(--dev-bg);
+  }
+
+  .dev-hero__content {
+    position: relative;
+    z-index: 1;
+    padding-top: calc(var(--space-3xl) + 100px);
+    padding-bottom: var(--space-3xl);
+  }
+
+  .dev-label {
+    display: inline-block;
+    font-size: var(--step--2);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--dev-accent);
+    margin-bottom: var(--space-l);
+  }
+
+  .dev-hero__title {
+    font-size: clamp(3rem, 2rem + 7vw, 8rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: var(--dev-primary);
+    margin-bottom: var(--space-l);
+  }
+
+  .dev-hero__accent {
+    color: var(--dev-accent);
+  }
+
+  .dev-hero__subtitle {
+    font-size: var(--step-1);
+    line-height: 1.5;
+    color: var(--dev-text-secondary);
+    max-width: 50ch;
+  }
+
+  /* ── Section headings ── */
+  .dev-section-label {
+    display: block;
+    font-size: var(--step--2);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--dev-accent);
+    margin-bottom: var(--space-xs);
+  }
+
+  .dev-section-title {
+    font-size: var(--step-3);
+    color: var(--dev-primary);
+    margin-bottom: var(--space-s);
+  }
+
+  .dev-section-desc {
+    color: var(--dev-text-secondary);
+    max-width: 55ch;
+    line-height: 1.7;
+  }
+
+  /* ── Approach ── */
+  .dev-approach__header {
+    margin-bottom: var(--space-xl);
+  }
+
+  .dev-approach__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-s);
+  }
+
+  .approach-card {
+    padding: var(--space-l);
+    border: 1px solid var(--dev-border);
+    border-radius: var(--radius-md);
+    background: var(--dev-surface);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .approach-card:hover {
+    border-color: var(--dev-accent);
+  }
+
+  .approach-card__number {
+    font-size: var(--step--2);
+    color: var(--dev-accent);
+    letter-spacing: 0.1em;
+  }
+
+  .approach-card__title {
+    font-size: var(--step-0);
+    color: var(--dev-primary);
+    font-weight: 700;
+  }
+
+  .approach-card__desc {
+    font-size: var(--step--1);
+    color: var(--dev-text-secondary);
+    line-height: 1.6;
+  }
+
+  /* ── Projects ── */
+  .dev-projects__header {
+    margin-bottom: var(--space-xl);
+  }
+
+  .dev-projects__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-l);
+  }
+
+  .dev-project {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .dev-project:nth-child(even) {
+    direction: rtl;
+  }
+
+  .dev-project:nth-child(even) > * {
+    direction: ltr;
+  }
+
+  /* Browser mockup */
+  .dev-project__mockup {
+    border: 1px solid var(--dev-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--dev-surface);
+  }
+
+  .dev-project__browser {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+    padding: var(--space-xs) var(--space-s);
+    border-bottom: 1px solid var(--dev-border);
+    background: var(--dev-bg);
+  }
+
+  .browser-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .browser-dots span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--dev-border);
+  }
+
+  .browser-url {
+    font-size: var(--step--2);
+    color: var(--dev-text-secondary);
+    opacity: 0.6;
+  }
+
+  .dev-project__screen {
+    aspect-ratio: 16/10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dev-accent);
+    opacity: 0.2;
+  }
+
+  .dev-project__info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .dev-project__title {
+    font-size: var(--step-2);
+    color: var(--dev-primary);
+    font-weight: 700;
+  }
+
+  .dev-project__desc {
+    font-size: var(--step--1);
+    color: var(--dev-text-secondary);
+    line-height: 1.65;
+  }
+
+  .dev-project__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3xs);
+    margin-top: var(--space-2xs);
+  }
+
+  .dev-tag {
+    font-size: var(--step--2);
+    padding: 0.2em 0.6em;
+    border: 1px solid var(--dev-border);
+    border-radius: var(--radius-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--dev-text-secondary);
+  }
+
+  .dev-project__link {
+    display: inline-block;
+    margin-top: var(--space-xs);
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--dev-accent);
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+
+  .dev-project__link:hover {
+    transform: translateX(4px);
+  }
+
+  /* ── Tech ── */
+  .dev-tech__header {
+    margin-bottom: var(--space-xl);
+  }
+
+  .dev-tech__grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+    max-width: 600px;
+  }
+
+  .tech-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+  }
+
+  .tech-item__name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--step--1);
+    color: var(--dev-primary);
+  }
+
+  .tech-item__bar {
+    width: 100%;
+    height: 4px;
+    background: var(--dev-border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .tech-item__fill {
+    height: 100%;
+    background: var(--dev-accent);
+    border-radius: 2px;
+    transition: width 1s var(--ease-out);
+  }
+
+  @media (max-width: 768px) {
+    .dev-approach__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .dev-project {
+      grid-template-columns: 1fr;
+    }
+
+    .dev-project:nth-child(even) {
+      direction: ltr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .dev-approach__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

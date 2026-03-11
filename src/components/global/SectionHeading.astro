@@ -1,0 +1,55 @@
+---
+interface Props {
+  label: string;
+  title: string;
+  align?: 'left' | 'center';
+}
+
+const { label, title, align = 'left' } = Astro.props;
+---
+
+<div class:list={['section-heading', `section-heading--${align}`]} data-animate="fade-up">
+  <span class="section-heading__label mono">{label}</span>
+  <h2 class="section-heading__title">{title}</h2>
+  {Astro.slots.has('default') && (
+    <div class="section-heading__desc">
+      <slot />
+    </div>
+  )}
+</div>
+
+<style>
+  .section-heading {
+    margin-bottom: var(--space-xl);
+  }
+
+  .section-heading--center {
+    text-align: center;
+  }
+
+  .section-heading--center .section-heading__desc {
+    margin-inline: auto;
+  }
+
+  .section-heading__label {
+    display: inline-block;
+    font-size: var(--step--2);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-accent);
+    margin-bottom: var(--space-xs);
+  }
+
+  .section-heading__title {
+    font-size: var(--step-3);
+    color: var(--color-primary);
+    margin-bottom: var(--space-s);
+  }
+
+  .section-heading__desc {
+    max-width: 55ch;
+    color: var(--color-text-secondary);
+    font-size: var(--step-0);
+    line-height: 1.7;
+  }
+</style>
