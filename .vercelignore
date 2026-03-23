@@ -1,0 +1,8 @@
+# Source video files not used in the web (web versions .web.mp4 are deployed)
+**/*.mov
+**/reel-promo-cabramelizada-v1.mp4
+
+# Non-web folders
+cv
+remotion
+setup-github.ps1
