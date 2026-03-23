@@ -1,0 +1,435 @@
+﻿<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guillermo Lopez del Castillo-Olivares - CV Corporativo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Literata:opsz,wght@7..72,500;7..72,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      :root {
+        --paper: #ffffff;
+        --ink: #101319;
+        --muted: #4f5865;
+        --line: #d7dde6;
+        --accent: #1d4f7a;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        width: 210mm;
+        height: 297mm;
+      }
+
+      body {
+        font-family: 'Source Sans 3', system-ui, sans-serif;
+        background: #eceff3;
+        color: var(--ink);
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .sheet {
+        width: 210mm;
+        height: 297mm;
+        background: var(--paper);
+        padding: 13mm 14mm 11mm;
+        display: grid;
+        grid-template-rows: auto auto 1fr auto;
+        gap: 5mm;
+      }
+
+      header {
+        border-bottom: 0.3mm solid var(--line);
+        padding-bottom: 3mm;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 4mm;
+        align-items: center;
+      }
+
+      .photo {
+        width: 22mm;
+        height: 22mm;
+        border-radius: 2mm;
+        object-fit: cover;
+        border: 0.3mm solid var(--line);
+      }
+
+      .name {
+        font-family: 'Literata', serif;
+        font-size: 8.7mm;
+        line-height: 0.95;
+        letter-spacing: -0.02em;
+        font-weight: 700;
+      }
+
+      .title {
+        margin-top: 1.5mm;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 2.35mm;
+        color: var(--accent);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        line-height: 1.5;
+      }
+
+      .contact {
+        margin-top: 2.2mm;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5mm 5mm;
+        font-size: 2.45mm;
+        color: var(--muted);
+      }
+
+      .contact a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      .summary {
+        font-size: 2.85mm;
+        line-height: 1.55;
+        color: #283140;
+        padding: 2.2mm 0 3.3mm;
+        border-bottom: 0.2mm solid var(--line);
+      }
+
+      .main {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 7mm;
+      }
+
+      .left,
+      .right {
+        display: flex;
+        flex-direction: column;
+        gap: 4.5mm;
+      }
+
+      .right {
+        border-left: 0.2mm solid var(--line);
+        padding-left: 4.5mm;
+      }
+
+      .section-title {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 2.15mm;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        margin-bottom: 1.4mm;
+      }
+
+      .item {
+        border-bottom: 0.18mm solid var(--line);
+        padding-bottom: 2.6mm;
+      }
+
+      .item:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .item-head {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 2mm;
+      }
+
+      .item-role {
+        font-size: 2.95mm;
+        font-weight: 700;
+      }
+
+      .item-company {
+        font-size: 2.45mm;
+        color: var(--accent);
+        font-weight: 600;
+        margin-top: 0.2mm;
+      }
+
+      .item-period {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 2mm;
+        color: #6f7782;
+        text-transform: uppercase;
+      }
+
+      .bullets {
+        list-style: none;
+        display: grid;
+        gap: 0.8mm;
+        margin-top: 1mm;
+      }
+
+      .bullets li {
+        font-size: 2.32mm;
+        line-height: 1.4;
+        color: #394351;
+      }
+
+      .bullets li::before {
+        content: '- ';
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      .list {
+        list-style: none;
+        display: grid;
+        gap: 1.5mm;
+      }
+
+      .list li {
+        font-size: 2.3mm;
+        line-height: 1.38;
+        color: #374150;
+      }
+
+      .list li strong {
+        color: var(--ink);
+        font-weight: 700;
+      }
+
+      .group {
+        display: grid;
+        gap: 0.6mm;
+        margin-bottom: 1.6mm;
+      }
+
+      .group:last-child {
+        margin-bottom: 0;
+      }
+
+      .group-label {
+        font-size: 2.05mm;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #66707e;
+        font-weight: 700;
+      }
+
+      .group-text {
+        font-size: 2.28mm;
+        line-height: 1.36;
+        color: #384252;
+      }
+
+      footer {
+        border-top: 0.2mm solid var(--line);
+        padding-top: 2.2mm;
+        display: flex;
+        justify-content: space-between;
+        gap: 4mm;
+        font-size: 2.1mm;
+        color: #697381;
+      }
+
+      footer a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="sheet">
+      <header>
+        <img class="photo" src="../public/media/guillermo-lopez.jpeg" alt="Guillermo Lopez" width="83" height="83" />
+        <div>
+          <h1 class="name">Guillermo Lopez del Castillo-Olivares</h1>
+          <p class="title">Grafista de TV en directo | Motion Designer | Automatizacion creativa con IA | Desarrollo web | Marca y negocio</p>
+          <div class="contact">
+            <span>Madrid, Espana</span>
+            <span>guillelopez1999@hotmail.com</span>
+            <a href="https://guillermolopez.dev">guillermolopez.dev</a>
+            <a href="https://es.linkedin.com/in/guillermo-l%C3%B3pez-del-castillo-olivares-a05777201">LinkedIn</a>
+          </div>
+        </div>
+      </header>
+
+      <section class="summary">
+        Profesional audiovisual con mas de 5 anos en grafismo de directo para cadenas nacionales (Mediaset, RTVE, Movistar+).
+        Combino motion design, produccion grafica y criterio editorial de emision con capacidad tecnica para integrar IA en flujos de trabajo reales.
+        Perfil hibrido orientado a resolver proyectos completos: de la idea visual a la ejecucion final. Cofundador de negocio real y desarrollador web con proyectos en produccion.
+      </section>
+
+      <div class="main">
+        <section class="left">
+          <article>
+            <h2 class="section-title">Experiencia profesional</h2>
+
+            <div class="item">
+              <div class="item-head">
+                <div>
+                  <p class="item-role">Grafista en directo</p>
+                  <p class="item-company">Producciones Mandarina para Mediaset Espana (Cuatro)</p>
+                </div>
+                <p class="item-period">Mar 2022 - Actualidad</p>
+              </div>
+              <ul class="bullets">
+                <li>Produccion de rotulos, cartelas y recursos de emision para formato diario de actualidad.</li>
+                <li>Entrega de piezas en tiempos de directo y adaptacion a cambios de escaleta.</li>
+              </ul>
+            </div>
+
+            <div class="item">
+              <div class="item-head">
+                <div>
+                  <p class="item-role">Cofundador | Director de marca y sistema digital</p>
+                  <p class="item-company">Fratelli Pazzi (Las Rozas, Madrid)</p>
+                </div>
+                <p class="item-period">2022 - Actualidad</p>
+              </div>
+              <ul class="bullets">
+                <li>Direccion integral de identidad visual: logotipo, paleta cromatica, tipografias y sistema visual completo.</li>
+                <li>Diseno y desarrollo de plataforma digital con menu interactivo, pedidos online y fidelizacion.</li>
+                <li>Produccion de video promocional para pantallas del local.</li>
+                <li>Gestion creativa end-to-end (4.7 estrellas en Google, mas de 300 clientes).</li>
+              </ul>
+            </div>
+
+            <div class="item">
+              <div class="item-head">
+                <div>
+                  <p class="item-role">Grafista | Motion Designer</p>
+                  <p class="item-company">Catorce Comunicacion</p>
+                </div>
+                <p class="item-period">Oct 2023 - Mar 2024</p>
+              </div>
+              <ul class="bullets">
+                <li>Produccion grafica y motion para proyectos audiovisuales en modalidad remota.</li>
+              </ul>
+            </div>
+
+            <div class="item">
+              <div class="item-head">
+                <div>
+                  <p class="item-role">Coordinador de personal</p>
+                  <p class="item-company">ABC Live Experience &mdash; Gira RBF</p>
+                </div>
+                <p class="item-period">Jul 2023 - Ago 2023</p>
+              </div>
+              <ul class="bullets">
+                <li>Coordinador de HUB en gira de festivales. Gestion de personal y resolucion de incidencias.</li>
+              </ul>
+            </div>
+
+            <div class="item">
+              <div class="item-head">
+                <div>
+                  <p class="item-role">Grafista</p>
+                  <p class="item-company">Miss Motion</p>
+                </div>
+                <p class="item-period">Jun 2021 - Dic 2021</p>
+              </div>
+              <ul class="bullets">
+                <li>Grafismo y motion design para proyectos audiovisuales.</li>
+              </ul>
+            </div>
+
+            <div class="item">
+              <div class="item-head">
+                <div>
+                  <p class="item-role">Grafista</p>
+                  <p class="item-company">Telefonica (Movistar+)</p>
+                </div>
+                <p class="item-period">Nov 2020 - Feb 2021</p>
+              </div>
+              <ul class="bullets">
+                <li>Produccion grafica y diseno para la plataforma audiovisual de Telefonica.</li>
+              </ul>
+            </div>
+
+            <div class="item">
+              <div class="item-head">
+                <div>
+                  <p class="item-role">Colaboraciones &mdash; Fiesta de Mediaset</p>
+                  <p class="item-company">Mediaset Espana</p>
+                </div>
+                <p class="item-period">Puntual</p>
+              </div>
+              <ul class="bullets">
+                <li>Trabajos puntuales de grafismo para especiales y eventos de Mediaset.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article>
+            <h2 class="section-title">Proyectos seleccionados</h2>
+            <ul class="list">
+              <li><strong>En Boca de Todos (Cuatro)</strong>: grafismo en directo para programa nacional de actualidad.</li>
+              <li><strong>Especial Ana Obregon (Telecinco prime time)</strong>: identidad visual, cabecera y motion graphics.</li>
+              <li><strong>Infinity &mdash; Cabecera Podcast (Mediaset)</strong>: concepto visual, animacion y produccion del opening.</li>
+              <li><strong>Sistema de automatizacion broadcast</strong>: plantillas modulares con expresiones en After Effects.</li>
+              <li><strong>Black Gum Studio</strong>: plataforma full-stack para productora audiovisual (Next.js, TypeScript, Prisma, Stripe).</li>
+            </ul>
+          </article>
+        </section>
+
+        <aside class="right">
+          <article>
+            <h2 class="section-title">Especialidades</h2>
+            <ul class="list">
+              <li>Grafismo de emision y motion design para television en directo.</li>
+              <li>Produccion audiovisual orientada a tiempos de entrega exigentes.</li>
+              <li>Automatizacion de flujos de trabajo creativos con plantillas y expresiones.</li>
+              <li>Diseno de sistemas visuales aplicados a marca y producto real.</li>
+              <li>Integracion de IA en procesos creativos y de postproduccion.</li>
+              <li>Desarrollo web full-stack con proyectos en produccion.</li>
+            </ul>
+          </article>
+
+          <article>
+            <h2 class="section-title">Competencias tecnicas</h2>
+            <div class="group">
+              <p class="group-label">Broadcast y motion</p>
+              <p class="group-text">After Effects, Photoshop, Illustrator, Premiere Pro, Motion Graphics, Grafismo TV, Direccion de Arte.</p>
+            </div>
+            <div class="group">
+              <p class="group-label">IA y automatizacion</p>
+              <p class="group-text">ChatGPT, Prompt Engineering, Nano Banana 2, Kling, IA Generativa, workflows automatizados.</p>
+            </div>
+            <div class="group">
+              <p class="group-label">Desarrollo web</p>
+              <p class="group-text">HTML/CSS, JavaScript, TypeScript, Astro, Next.js, React, Tailwind, Prisma, Node.js, Stripe.</p>
+            </div>
+            <div class="group">
+              <p class="group-label">Marca y negocio</p>
+              <p class="group-text">Branding, Gestion de Marca, E-commerce, Marketing Digital, Contenido audiovisual, Operaciones.</p>
+            </div>
+          </article>
+
+          <article>
+            <h2 class="section-title">Formacion</h2>
+            <ul class="list">
+              <li><strong>Grado Superior en Animacion 2D, 3D y Desarrollo de Videojuegos</strong> - Universidad Francisco de Vitoria, Pozuelo.</li>
+              <li><strong>Curso de Vizrt</strong> - Daniel Mendez.</li>
+              <li><strong>Bachillerato de Ciencias Sociales y Humanidades</strong> - IES Diego Velazquez, Torrelodones.</li>
+            </ul>
+          </article>
+        </aside>
+      </div>
+
+      <footer>
+        <span>Portfolio completo con videos y proyectos interactivos</span>
+        <span><a href="https://guillermolopez.dev">guillermolopez.dev</a></span>
+      </footer>
+    </main>
+  </body>
+</html>
