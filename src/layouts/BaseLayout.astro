@@ -91,6 +91,10 @@ const canonicalURL = new URL(Astro.url.pathname, site.url);
       gsap.registerPlugin(ScrollTrigger);
 
       function initAnimations() {
+        // Kill old ScrollTrigger instances to prevent duplicates across View Transitions
+        ScrollTrigger.getAll().forEach(st => st.kill());
+        ScrollTrigger.refresh();
+
         // Fade up elements
         gsap.utils.toArray<HTMLElement>('[data-animate="fade-up"]').forEach((el) => {
           gsap.fromTo(
@@ -204,8 +208,27 @@ const canonicalURL = new URL(Astro.url.pathname, site.url);
         });
       }
 
+      // Scroll to hash target after View Transitions (fixes /#contacto)
+      function handleHashScroll() {
+        const hash = window.location.hash;
+        if (hash) {
+          const target = document.querySelector(hash);
+          if (target) {
+            // Wait a tick for layout to settle after View Transition
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => {
+                target.scrollIntoView({ behavior: 'smooth' });
+              });
+            });
+          }
+        }
+      }
+
       // Init on page load and after view transitions
-      document.addEventListener('astro:page-load', initAnimations);
+      document.addEventListener('astro:page-load', () => {
+        initAnimations();
+        handleHashScroll();
+      });
     </script>
 
     <!-- Global Loader Script -->
