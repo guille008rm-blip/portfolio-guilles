@@ -1,267 +1,660 @@
 ---
 import SectionLayout from '../layouts/SectionLayout.astro';
-import { automatizacionProjects } from '../data/projects';
+import { automatizacionVisualisers } from '../data/projects';
 ---
 
 <SectionLayout
-  title="Automatización e IA — Guillermo López"
-  description="Procesos inteligentes de producción visual: desde la ideación con ChatGPT hasta la postproducción con After Effects."
+  title="Automatización — Guillermo López"
+  description="Detecto procesos repetitivos y los convierto en sistemas automáticos. Plantillas, expresiones y scripts que multiplican la eficiencia."
   theme="automatizacion"
 >
-  <!-- Hero -->
+  <!-- Number particles background -->
+  <canvas class="auto-particles" id="auto-particles" aria-hidden="true"></canvas>
+
+  <!-- Hero título -->
   <section class="auto-hero">
     <div class="auto-hero__content container">
-      <span class="auto-label mono" data-animate="fade-up">Sistema · Eficiencia · Inteligencia</span>
-
-      <h1 class="auto-hero__title" data-animate="fade-up">
-        Automatización<br />
-        <span class="auto-hero__accent">e IA</span>
+      <h1 class="auto-hero__title">
+        <span class="auto-hero__title--full">Automatización</span>
+        <span class="auto-hero__title--short">Automatizar</span>
       </h1>
-
-      <p class="auto-hero__subtitle" data-animate="fade-up">
-        No uso IA por moda. La integro como herramienta real de producción
-        para generar imagen, vídeo y contenido con criterio profesional.
-      </p>
+      <p class="auto-hero__sub">Detecto lo repetitivo, lo convierto en sistema y me olvido.</p>
     </div>
-
-    <!-- Grid pattern background -->
-    <div class="auto-hero__grid-bg" aria-hidden="true"></div>
   </section>
 
-  <!-- Workflow diagram -->
-  <section class="auto-workflow section">
+  <!-- Showcase — lo primero que se ve -->
+  <section class="showcase" aria-label="Plantillas automatizadas">
+    <div class="showcase__viewport">
+      {automatizacionVisualisers.map((item, index) => (
+        <article
+          class={`showcase__slide ${index === 0 ? 'is-active' : ''}`}
+          data-index={index}
+        >
+          <video
+            class="showcase__video"
+            preload="metadata"
+            playsinline
+            muted
+            loop
+            poster={item.poster}
+          >
+            <source src={item.video} type="video/mp4" />
+          </video>
+        </article>
+      ))}
+    </div>
+
+    <button class="showcase__nav showcase__nav--prev" aria-label="Anterior" data-dir="-1">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="showcase__nav showcase__nav--next" aria-label="Siguiente" data-dir="1">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+
+    <div class="showcase__dots">
+      {automatizacionVisualisers.map((_, i) => (
+        <button
+          class={`showcase__dot ${i === 0 ? 'is-active' : ''}`}
+          data-goto={i}
+          aria-label={`Ir a plantilla ${i + 1}`}
+        >
+          <span class="showcase__dot-fill"></span>
+        </button>
+      ))}
+    </div>
+  </section>
+
+  <!-- Terminal accent -->
+  <section class="terminal-strip">
     <div class="container">
-      <div class="auto-workflow__header" data-animate="fade-up">
-        <span class="auto-section-label mono">Proceso</span>
-        <h2 class="auto-section-title">De la idea al resultado</h2>
-        <p class="auto-section-desc">
-          Mi flujo de trabajo combina conceptualización humana, generación por IA
-          y acabado profesional en postproducción.
+      <div class="terminal-strip__block mono">
+        <span><span class="terminal-prompt">~</span> <span class="terminal-cmd">find</span> <span class="terminal-arg">./trabajo</span> <span class="terminal-flag">--repetitivo</span></span>
+        <span class="terminal-output">→ 47 procesos manuales</span>
+        <span><span class="terminal-prompt">~</span> <span class="terminal-cmd">automatizar</span> <span class="terminal-flag">--todos</span></span>
+        <span class="terminal-success">✓ Hecho.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pipeline: problema → sistema → resultado -->
+  <section class="pipeline section">
+    <div class="container">
+      <div class="pipeline__header" data-animate="fade-up">
+        <h2 class="pipeline__title">Cómo funciona mi cabeza</h2>
+        <p class="pipeline__desc">
+          Cada vez que hago algo más de una vez, pienso:
+          <em>"esto se puede automatizar"</em>. Y lo hago.
         </p>
       </div>
 
-      <div class="workflow" data-animate="stagger">
-        <div class="workflow__step">
-          <div class="workflow__icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+      <div class="pipeline__flow" data-animate="stagger">
+        <div class="pipeline__node pipeline__node--problem">
+          <div class="pipeline__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><path d="M8 15h8"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="15" cy="9" r="1" fill="currentColor"/>
             </svg>
           </div>
-          <span class="workflow__number mono">01</span>
-          <h3 class="workflow__title">Concepto</h3>
-          <p class="workflow__desc">Definición de la idea, referencias visuales y dirección creativa del proyecto.</p>
+          <h3 class="pipeline__node-title">El problema</h3>
+          <p class="pipeline__node-text">"Llevo 2 horas cambiando rótulos a mano y aún me quedan 40"</p>
         </div>
 
-        <div class="workflow__arrow" aria-hidden="true">→</div>
-
-        <div class="workflow__step">
-          <div class="workflow__icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
-            </svg>
-          </div>
-          <span class="workflow__number mono">02</span>
-          <h3 class="workflow__title">Prompt + ChatGPT</h3>
-          <p class="workflow__desc">Ingeniería de prompts y conceptualización con ChatGPT para definir la estructura visual.</p>
+        <div class="pipeline__connector" aria-hidden="true">
+          <svg viewBox="0 0 80 24" fill="none">
+            <path d="M0 12h60" stroke="var(--auto-accent)" stroke-width="2" stroke-dasharray="6 4"/>
+            <path d="M56 6l8 6-8 6" stroke="var(--auto-accent)" stroke-width="2" fill="none"/>
+          </svg>
         </div>
 
-        <div class="workflow__arrow" aria-hidden="true">→</div>
-
-        <div class="workflow__step">
-          <div class="workflow__icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
+        <div class="pipeline__node pipeline__node--system">
+          <div class="pipeline__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
             </svg>
           </div>
-          <span class="workflow__number mono">03</span>
-          <h3 class="workflow__title">Generación IA</h3>
-          <p class="workflow__desc">Nano Banana 2 para imagen y Kling para vídeo. Generación iterativa hasta conseguir el resultado buscado.</p>
+          <h3 class="pipeline__node-title">El sistema</h3>
+          <p class="pipeline__node-text">Plantilla + expresiones + variables = un click y listo</p>
         </div>
 
-        <div class="workflow__arrow" aria-hidden="true">→</div>
+        <div class="pipeline__connector" aria-hidden="true">
+          <svg viewBox="0 0 80 24" fill="none">
+            <path d="M0 12h60" stroke="var(--auto-accent)" stroke-width="2" stroke-dasharray="6 4"/>
+            <path d="M56 6l8 6-8 6" stroke="var(--auto-accent)" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
 
-        <div class="workflow__step">
-          <div class="workflow__icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+        <div class="pipeline__node pipeline__node--result">
+          <div class="pipeline__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
             </svg>
           </div>
-          <span class="workflow__number mono">04</span>
-          <h3 class="workflow__title">After Effects</h3>
-          <p class="workflow__desc">Postproducción profesional: ajustes de color, composición, timing y acabado final broadcast-ready.</p>
+          <h3 class="pipeline__node-title">El resultado</h3>
+          <p class="pipeline__node-text">40 rótulos en 2 minutos. Y te sobra tiempo para el café.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Tool stack -->
-  <section class="auto-stack section">
+  <!-- Antes → Después -->
+  <section class="examples section">
     <div class="container">
-      <div class="auto-stack__header" data-animate="fade-up">
-        <span class="auto-section-label mono">Herramientas</span>
-        <h2 class="auto-section-title">Stack de IA</h2>
+      <div class="examples__header" data-animate="fade-up">
+        <h2 class="examples__title">Antes → Después</h2>
+        <p class="examples__desc">Ejemplos reales de lo que automatizo en el día a día.</p>
       </div>
 
-      <div class="auto-stack__grid" data-animate="stagger">
-        <div class="stack-card">
-          <div class="stack-card__header">
-            <span class="stack-card__name">ChatGPT</span>
-            <span class="stack-card__type mono">LLM</span>
+      <div class="examples__grid" data-animate="stagger">
+        <div class="example-card">
+          <div class="example-card__before">
+            <span class="example-card__label mono">Antes</span>
+            <p>Cambiar texto, color y datos en 47 rótulos uno a uno</p>
           </div>
-          <p class="stack-card__desc">Conceptualización, prompts, iteración creativa y dirección del proceso.</p>
+          <div class="example-card__arrow" aria-hidden="true">→</div>
+          <div class="example-card__after">
+            <span class="example-card__label example-card__label--after mono">Después</span>
+            <p>Un JSON con los datos y el sistema lo hace solo</p>
+          </div>
         </div>
-        <div class="stack-card">
-          <div class="stack-card__header">
-            <span class="stack-card__name">Nano Banana 2</span>
-            <span class="stack-card__type mono">Imagen</span>
+
+        <div class="example-card">
+          <div class="example-card__before">
+            <span class="example-card__label mono">Antes</span>
+            <p>Ajustar colores de marca en cada pieza manualmente</p>
           </div>
-          <p class="stack-card__desc">Generación de imagen de alta calidad para assets de producción visual.</p>
+          <div class="example-card__arrow" aria-hidden="true">→</div>
+          <div class="example-card__after">
+            <span class="example-card__label example-card__label--after mono">Después</span>
+            <p>Cambio una variable y todo se actualiza al instante</p>
+          </div>
         </div>
-        <div class="stack-card">
-          <div class="stack-card__header">
-            <span class="stack-card__name">Kling</span>
-            <span class="stack-card__type mono">Vídeo</span>
+
+        <div class="example-card">
+          <div class="example-card__before">
+            <span class="example-card__label mono">Antes</span>
+            <p>Exportar 20 versiones con distintos textos y formatos</p>
           </div>
-          <p class="stack-card__desc">Generación de vídeo con IA para piezas de motion y contenido audiovisual.</p>
-        </div>
-        <div class="stack-card">
-          <div class="stack-card__header">
-            <span class="stack-card__name">After Effects</span>
-            <span class="stack-card__type mono">Post</span>
+          <div class="example-card__arrow" aria-hidden="true">→</div>
+          <div class="example-card__after">
+            <span class="example-card__label example-card__label--after mono">Después</span>
+            <p>Un script renderiza todo mientras me tomo el café</p>
           </div>
-          <p class="stack-card__desc">Acabado profesional, composición, ajustes y entrega final en calidad broadcast.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Projects -->
-  <section class="auto-projects section">
-    <div class="container">
-      <div class="auto-projects__header" data-animate="fade-up">
-        <span class="auto-section-label mono">Aplicación real</span>
-        <h2 class="auto-section-title">Casos de uso</h2>
-      </div>
-
-      <div class="auto-projects__list" data-animate="stagger">
-        {automatizacionProjects.map((project) => (
-          <article class="auto-project-card">
-            <div class="auto-project-card__visual">
-              <div class="auto-project-card__placeholder">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
-                </svg>
-              </div>
-            </div>
-            <div class="auto-project-card__info">
-              <h3 class="auto-project-card__title">{project.title}</h3>
-              <p class="auto-project-card__desc">{project.description}</p>
-              <div class="auto-project-card__tags">
-                {project.tags.map((tag) => (
-                  <span class="auto-tag mono">{tag}</span>
-                ))}
-              </div>
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
 </SectionLayout>
 
+<script is:inline>
+  // ── Showcase slider ──
+  (() => {
+    const slides = document.querySelectorAll('.showcase__slide');
+    const dots   = document.querySelectorAll('.showcase__dot');
+    const navs   = document.querySelectorAll('.showcase__nav');
+    let current  = 0;
+    let transitioning = false;
+
+    function goTo(index) {
+      if (transitioning || index === current) return;
+      transitioning = true;
+      const prev = slides[current];
+      const next = slides[index];
+      const prevVideo = prev.querySelector('video');
+      if (prevVideo) { prevVideo.pause(); prevVideo.currentTime = 0; }
+      next.classList.add('is-entering');
+      requestAnimationFrame(() => {
+        next.classList.add('is-active');
+        next.classList.remove('is-entering');
+        prev.classList.remove('is-active');
+        const nextVideo = next.querySelector('video');
+        if (nextVideo) nextVideo.play().catch(() => {});
+        dots[current].classList.remove('is-active');
+        dots[index].classList.add('is-active');
+        current = index;
+        setTimeout(() => { transitioning = false; }, 600);
+      });
+    }
+
+    navs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const dir = parseInt(btn.dataset.dir);
+        goTo((current + dir + slides.length) % slides.length);
+      });
+    });
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => goTo(parseInt(dot.dataset.goto)));
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') goTo((current + 1) % slides.length);
+      if (e.key === 'ArrowLeft')  goTo((current - 1 + slides.length) % slides.length);
+    });
+
+    const firstVideo = slides[0]?.querySelector('video');
+    if (firstVideo) firstVideo.play().catch(() => {});
+  })();
+
+  // ── Number particles ──
+  (() => {
+    const canvas = document.getElementById('auto-particles');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let w, h, particles = [];
+    let mouse = { x: -9999, y: -9999 };
+    let raf;
+
+    // Meaningful tokens: automation metrics, binary, code fragments
+    const tokens = [
+      '0', '1', '0', '1', '0', '1',
+      '47', '02', '40', '×10',
+      '{}', '()', '=>', '//',
+      '0:02', '%', '++', '--',
+      'for', 'if', '0x', '&&',
+      '47→2', '···', '█', '▓',
+    ];
+
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+
+    function createParticle() {
+      const size = 10 + Math.random() * 14;
+      return {
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: -0.15 - Math.random() * 0.25,
+        text: tokens[Math.floor(Math.random() * tokens.length)],
+        size: size,
+        alpha: 0.04 + Math.random() * 0.08,
+        baseAlpha: 0.04 + Math.random() * 0.08,
+        phase: Math.random() * Math.PI * 2,
+        phaseSpeed: 0.005 + Math.random() * 0.01,
+      };
+    }
+
+    function init() {
+      resize();
+      particles = [];
+      const count = Math.min(80, Math.floor((w * h) / 18000));
+      for (let i = 0; i < count; i++) {
+        particles.push(createParticle());
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      ctx.font = '600 {size}px "JetBrains Mono", monospace';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      const mouseRadius = 120;
+
+      for (const p of particles) {
+        p.phase += p.phaseSpeed;
+        p.x += p.vx;
+        p.y += p.vy;
+
+        // Wrap
+        if (p.y < -30) { p.y = h + 30; p.x = Math.random() * w; }
+        if (p.x < -30) p.x = w + 30;
+        if (p.x > w + 30) p.x = -30;
+
+        // Mouse repulsion
+        const dx = p.x - mouse.x;
+        const dy = p.y - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < mouseRadius) {
+          const force = (1 - dist / mouseRadius) * 0.6;
+          p.x += (dx / dist) * force * 2;
+          p.y += (dy / dist) * force * 2;
+        }
+
+        // Pulse
+        const pulse = 0.6 + 0.4 * Math.sin(p.phase);
+        const alpha = p.baseAlpha * pulse;
+
+        ctx.font = `600 ${p.size}px "JetBrains Mono", monospace`;
+        ctx.fillStyle = `rgba(57, 211, 83, ${alpha})`;
+        ctx.fillText(p.text, p.x, p.y);
+      }
+
+      raf = requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', () => { resize(); });
+    document.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
+    document.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+
+    init();
+    draw();
+
+    // Cleanup on page transition
+    document.addEventListener('astro:before-swap', () => {
+      cancelAnimationFrame(raf);
+    });
+  })();
+</script>
+
 <style>
-  /* ── Hero ── */
-  .auto-hero {
-    position: relative;
-    min-height: 100vh;
-    min-height: 100dvh;
-    display: flex;
-    align-items: center;
-    background: var(--auto-bg);
-    overflow: hidden;
+  /* ── Number particles ── */
+  .auto-particles {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
   }
 
-  .auto-hero__grid-bg {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    mask-image: radial-gradient(ellipse 50% 50% at 70% 50%, black, transparent);
-    -webkit-mask-image: radial-gradient(ellipse 50% 50% at 70% 50%, black, transparent);
+  /* ── Hero título ── */
+  .auto-hero {
+    position: relative;
+    z-index: 1;
+    background: transparent;
+    padding-top: calc(var(--space-2xl) + 80px);
+    padding-bottom: var(--space-xl);
   }
 
   .auto-hero__content {
-    position: relative;
-    z-index: 1;
-    padding-top: calc(var(--space-3xl) + 100px);
-    padding-bottom: var(--space-3xl);
-  }
-
-  .auto-label {
-    display: inline-block;
-    font-size: var(--step--2);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--auto-accent);
-    margin-bottom: var(--space-l);
+    text-align: center;
   }
 
   .auto-hero__title {
-    font-size: clamp(3rem, 2rem + 7vw, 8rem);
-    font-weight: 800;
-    line-height: 0.95;
+    font-size: clamp(3rem, 2rem + 5vw, 6rem);
+    font-weight: 900;
     letter-spacing: -0.04em;
-    color: var(--auto-primary);
-    margin-bottom: var(--space-l);
+    line-height: 1;
+    background: linear-gradient(135deg, #39D353 0%, #39D353 40%, #a8f0b0 65%, #ffffff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: var(--space-s);
+    max-width: 100%;
+    white-space: nowrap;
   }
 
-  .auto-hero__accent {
+  .auto-hero__title--full {
+    display: inline;
+  }
+
+  .auto-hero__title--short {
+    display: none;
+  }
+
+  .auto-hero__sub {
+    font-size: var(--step-0);
+    color: var(--auto-text-secondary);
+    line-height: 1.5;
+    max-width: 45ch;
+    margin-inline: auto;
+  }
+
+  /* ── Terminal strip ── */
+  .terminal-strip {
+    background: var(--auto-bg);
+    padding-block: var(--space-m);
+  }
+
+  .terminal-strip__block {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs) var(--space-m);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(0.65rem, 0.45rem + 0.6vw, 0.78rem);
+    color: var(--auto-text-secondary);
+    opacity: 0.6;
+  }
+
+  .terminal-prompt {
     color: var(--auto-accent);
   }
 
-  .auto-hero__subtitle {
-    font-size: var(--step-1);
-    line-height: 1.5;
-    color: var(--auto-text-secondary);
-    max-width: 50ch;
+  .terminal-cmd {
+    color: var(--auto-primary);
+    font-weight: 600;
   }
 
-  /* ── Section headings ── */
-  .auto-section-label {
+  .terminal-arg {
+    color: var(--auto-text-secondary);
+  }
+
+  .terminal-flag {
+    color: #79C0FF;
+  }
+
+  .terminal-output {
+    color: var(--auto-text-secondary);
+  }
+
+  .terminal-success {
+    color: var(--auto-accent);
+  }
+
+  /* ── Showcase ── */
+  .showcase {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    height: 80dvh;
+    --showcase-side-trim: clamp(20px, 5vw, 86px);
+    background:
+      radial-gradient(ellipse 90% 80% at 50% 50%, rgba(57, 211, 83, 0.08) 0%, transparent 72%),
+      linear-gradient(180deg, #0D1117 0%, #121821 100%);
+    overflow: hidden;
+  }
+
+  .showcase::before,
+  .showcase::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: max(7vw, 56px);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .showcase::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(13, 17, 23, 0.95) 0%, rgba(13, 17, 23, 0.35) 100%);
+  }
+
+  .showcase::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(13, 17, 23, 0.95) 0%, rgba(13, 17, 23, 0.35) 100%);
+  }
+
+  .showcase__viewport {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .showcase__slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+    z-index: 0;
+  }
+
+  .showcase__slide.is-active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+  }
+
+  .showcase__slide.is-entering {
+    visibility: visible;
+  }
+
+  .showcase__video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     display: block;
+    clip-path: inset(0 var(--showcase-side-trim));
+  }
+
+  .showcase__overlay {
+    position: absolute;
+    inset: auto 0 0 0;
+    z-index: 2;
+    padding: var(--space-2xl) var(--space-xl) var(--space-xl);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.3) 60%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+
+  .showcase__counter {
     font-size: var(--step--2);
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: var(--auto-accent);
-    margin-bottom: var(--space-xs);
+    color: rgba(255, 255, 255, 0.5);
   }
 
-  .auto-section-title {
+  .showcase__title {
+    font-size: clamp(1.6rem, 1rem + 2.5vw, 3rem);
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .showcase__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3xs);
+    margin-top: var(--space-3xs);
+  }
+
+  .showcase__tag {
+    font-size: var(--step--2);
+    padding: 0.2em 0.6em;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: var(--radius-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .showcase__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 62px;
+    height: 62px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(145deg, rgba(121, 192, 255, 0.22) 0%, rgba(57, 211, 83, 0.24) 100%);
+    backdrop-filter: blur(10px) saturate(1.2);
+    -webkit-backdrop-filter: blur(10px) saturate(1.2);
+    border: 1px solid rgba(57, 211, 83, 0.45);
+    border-radius: 50%;
+    color: #E6EDF3;
+    cursor: pointer;
+    box-shadow: 0 0 0 1px rgba(121, 192, 255, 0.2), 0 0 28px rgba(57, 211, 83, 0.28);
+    transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+
+  .showcase__nav svg {
+    width: 28px;
+    height: 28px;
+    filter: drop-shadow(0 0 8px rgba(57, 211, 83, 0.45));
+  }
+
+  .showcase__nav:hover {
+    background: linear-gradient(145deg, rgba(121, 192, 255, 0.34) 0%, rgba(57, 211, 83, 0.38) 100%);
+    border-color: rgba(57, 211, 83, 0.78);
+    box-shadow: 0 0 0 1px rgba(121, 192, 255, 0.4), 0 0 40px rgba(57, 211, 83, 0.45);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .showcase__nav--prev { left: var(--space-m); }
+  .showcase__nav--next { right: var(--space-m); }
+
+  .showcase__dots {
+    position: absolute;
+    bottom: var(--space-m);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    gap: var(--space-xs);
+  }
+
+  .showcase__dot {
+    width: 36px;
+    height: 4px;
+    padding: 0;
+    border: none;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 2px;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    transition: background 0.3s ease;
+  }
+
+  .showcase__dot.is-active {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  .showcase__dot-fill {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .showcase__dot.is-active .showcase__dot-fill {
+    transform: scaleX(1);
+  }
+
+  /* ── Pipeline ── */
+  .pipeline__header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .pipeline__title {
     font-size: var(--step-3);
     color: var(--auto-primary);
     margin-bottom: var(--space-s);
   }
 
-  .auto-section-desc {
+  .pipeline__desc {
     color: var(--auto-text-secondary);
-    max-width: 55ch;
-    line-height: 1.7;
+    font-size: var(--step-0);
+    line-height: 1.6;
+    max-width: 50ch;
+    margin-inline: auto;
   }
 
-  /* ── Workflow ── */
-  .auto-workflow__header {
-    margin-bottom: var(--space-xl);
+  .pipeline__desc em {
+    color: var(--auto-accent);
+    font-style: normal;
+    font-weight: 600;
   }
 
-  .workflow {
+  .pipeline__flow {
     display: flex;
-    align-items: flex-start;
-    gap: var(--space-s);
+    align-items: center;
+    gap: 0;
   }
 
-  .workflow__step {
+  .pipeline__node {
     flex: 1;
     padding: var(--space-l);
     background: var(--auto-surface);
@@ -269,192 +662,249 @@ import { automatizacionProjects } from '../data/projects';
     border-radius: var(--radius-md);
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
     gap: var(--space-xs);
-    transition: border-color var(--duration-fast) var(--ease-out);
+    transition: border-color 0.25s ease;
   }
 
-  .workflow__step:hover {
+  .pipeline__node:hover {
     border-color: var(--auto-accent);
   }
 
-  .workflow__icon {
-    color: var(--auto-accent);
+  .pipeline__node--problem .pipeline__icon { color: #F85149; }
+  .pipeline__node--system .pipeline__icon  { color: #79C0FF; }
+  .pipeline__node--result .pipeline__icon  { color: var(--auto-accent); }
+
+  .pipeline__icon {
     margin-bottom: var(--space-3xs);
   }
 
-  .workflow__number {
-    font-size: var(--step--2);
-    color: var(--auto-accent);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
-  .workflow__title {
+  .pipeline__node-title {
     font-size: var(--step-0);
-    color: var(--auto-primary);
     font-weight: 700;
-  }
-
-  .workflow__desc {
-    font-size: var(--step--1);
-    color: var(--auto-text-secondary);
-    line-height: 1.6;
-  }
-
-  .workflow__arrow {
-    font-size: var(--step-1);
-    color: var(--auto-accent);
-    opacity: 0.4;
-    padding-top: var(--space-xl);
-    flex-shrink: 0;
-  }
-
-  /* ── Stack ── */
-  .auto-stack__header {
-    margin-bottom: var(--space-xl);
-  }
-
-  .auto-stack__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--space-s);
-  }
-
-  .stack-card {
-    padding: var(--space-m);
-    background: var(--auto-surface);
-    border: 1px solid var(--auto-border);
-    border-radius: var(--radius-md);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-    transition: border-color var(--duration-fast) var(--ease-out);
-  }
-
-  .stack-card:hover {
-    border-color: var(--auto-accent);
-  }
-
-  .stack-card__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-  }
-
-  .stack-card__name {
-    font-family: 'Syne Variable', sans-serif;
-    font-size: var(--step-0);
-    font-weight: 600;
     color: var(--auto-primary);
   }
 
-  .stack-card__type {
-    font-size: var(--step--2);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--auto-accent);
-    padding: 0.15em 0.5em;
-    border: 1px solid var(--auto-border);
-    border-radius: var(--radius-sm);
-  }
-
-  .stack-card__desc {
+  .pipeline__node-text {
     font-size: var(--step--1);
     color: var(--auto-text-secondary);
     line-height: 1.6;
   }
 
-  /* ── Projects ── */
-  .auto-projects__header {
+  .pipeline__connector {
+    flex-shrink: 0;
+    width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pipeline__connector svg {
+    width: 100%;
+    height: 24px;
+  }
+
+  /* ── Examples before/after ── */
+  .examples__header {
+    text-align: center;
     margin-bottom: var(--space-xl);
   }
 
-  .auto-projects__list {
+  .examples__title {
+    font-size: var(--step-3);
+    color: var(--auto-primary);
+    margin-bottom: var(--space-s);
+  }
+
+  .examples__desc {
+    color: var(--auto-text-secondary);
+    font-size: var(--step-0);
+    line-height: 1.6;
+  }
+
+  .examples__grid {
     display: flex;
     flex-direction: column;
     gap: var(--space-m);
   }
 
-  .auto-project-card {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: var(--space-l);
-    padding: var(--space-l);
+  .example-card {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
     background: var(--auto-surface);
     border: 1px solid var(--auto-border);
     border-radius: var(--radius-md);
-    transition: border-color var(--duration-fast) var(--ease-out);
+    overflow: hidden;
+    transition: border-color 0.25s ease;
   }
 
-  .auto-project-card:hover {
+  .example-card:hover {
     border-color: var(--auto-accent);
   }
 
-  .auto-project-card__placeholder {
-    width: 100%;
-    aspect-ratio: 1;
-    background: var(--auto-bg);
-    border: 1px solid var(--auto-border);
-    border-radius: var(--radius-sm);
+  .example-card__before,
+  .example-card__after {
+    flex: 1;
+    padding: var(--space-m) var(--space-l);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+  }
+
+  .example-card__before {
+    background: rgba(248, 81, 73, 0.04);
+  }
+
+  .example-card__after {
+    background: rgba(57, 211, 83, 0.04);
+  }
+
+  .example-card__before p {
+    color: var(--auto-text-secondary);
+    font-size: var(--step--1);
+    line-height: 1.5;
+  }
+
+  .example-card__after p {
+    color: var(--auto-primary);
+    font-size: var(--step--1);
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  .example-card__label {
+    font-size: var(--step--2);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #F85149;
+  }
+
+  .example-card__label--after {
+    color: var(--auto-accent);
+  }
+
+  .example-card__arrow {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--auto-accent);
-    opacity: 0.3;
-  }
-
-  .auto-project-card__info {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-    justify-content: center;
-  }
-
-  .auto-project-card__title {
+    padding-inline: var(--space-s);
     font-size: var(--step-1);
-    color: var(--auto-primary);
+    color: var(--auto-accent);
     font-weight: 700;
+    flex-shrink: 0;
+    background: var(--auto-surface);
   }
 
-  .auto-project-card__desc {
-    font-size: var(--step--1);
-    color: var(--auto-text-secondary);
-    line-height: 1.65;
+  /* ── Section spacing ── */
+  .section {
+    padding-block: var(--space-3xl);
   }
 
-  .auto-project-card__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3xs);
-    margin-top: var(--space-2xs);
-  }
-
-  .auto-tag {
-    font-size: var(--step--2);
-    padding: 0.2em 0.6em;
-    border: 1px solid var(--auto-border);
-    border-radius: var(--radius-sm);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--auto-text-secondary);
-  }
-
+  /* ── Responsive ── */
   @media (max-width: 768px) {
-    .workflow {
+    .auto-hero {
+      overflow-x: clip;
+    }
+
+    .auto-hero__title--short {
+      display: inline;
+    }
+
+    .auto-hero__title--full {
+      display: none;
+    }
+
+    .auto-hero__title {
+      font-size: clamp(1.6rem, 0.8rem + 5vw, 2.4rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+    }
+
+    .auto-hero__sub {
+      max-width: 30ch;
+      padding-inline: var(--space-2xs);
+    }
+
+    .showcase {
+      height: 65vh;
+      height: 65dvh;
+      --showcase-side-trim: 8px;
+      overflow-x: clip;
+    }
+
+    .showcase__nav {
+      width: 50px;
+      height: 50px;
+    }
+
+    .showcase__nav--prev { left: var(--space-xs); }
+    .showcase__nav--next { right: var(--space-xs); }
+
+    .showcase__overlay {
+      padding: var(--space-l) var(--space-m) var(--space-l);
+    }
+
+    .showcase::before,
+    .showcase::after {
+      width: 28px;
+    }
+
+    .pipeline__flow {
+      flex-direction: column;
+      gap: var(--space-s);
+    }
+
+    .pipeline__connector {
+      width: 24px;
+      height: 50px;
+      transform: rotate(90deg);
+    }
+
+    .example-card {
       flex-direction: column;
     }
 
-    .workflow__arrow {
-      padding-top: 0;
-      text-align: center;
+    .example-card__arrow {
+      padding-block: var(--space-2xs);
     }
 
-    .auto-project-card {
-      grid-template-columns: 1fr;
+    .terminal-strip,
+    .pipeline,
+    .examples {
+      overflow-x: clip;
     }
 
-    .auto-project-card__placeholder {
-      max-width: 200px;
+  }
+
+  @media (max-width: 480px) {
+    .showcase {
+      --showcase-side-trim: 0px;
     }
+
+    .showcase::before,
+    .showcase::after {
+      width: 12px;
+    }
+
+    .showcase__nav {
+      width: 42px;
+      height: 42px;
+    }
+
+    .showcase__nav svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  /* Ensure content sections are above particles */
+  .showcase,
+  .terminal-strip,
+  .pipeline,
+  .examples {
+    position: relative;
+    z-index: 1;
   }
 </style>

@@ -4,24 +4,18 @@ import SectionHeading from '../global/SectionHeading.astro';
 
 <section class="value section" id="propuesta">
   <div class="container">
-    <SectionHeading label="Propuesta de valor" title="Imagen, sistema y ejecución" />
+    <SectionHeading label="Propuesta de valor" title="¿Por qué yo?" />
 
     <div class="value__grid">
       <div class="value__text" data-animate="slide-left">
         <p class="value__lead">
-          No soy solo diseñador, ni solo desarrollador, ni solo alguien con un negocio.
-          Soy la persona que conecta imagen, sistema, tecnología y producto real.
+          No encajo en una sola casilla. Y eso es lo bueno.
         </p>
         <p>
-          Llevo más de 5 años creando gráfica en directo para las cadenas de televisión más
-          importantes de España — Mediaset, RTVE, Movistar. He diseñado cabeceras en prime time,
-          he producido motion graphics bajo la presión del directo y he aprendido que la
-          excelencia visual se mide en segundos.
-        </p>
-        <p>
-          Pero no me quedé ahí. Integré inteligencia artificial en mis procesos de producción,
-          construí webs funcionales desde cero y creé un negocio real — Fratelli Pazzi — donde
-          la marca, el producto y el sistema digital son una sola cosa.
+          Sé lo que es estar en un control de TV con el directo encima.
+          También sé lo que es montar un negocio desde cero, diseñar su marca,
+          programar su web y pelearse con los proveedores. Cada cosa que hago
+          alimenta a las demás — y eso se nota en el resultado.
         </p>
       </div>
 
@@ -58,6 +52,8 @@ import SectionHeading from '../global/SectionHeading.astro';
   .value__text {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
     gap: var(--space-m);
   }
 
@@ -66,11 +62,13 @@ import SectionHeading from '../global/SectionHeading.astro';
     line-height: 1.45;
     color: var(--color-primary);
     font-weight: 500;
+    max-width: 60ch;
   }
 
   .value__text p:not(.value__lead) {
     color: var(--color-text-secondary);
     line-height: 1.75;
+    max-width: 60ch;
   }
 
   .value__highlights {
@@ -85,12 +83,19 @@ import SectionHeading from '../global/SectionHeading.astro';
     border-radius: var(--radius-md);
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
     gap: var(--space-3xs);
-    transition: border-color var(--duration-fast) var(--ease-out);
+    transition: border-color var(--duration-fast) var(--ease-out),
+                box-shadow var(--duration-fast) var(--ease-out),
+                background var(--duration-fast) var(--ease-out);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.03) 0%, transparent 100%);
   }
 
   .value__highlight:hover {
     border-color: var(--color-accent);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.08), inset 0 0 30px rgba(59, 130, 246, 0.04);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.06) 0%, transparent 100%);
   }
 
   .value__number {

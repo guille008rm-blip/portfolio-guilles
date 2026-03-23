@@ -5,7 +5,7 @@ import { nav } from '../../data/site';
 <header class="header" id="header">
   <div class="header__inner container">
     <a href="/" class="header__logo" aria-label="Inicio">
-      <span class="logo-text">GL</span>
+      <span class="logo-text">G<span class="logo-expand">uillermo</span> L<span class="logo-expand">ópez</span></span>
     </a>
 
     <nav class="header__nav" id="nav" aria-label="Navegación principal">
@@ -38,7 +38,7 @@ import { nav } from '../../data/site';
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
+    z-index: 12000;
     padding-block: var(--space-xs);
     transition: background-color var(--duration-base) var(--ease-out),
                 backdrop-filter var(--duration-base) var(--ease-out);
@@ -68,6 +68,38 @@ import { nav } from '../../data/site';
     font-weight: 800;
     color: var(--color-primary);
     letter-spacing: -0.04em;
+    transition: color var(--duration-fast) var(--ease-out);
+    display: inline-flex;
+    white-space: nowrap;
+  }
+
+  .logo-expand {
+    display: inline-block;
+    max-width: 0;
+    overflow: hidden;
+    vertical-align: bottom;
+    transition: max-width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .header__logo:hover .logo-expand {
+    max-width: 12ch;
+  }
+
+  .header--light .logo-text {
+    color: #1a1a1a;
+  }
+
+  .header--light .header__link {
+    color: #4a4a4a;
+  }
+
+  .header--light .burger-line {
+    background: #1a1a1a;
+  }
+
+  .header--light.scrolled {
+    background: rgba(255, 255, 255, 0.85);
+    border-bottom-color: rgba(0, 0, 0, 0.08);
   }
 
   .header__nav {
@@ -84,7 +116,7 @@ import { nav } from '../../data/site';
     font-family: 'JetBrains Mono', monospace;
     font-size: var(--step--2);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
     color: var(--color-text-secondary);
     position: relative;
     padding-block: 0.25rem;
@@ -151,15 +183,24 @@ import { nav } from '../../data/site';
 
     .header__nav {
       position: fixed;
-      inset: 0;
-      background: rgba(10, 10, 15, 0.97);
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      min-height: 100vh;
+      min-height: 100dvh;
+      z-index: 11999;
+      padding-top: calc(var(--space-xl) + 56px);
+      background-color: rgba(10, 10, 15, 0.98);
+      background-image: linear-gradient(180deg, rgba(10, 10, 15, 0.98) 0%, rgba(10, 10, 15, 0.98) 100%);
       backdrop-filter: blur(30px);
       -webkit-backdrop-filter: blur(30px);
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       opacity: 0;
       visibility: hidden;
+      pointer-events: none;
       transition: opacity var(--duration-base) var(--ease-out),
                   visibility var(--duration-base) var(--ease-out);
     }
@@ -167,34 +208,92 @@ import { nav } from '../../data/site';
     .header__nav.open {
       opacity: 1;
       visibility: visible;
+      pointer-events: auto;
+      background-color: rgba(10, 10, 15, 0.98);
+    }
+
+    .header.menu-open {
+      background: rgba(10, 10, 15, 0.92);
+      backdrop-filter: blur(20px) saturate(1.25);
+      -webkit-backdrop-filter: blur(20px) saturate(1.25);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .header--light .header__nav {
+      background-color: rgba(240, 237, 232, 0.98);
+      background-image: linear-gradient(180deg, rgba(240, 237, 232, 0.98) 0%, rgba(240, 237, 232, 0.98) 100%);
+    }
+
+    .header--light.menu-open {
+      background: rgba(255, 255, 255, 0.9);
+      border-bottom-color: rgba(0, 0, 0, 0.08);
     }
 
     .header__links {
       flex-direction: column;
-      gap: var(--space-l);
+      gap: var(--space-m);
       text-align: center;
+      width: 100%;
+      padding-inline: var(--space-l);
+      max-width: 100%;
     }
 
     .header__link {
-      font-size: var(--step-0);
+      font-size: var(--step--1);
+      letter-spacing: 0.05em;
+      color: var(--color-primary);
+      opacity: 0.95;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .header--light .header__link {
+      color: #1a1a1a;
     }
   }
 </style>
 
 <script>
+  let headerAbort: AbortController | null = null;
+
   function initHeader() {
+    // Abort previous listeners to prevent duplicates across View Transitions
+    if (headerAbort) headerAbort.abort();
+    headerAbort = new AbortController();
+    const { signal } = headerAbort;
+
     const header = document.getElementById('header');
     const burger = document.getElementById('burger');
     const nav = document.getElementById('nav');
 
     if (!header || !burger || !nav) return;
 
+    // Reset menu state (fixes View Transitions leaving menu open)
+    burger.setAttribute('aria-expanded', 'false');
+    nav.classList.remove('open');
+    header.classList.remove('menu-open');
+    document.body.style.overflow = '';
+
+    const closeMenu = () => {
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Abrir menú');
+      nav.classList.remove('open');
+      header.classList.remove('menu-open');
+      document.body.style.overflow = '';
+    };
+
     // Scroll effect
     const handleScroll = () => {
       header.classList.toggle('scrolled', window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll, { passive: true, signal });
     handleScroll();
+
+    // Detect light-themed section pages
+    const lightThemes = ['desarrollo'];
+    const sectionPage = document.querySelector('[data-theme]');
+    const theme = sectionPage?.getAttribute('data-theme') || '';
+    header.classList.toggle('header--light', lightThemes.includes(theme));
 
     // Mobile menu
     burger.addEventListener('click', () => {
@@ -202,17 +301,26 @@ import { nav } from '../../data/site';
       burger.setAttribute('aria-expanded', String(!isOpen));
       burger.setAttribute('aria-label', isOpen ? 'Abrir menú' : 'Cerrar menú');
       nav.classList.toggle('open', !isOpen);
+      header.classList.toggle('menu-open', !isOpen);
       document.body.style.overflow = !isOpen ? 'hidden' : '';
-    });
+    }, { signal });
 
     // Close on link click
     nav.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => {
-        burger.setAttribute('aria-expanded', 'false');
-        nav.classList.remove('open');
-        document.body.style.overflow = '';
-      });
+        closeMenu();
+      }, { signal });
     });
+
+    // Close menu when switching back to desktop layout.
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) closeMenu();
+    }, { passive: true, signal });
+
+    // ESC to close mobile menu.
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeMenu();
+    }, { signal });
   }
 
   document.addEventListener('astro:page-load', initHeader);

@@ -1,159 +1,679 @@
----
+﻿---
 import SectionLayout from '../layouts/SectionLayout.astro';
-import { fratelliProjects } from '../data/projects';
 ---
 
 <SectionLayout
   title="Fratelli Pazzi — Guillermo López"
-  description="Creación integral de marca real: identidad, plataforma digital, producto y experiencia de cliente."
+  description="La historia real de Fratelli Pazzi: desde el primer boceto del logo hasta la pizzería napolitana funcionando en Las Rozas."
   theme="fratelli"
 >
-  <!-- Hero -->
-  <section class="fratelli-hero">
-    <div class="fratelli-hero__content container">
-      <span class="fratelli-label mono" data-animate="fade-up">Marca Real · Producto · Negocio</span>
-
-      <h1 class="fratelli-hero__title" data-animate="fade-up">
-        Fratelli<br />
-        <span class="fratelli-hero__accent">Pazzi</span>
-      </h1>
-
-      <p class="fratelli-hero__subtitle" data-animate="fade-up">
-        Una pizzería napolitana real en Las Rozas, Madrid. Creé la marca,
-        diseñé la identidad, construí la plataforma digital y gestiono
-        la experiencia completa del negocio.
-      </p>
-
-      <a href="https://www.fratellipazzi.es" target="_blank" rel="noopener noreferrer" class="fratelli-hero__link mono" data-animate="fade-up">
-        fratellipazzi.es →
-      </a>
+  <!-- Preloader -->
+  <div class="fratelli-loader" id="fratelli-loader">
+    <div class="loader-inner">
+      <span class="loader-logo">Fratelli Pazzi</span>
+      <div class="loader-bar"><div class="loader-bar__fill" id="loader-fill"></div></div>
+      <span class="loader-text mono" id="loader-text">Cargando material…</span>
     </div>
-  </section>
+  </div>
 
-  <!-- Numbers -->
-  <section class="fratelli-numbers section">
-    <div class="container">
-      <div class="fratelli-numbers__grid" data-animate="stagger">
-        <div class="number-card">
-          <span class="number-card__value">4.7</span>
-          <span class="number-card__unit">★</span>
-          <span class="number-card__label mono">Google Reviews</span>
-        </div>
-        <div class="number-card">
-          <span class="number-card__value">300+</span>
-          <span class="number-card__label mono">Clientes</span>
-        </div>
-        <div class="number-card">
-          <span class="number-card__value">48h</span>
-          <span class="number-card__label mono">Fermentación</span>
-        </div>
-        <div class="number-card">
-          <span class="number-card__value">450°C</span>
-          <span class="number-card__label mono">Horno de leña</span>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Page content (hidden until loaded) -->
+  <div class="fratelli-page" id="fratelli-page">
 
-  <!-- Brand story -->
-  <section class="fratelli-story section">
-    <div class="container">
-      <div class="fratelli-story__header" data-animate="fade-up">
-        <span class="fratelli-section-label mono">La historia</span>
-        <h2 class="fratelli-section-title">De la idea al negocio real</h2>
-      </div>
+    <!-- Particle background -->
+    <canvas class="fratelli-particles" id="fratelli-particles" aria-hidden="true"></canvas>
 
-      <div class="fratelli-story__content" data-animate="fade-up">
-        <p class="fratelli-story__lead">
-          Fratelli Pazzi no nació como un proyecto de portfolio. Nació como un
-          negocio real con producto real, clientes reales y decisiones reales.
+    <!-- Hero -->
+    <section class="fratelli-hero">
+      <div class="fratelli-hero__content container">
+        <span class="fratelli-label mono hero-anim hero-anim--1">Historia real · Marca · Producto</span>
+
+        <h1 class="fratelli-hero__title hero-anim hero-anim--2">
+          Fratelli<br />
+          <span class="fratelli-hero__accent">Pazzi</span>
+        </h1>
+
+        <p class="fratelli-hero__subtitle hero-anim hero-anim--3">
+          Esta no es una página de proyecto. Es la historia de cómo monté
+          una pizzería napolitana real desde cero: marca, cartel, carta,
+          contenido para redes y plataforma digital.
         </p>
-        <p>
-          Creé toda la identidad visual de la marca, diseñé la paleta cromática
-          y el sistema gráfico, construí la plataforma web desde cero con menú
-          interactivo, sistema de pedidos online y un programa de fidelización
-          con acumulación de puntos.
-        </p>
-        <p>
-          Es la demostración de que entiendo el ciclo completo: desde
-          la identidad de marca hasta la operativa de negocio, pasando por
-          la tecnología que lo sostiene.
-        </p>
-      </div>
-    </div>
-  </section>
 
-  <!-- What I built -->
-  <section class="fratelli-built section">
-    <div class="container">
-      <div class="fratelli-built__header" data-animate="fade-up">
-        <span class="fratelli-section-label mono">Alcance</span>
-        <h2 class="fratelli-section-title">Todo lo que construí</h2>
-      </div>
-
-      <div class="fratelli-built__grid" data-animate="stagger">
-        {fratelliProjects.map((project) => (
-          <article class="fratelli-card">
-            <div class="fratelli-card__visual">
-              <div class="fratelli-card__placeholder">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
-                </svg>
-              </div>
-            </div>
-            <div class="fratelli-card__info">
-              <h3 class="fratelli-card__title">{project.title}</h3>
-              <p class="fratelli-card__desc">{project.description}</p>
-              <div class="fratelli-card__tags">
-                {project.tags.map((tag) => (
-                  <span class="fratelli-tag mono">{tag}</span>
-                ))}
-              </div>
-              {project.link && (
-                <a href={project.link} target="_blank" rel="noopener noreferrer" class="fratelli-card__link mono">
-                  Ver web →
-                </a>
-              )}
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="fratelli-cta section">
-    <div class="container">
-      <div class="fratelli-cta__inner" data-animate="fade-up">
-        <h2 class="fratelli-cta__title">¿Quieres probarlo?</h2>
-        <p class="fratelli-cta__text">
-          Visita la web, haz un pedido o pásate por Las Rozas.
-          Todo lo que ves aquí funciona de verdad.
-        </p>
-        <a href="https://www.fratellipazzi.es" target="_blank" rel="noopener noreferrer" class="fratelli-cta__btn mono">
-          Visitar fratellipazzi.es →
+        <a href="https://www.fratellipazzi.es" target="_blank" rel="noopener noreferrer" class="fratelli-hero__link mono hero-anim hero-anim--4">
+          fratellipazzi.es →
         </a>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- Chapter 01 — Logo -->
+    <section class="fratelli-chapter section">
+      <div class="container">
+        <div class="chapter-header" data-animate="fade-up">
+          <span class="chapter-step mono">01</span>
+          <span class="fratelli-section-label mono">Identidad</span>
+          <h2 class="fratelli-section-title">Las versiones del logo</h2>
+        </div>
+
+        <p class="chapter-text" data-animate="fade-up">
+          Lo primero fue decidir qué cara iba a tener la marca. Exploré varias
+          direcciones hasta encontrar una identidad con carácter italiano, legible
+          en cartelería y potente en digital. Aquí se ve la evolución.
+        </p>
+
+        <div class="media-grid media-grid--logos">
+          <figure class="media-tile">
+            <img src="/media/fratelli/logos/logo-fondo-blanco.jpg" alt="Logo de Fratelli Pazzi sobre fondo blanco" />
+            <figcaption class="mono">Fondo blanco</figcaption>
+          </figure>
+          <figure class="media-tile">
+            <img src="/media/fratelli/logos/logo-definitivo.png" alt="Logo definitivo de Fratelli Pazzi" />
+            <figcaption class="mono">Logo definitivo</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chapter 02 — Cartel de entrada -->
+    <section class="fratelli-chapter section">
+      <div class="container">
+        <div class="chapter-header" data-animate="fade-up">
+          <span class="chapter-step mono">02</span>
+          <span class="fratelli-section-label mono">Cartelería</span>
+          <h2 class="fratelli-section-title">El cartel de entrada</h2>
+        </div>
+
+        <p class="chapter-text" data-animate="fade-up">
+          La entrada al local es lo primero que ve el cliente. Diseñé el cartel
+          de la fachada para que transmitiera identidad italiana desde la calle.
+        </p>
+      </div><!-- close .container for full-width signage -->
+
+      <div class="signage-fullwidth">
+        <figure class="signage-tile signage-tile--hero">
+          <img src="/media/fratelli/signage/final/cartel-entrada.jpg" alt="Diseño del cartel de entrada de Fratelli Pazzi" />
+        </figure>
+      </div>
+    </section>
+
+    <!-- Chapter 03 — Carta, flyers y marca en sala -->
+    <section class="fratelli-chapter section">
+      <div class="container">
+        <div class="chapter-header" data-animate="fade-up">
+          <span class="chapter-step mono">03</span>
+          <span class="fratelli-section-label mono">Experiencia</span>
+          <h2 class="fratelli-section-title">Carta, flyers y marca en sala</h2>
+        </div>
+
+        <p class="chapter-text" data-animate="fade-up">
+          El cierre de la historia es la experiencia completa dentro del local:
+          la carta, los flyers promocionales, las plantillas de Instagram y cada
+          pieza visual que el cliente toca o ve.
+        </p>
+
+        <div class="media-grid media-grid--brand">
+          <figure class="media-tile">
+            <img src="/media/fratelli/menu/menu-fratelli.jpg" alt="Carta / menú de Fratelli Pazzi" />
+            <figcaption class="mono">Carta del restaurante</figcaption>
+          </figure>
+          <figure class="media-tile">
+            <img src="/media/fratelli/menu/flyer-cara-delantera.png" alt="Flyer promocional cara delantera" />
+            <figcaption class="mono">Flyer promocional</figcaption>
+          </figure>
+          <figure class="media-tile">
+            <img src="/media/fratelli/menu/flyer-halloween.png" alt="Flyer de Halloween de Fratelli Pazzi" />
+            <figcaption class="mono">Flyer Halloween</figcaption>
+          </figure>
+          <figure class="media-tile">
+            <img src="/media/fratelli/menu/instagram-template.png" alt="Plantilla de Instagram de Fratelli Pazzi" />
+            <figcaption class="mono">Plantilla Instagram</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chapter 04 — Vídeos para redes -->
+    <section class="fratelli-chapter section">
+      <div class="container">
+        <div class="chapter-header" data-animate="fade-up">
+          <span class="chapter-step mono">04</span>
+          <span class="fratelli-section-label mono">Contenido</span>
+          <h2 class="fratelli-section-title">Vídeos para redes</h2>
+        </div>
+
+        <p class="chapter-text" data-animate="fade-up">
+          Estos clips son los que usamos para Instagram y TikTok: proceso de
+          elaboración, horno de leña, texturas de producto y promos. El objetivo
+          es comunicar calidad real y ritmo de cocina.
+        </p>
+
+        <!-- Featured video — Pizza del Mes -->
+        <div class="video-featured" data-animate="fade-up">
+          <div class="video-featured__side video-featured__side--left">
+            <div class="vf-deco vf-deco--circle"></div>
+            <div class="vf-deco vf-deco--line"></div>
+            <span class="vf-deco-text mono">Pizza<br/>del Mes</span>
+            <div class="vf-deco vf-deco--dots"></div>
+          </div>
+          <figure class="video-featured__main">
+            <video preload="auto" playsinline muted poster="/media/fratelli/videos/reel-promo-cabramelizada-v1-poster.jpg">
+              <source src="/media/fratelli/videos/reel-promo-cabramelizada-v1.web.mp4" type="video/mp4" />
+            </video>
+            <figcaption class="mono">Pizza del Mes — Promo cabramelizada</figcaption>
+          </figure>
+          <div class="video-featured__side video-featured__side--right">
+            <div class="vf-deco vf-deco--line"></div>
+            <div class="vf-deco vf-deco--circle"></div>
+            <span class="vf-deco-text mono">Fratelli<br/>Pazzi</span>
+            <div class="vf-deco vf-deco--dots"></div>
+          </div>
+        </div>
+
+        <div class="video-grid">
+          <figure class="video-card">
+            <video preload="metadata" playsinline muted poster="/media/fratelli/videos/arreglando-horno-fratelli-pazzi-poster.jpg">
+              <source src="/media/fratelli/videos/arreglando-horno-fratelli-pazzi.web.mp4" type="video/mp4" />
+            </video>
+            <figcaption class="mono">Horno de leña</figcaption>
+          </figure>
+          <figure class="video-card">
+            <video preload="metadata" playsinline muted poster="/media/fratelli/videos/crujido-pizza-v2-poster.jpg">
+              <source src="/media/fratelli/videos/crujido-pizza-v2.web.mp4" type="video/mp4" />
+            </video>
+            <figcaption class="mono">Crujido pizza</figcaption>
+          </figure>
+          <figure class="video-card">
+            <video preload="metadata" playsinline muted poster="/media/fratelli/videos/inicial-l-v2-poster.jpg">
+              <source src="/media/fratelli/videos/inicial-l-v2.web.mp4" type="video/mp4" />
+            </video>
+            <figcaption class="mono">Intro marca</figcaption>
+          </figure>
+          <figure class="video-card">
+            <video preload="metadata" playsinline muted poster="/media/fratelli/videos/timelapse-pizza-v2-poster.jpg">
+              <source src="/media/fratelli/videos/timelapse-pizza-v2.web.mp4" type="video/mp4" />
+            </video>
+            <figcaption class="mono">Timelapse pizza</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chapter 05 — Vídeos promo TV -->
+    <section class="fratelli-chapter section">
+      <div class="container">
+        <div class="chapter-header">
+          <span class="chapter-step mono">05</span>
+          <span class="fratelli-section-label mono">En sala</span>
+          <h2 class="fratelli-section-title">Promos para las pantallas del local</h2>
+        </div>
+
+        <p class="chapter-text">
+          Estos dos vídeos se reproducen en bucle en las televisiones de la
+          pizzería. Pensados para captar la atención del cliente mientras
+          espera su pedido: producto real, ritmo rápido, marca presente.
+        </p>
+
+        <div class="promo-grid">
+          <figure class="promo-card">
+            <video preload="metadata" playsinline muted loop poster="/media/fratelli/videos/promo-1-poster.jpg">
+              <source src="/media/fratelli/videos/promo-1.mp4" type="video/mp4" />
+            </video>
+            <figcaption class="mono">Promo 1 — TV en sala</figcaption>
+          </figure>
+          <figure class="promo-card">
+            <video preload="metadata" playsinline muted loop poster="/media/fratelli/videos/promo-2-poster.jpg">
+              <source src="/media/fratelli/videos/promo-2.mp4" type="video/mp4" />
+            </video>
+            <figcaption class="mono">Promo 2 — TV en sala</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="fratelli-cta section">
+      <div class="container">
+        <div class="fratelli-cta__inner" data-animate="fade-up">
+          <h2 class="fratelli-cta__title">¿Quieres ver el resultado?</h2>
+          <p class="fratelli-cta__text">
+            Puedes visitar la web o venir al local en Las Rozas para ver
+            esta historia convertida en producto real.
+          </p>
+          <a href="https://www.fratellipazzi.es" target="_blank" rel="noopener noreferrer" class="fratelli-cta__btn mono">
+            Visitar fratellipazzi.es →
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /.fratelli-page -->
 </SectionLayout>
 
+<!-- Preloader + hover-play script -->
+<script>
+  function initFratelli() {
+    const loader = document.getElementById('fratelli-loader');
+    const page = document.getElementById('fratelli-page');
+    const fill = document.getElementById('loader-fill');
+    const text = document.getElementById('loader-text');
+    if (!loader || !page) return;
+
+    const images = Array.from(page.querySelectorAll('img'));
+    const videos = Array.from(page.querySelectorAll('video'));
+    const total = images.length + videos.length;
+    let loaded = 0;
+
+    function tick() {
+      loaded++;
+      const pct = Math.round((loaded / total) * 100);
+      if (fill) fill.style.width = pct + '%';
+      if (text) text.textContent = `${pct}%`;
+      if (loaded >= total) reveal();
+    }
+
+    function reveal() {
+      loader.classList.add('loader--done');
+      page.classList.add('page--visible');
+      loader.addEventListener('transitionend', () => {
+        loader.style.display = 'none';
+      }, { once: true });
+    }
+
+    // Preload images
+    images.forEach((img) => {
+      if (img.complete) { tick(); return; }
+      img.addEventListener('load', tick, { once: true });
+      img.addEventListener('error', tick, { once: true });
+    });
+
+    // Preload videos (wait for poster + first frame via loadeddata)
+    videos.forEach((vid) => {
+      if (vid.readyState >= 2) { tick(); return; }
+      vid.addEventListener('loadeddata', tick, { once: true });
+      vid.addEventListener('error', tick, { once: true });
+    });
+
+    // Safety fallback — reveal after 8s no matter what
+    setTimeout(() => { if (loaded < total) reveal(); }, 8000);
+
+    // If nothing to load, reveal instantly
+    if (total === 0) reveal();
+
+    // Hover autoplay for all video containers (featured + cards)
+    document.querySelectorAll('.video-card, .video-featured, .promo-card').forEach((container) => {
+      const vid = container.querySelector('video');
+      if (!vid) return;
+      container.addEventListener('mouseenter', () => {
+        vid.muted = false;
+        vid.play().catch(() => {});
+      });
+      container.addEventListener('mouseleave', () => {
+        vid.pause();
+        vid.currentTime = 0;
+        vid.muted = true;
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initFratelli);
+
+  /* ── Fratelli Pizza Particle System ── */
+  function initFratelliParticles() {
+    const canvas = document.getElementById('fratelli-particles') as HTMLCanvasElement;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const page = document.getElementById('fratelli-page');
+    let w = 0, h = 0;
+    let raf = 0;
+    let mouse = { x: -9999, y: -9999 };
+    let scrollY = 0;
+    let pageBottom = Infinity;
+
+    interface Slice {
+      x: number; y: number;
+      vx: number; vy: number;
+      size: number; baseAlpha: number;
+      phase: number; speed: number;
+      color: [number, number, number];
+      crustColor: [number, number, number];
+      rotation: number; rotSpeed: number;
+      wobbleAmp: number;
+    }
+
+    let slices: Slice[] = [];
+
+    // Fratelli palette for the slice body
+    const bodyColors: [number, number, number][] = [
+      [211, 121, 104],  // terracotta
+      [132, 170, 121],  // sage green
+      [255, 235, 162],  // golden
+      [211, 121, 104],  // terracotta (weighted)
+    ];
+
+    // Crust is always a warm brown/golden tone
+    const crustColors: [number, number, number][] = [
+      [200, 160, 100],
+      [180, 140, 90],
+      [210, 175, 120],
+    ];
+
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+
+    function updatePageBounds() {
+      if (page) {
+        const rect = page.getBoundingClientRect();
+        pageBottom = rect.bottom;
+      }
+    }
+
+    function createSlices() {
+      const count = Math.min(Math.floor((w * h) / 80000), 18);
+      slices = [];
+      for (let i = 0; i < count; i++) {
+        slices.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.12,
+          vy: -(Math.random() * 0.18 + 0.04),
+          size: Math.random() * 28 + 18,
+          baseAlpha: Math.random() * 0.18 + 0.05,
+          phase: Math.random() * Math.PI * 2,
+          speed: Math.random() * 0.008 + 0.003,
+          color: bodyColors[Math.floor(Math.random() * bodyColors.length)],
+          crustColor: crustColors[Math.floor(Math.random() * crustColors.length)],
+          rotation: Math.random() * Math.PI * 2,
+          rotSpeed: (Math.random() - 0.5) * 0.008,
+          wobbleAmp: Math.random() * 0.5 + 0.15,
+        });
+      }
+    }
+
+    function drawPizzaSlice(x: number, y: number, size: number, rot: number, bodyRgb: [number,number,number], crustRgb: [number,number,number], alpha: number) {
+      const c = ctx!;
+      const angle = Math.PI / 3; // 60° sector
+
+      c.save();
+      c.translate(x, y);
+      c.rotate(rot);
+      c.globalAlpha = alpha;
+
+      // Slice body (sector)
+      c.beginPath();
+      c.moveTo(0, 0);
+      c.arc(0, 0, size, -angle / 2, angle / 2);
+      c.closePath();
+      const [br, bg, bb] = bodyRgb;
+      c.fillStyle = `rgb(${br}, ${bg}, ${bb})`;
+      c.fill();
+
+      // Crust arc (thicker outer edge)
+      const crustWidth = size * 0.18;
+      c.beginPath();
+      c.arc(0, 0, size, -angle / 2, angle / 2);
+      c.strokeStyle = `rgb(${crustRgb[0]}, ${crustRgb[1]}, ${crustRgb[2]})`;
+      c.lineWidth = crustWidth;
+      c.lineCap = 'round';
+      c.stroke();
+
+      c.globalAlpha = 1;
+      c.restore();
+    }
+
+    function draw() {
+      ctx!.clearRect(0, 0, w, h);
+
+      // Don't draw if we've scrolled past the page into footer
+      updatePageBounds();
+      const visible = pageBottom > 0;
+      if (!visible) {
+        raf = requestAnimationFrame(draw);
+        return;
+      }
+
+      for (const s of slices) {
+        s.phase += s.speed;
+        s.x += s.vx + Math.sin(s.phase * 2.5) * s.wobbleAmp * 0.25;
+        s.y += s.vy;
+        s.rotation += s.rotSpeed;
+
+        // Wrap
+        if (s.y < -40) { s.y = h + 40; s.x = Math.random() * w; }
+        if (s.x < -40) s.x = w + 40;
+        if (s.x > w + 40) s.x = -40;
+
+        // Mouse attraction
+        const dx = mouse.x - s.x;
+        const dy = mouse.y - s.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 200 && dist > 0) {
+          const force = (200 - dist) / 200 * 0.35;
+          s.x += (dx / dist) * force;
+          s.y += (dy / dist) * force;
+          // Spin faster near mouse
+          s.rotation += (dx > 0 ? 1 : -1) * force * 0.02;
+        }
+
+        // Parallax
+        const parallax = scrollY * (s.size / 30) * 0.015;
+        const drawY = s.y - parallax;
+
+        // Fade out particles near bottom of page (near footer)
+        let fadeAlpha = 1;
+        if (pageBottom < h) {
+          const fromBottom = pageBottom - drawY;
+          if (fromBottom < 80) fadeAlpha = Math.max(0, fromBottom / 80);
+        }
+
+        // Pulsing alpha
+        const alpha = s.baseAlpha * (0.6 + 0.4 * Math.sin(s.phase)) * fadeAlpha;
+        if (alpha <= 0) continue;
+
+        drawPizzaSlice(s.x, drawY, s.size, s.rotation, s.color, s.crustColor, alpha);
+      }
+
+      raf = requestAnimationFrame(draw);
+    }
+
+    resize();
+    createSlices();
+    draw();
+
+    window.addEventListener('resize', () => { resize(); createSlices(); });
+
+    document.addEventListener('mousemove', (ev) => {
+      mouse.x = ev.clientX;
+      mouse.y = ev.clientY;
+    });
+
+    document.addEventListener('mouseleave', () => {
+      mouse.x = -9999;
+      mouse.y = -9999;
+    });
+
+    window.addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive: true });
+
+    document.addEventListener('astro:before-preparation', () => {
+      cancelAnimationFrame(raf);
+    }, { once: true });
+  }
+
+  document.addEventListener('astro:page-load', initFratelliParticles);
+</script>
+
 <style>
+  /* ── Preloader ── */
+  .fratelli-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--fratelli-bg, #1E1F1F);
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+  }
+
+  .fratelli-loader.loader--done {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .loader-inner {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .loader-logo {
+    font-family: 'Syne Variable', 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 1.2rem + 3vw, 3rem);
+    font-weight: 800;
+    color: var(--fratelli-primary, #D37968);
+    letter-spacing: -0.02em;
+  }
+
+  .loader-bar {
+    width: clamp(180px, 40vw, 300px);
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .loader-bar__fill {
+    height: 100%;
+    width: 0%;
+    background: var(--fratelli-primary, #D37968);
+    transition: width 0.2s ease;
+    border-radius: 2px;
+  }
+
+  .loader-text {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  /* Page hidden until loaded */
+  .fratelli-page {
+    position: relative;
+    isolation: isolate;
+    background: var(--fratelli-bg);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .fratelli-particles {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Ensure all sections sit above the canvas */
+  .fratelli-hero,
+  .fratelli-chapter,
+  .fratelli-cta {
+    position: relative;
+    z-index: 1;
+  }
+
+  .signage-fullwidth {
+    position: relative;
+    z-index: 1;
+  }
+
+  .fratelli-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 115vh;
+    z-index: -2;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 90% 60% at 30% 15%, rgba(211,121,104,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 50% at 75% 25%, rgba(132,170,121,0.18) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 40% at 50% 60%, rgba(255,235,162,0.1) 0%, transparent 50%);
+  }
+
+  .fratelli-page::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 115vh;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      /* warm tint at top */
+      linear-gradient(180deg, rgba(211,121,104,0.07) 0%, transparent 35%),
+      /* vignette — darkens edges, keeps center open */
+      radial-gradient(ellipse 72% 62% at 50% 36%, transparent 22%, rgba(30,31,31,0.78) 100%),
+      /* bottom fade to solid page bg */
+      linear-gradient(
+        to bottom,
+        rgba(30,31,31,0.32) 0%,
+        rgba(30,31,31,0.08) 22%,
+        rgba(30,31,31,0.08) 42%,
+        rgba(30,31,31,0.55) 68%,
+        rgba(30,31,31,1) 94%
+      );
+  }
+
+  .fratelli-page.page--visible {
+    opacity: 1;
+  }
+
   /* ── Hero ── */
   .fratelli-hero {
     position: relative;
-    min-height: 100vh;
-    min-height: 100dvh;
     display: flex;
     align-items: center;
-    background: var(--fratelli-bg);
+    justify-content: center;
+    background: transparent;
   }
 
   .fratelli-hero__content {
     position: relative;
     z-index: 1;
-    padding-top: calc(var(--space-3xl) + 100px);
-    padding-bottom: var(--space-3xl);
+    padding-top: calc(var(--space-l) + 84px);
+    padding-bottom: var(--space-s);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Hero staggered entrance */
+  .hero-anim {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: none;
+  }
+
+  .page--visible .hero-anim {
+    animation: hero-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .page--visible .hero-anim--1 { animation-delay: 0.15s; }
+  .page--visible .hero-anim--2 { animation-delay: 0.3s; }
+  .page--visible .hero-anim--3 { animation-delay: 0.45s; }
+  .page--visible .hero-anim--4 { animation-delay: 0.6s; }
+
+  @keyframes hero-fade-up {
+    to { opacity: 1; transform: translateY(0); }
   }
 
   .fratelli-label {
@@ -172,6 +692,7 @@ import { fratelliProjects } from '../data/projects';
     letter-spacing: -0.04em;
     color: var(--fratelli-text);
     margin-bottom: var(--space-l);
+    text-align: center;
   }
 
   .fratelli-hero__accent {
@@ -185,6 +706,7 @@ import { fratelliProjects } from '../data/projects';
     opacity: 0.7;
     max-width: 50ch;
     margin-bottom: var(--space-l);
+    text-align: center;
   }
 
   .fratelli-hero__link {
@@ -202,181 +724,324 @@ import { fratelliProjects } from '../data/projects';
   .fratelli-hero__link:hover {
     border-color: var(--fratelli-primary);
     background: rgba(211, 121, 104, 0.1);
-    transform: translateX(4px);
+    transform: translateY(-2px);
   }
 
   /* ── Section headings ── */
   .fratelli-section-label {
     display: block;
-    font-size: var(--step--2);
+    font-size: var(--step--1);
     text-transform: uppercase;
     letter-spacing: 0.15em;
     color: var(--fratelli-primary);
     margin-bottom: var(--space-xs);
+    text-align: center;
   }
 
   .fratelli-section-title {
     font-size: var(--step-3);
     color: var(--fratelli-text);
     margin-bottom: var(--space-s);
-  }
-
-  /* ── Numbers ── */
-  .fratelli-numbers__grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-s);
-  }
-
-  .number-card {
-    padding: var(--space-l);
-    border: 1px solid var(--fratelli-border);
-    border-radius: var(--radius-md);
     text-align: center;
+  }
+
+  .fratelli-chapter.section {
+    padding-top: var(--space-xl);
+  }
+
+  /* ── Chapters ── */
+  .chapter-header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--space-3xs);
-    transition: border-color var(--duration-fast) var(--ease-out);
+    gap: var(--space-s);
+    margin-bottom: var(--space-l);
+    text-align: center;
   }
 
-  .number-card:hover {
-    border-color: var(--fratelli-primary);
+  .chapter-step {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 3rem;
+    height: 3rem;
+    border-radius: 999px;
+    border: 1px solid var(--fratelli-border);
+    color: var(--fratelli-primary);
+    font-size: var(--step-0);
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+    margin-top: 0.2em;
   }
 
-  .number-card__value {
-    font-family: 'Syne Variable', sans-serif;
-    font-size: var(--step-3);
-    font-weight: 800;
-    color: var(--fratelli-highlight);
-    line-height: 1;
+  .chapter-text {
+    color: var(--fratelli-text);
+    opacity: 0.75;
+    line-height: 1.7;
+    max-width: 65ch;
+    margin-bottom: var(--space-xl);
+    text-align: center;
+    margin-inline: auto;
   }
 
-  .number-card__unit {
-    font-size: var(--step-1);
-    color: var(--fratelli-highlight);
+  /* ── Media grid ── */
+  .media-grid {
+    display: grid;
+    gap: var(--space-m);
   }
 
-  .number-card__label {
+  .media-grid--logos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .media-grid--brand {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* ── Signage full-width ── */
+  .signage-fullwidth {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .signage-tile--hero {
+    margin: 0;
+    overflow: hidden;
+  }
+
+  .signage-tile--hero img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .signage-tile--hero figcaption {
+    padding: 0.75rem 1rem;
     font-size: var(--step--2);
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     color: var(--fratelli-text);
     opacity: 0.6;
+    text-align: center;
   }
 
-  /* ── Story ── */
-  .fratelli-story__header {
-    margin-bottom: var(--space-xl);
-  }
-
-  .fratelli-story__content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-m);
-    max-width: 65ch;
-  }
-
-  .fratelli-story__lead {
-    font-size: var(--step-1);
-    color: var(--fratelli-text);
-    font-weight: 500;
-    line-height: 1.45;
-  }
-
-  .fratelli-story__content p:not(.fratelli-story__lead) {
-    color: var(--fratelli-text);
-    opacity: 0.7;
-    line-height: 1.75;
-  }
-
-  /* ── Built / Projects ── */
-  .fratelli-built__header {
-    margin-bottom: var(--space-xl);
-  }
-
-  .fratelli-built__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: var(--space-m);
-  }
-
-  .fratelli-card {
+  .media-tile {
+    margin: 0;
     border: 1px solid var(--fratelli-border);
     border-radius: var(--radius-md);
     overflow: hidden;
+    background: var(--fratelli-surface);
     transition: border-color var(--duration-fast) var(--ease-out);
   }
 
-  .fratelli-card:hover {
+  .media-tile:hover {
     border-color: var(--fratelli-primary);
   }
 
-  .fratelli-card__visual {
-    aspect-ratio: 16/9;
+  .media-tile img {
+    width: 100%;
+    height: auto;
+    display: block;
   }
 
-  .fratelli-card__placeholder {
-    width: 100%;
-    height: 100%;
-    background: var(--fratelli-surface);
+  .media-tile figcaption {
+    padding: 0.75rem 1rem;
+    font-size: var(--step--2);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--fratelli-text);
+    opacity: 0.6;
+    text-align: center;
+  }
+
+  /* ── Featured video ── */
+  .video-featured {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--fratelli-primary);
+    gap: var(--space-xl);
+    margin: 0 0 var(--space-xl);
+    cursor: pointer;
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .video-featured__side {
+    flex: 1;
+    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xl);
+    padding: var(--space-xl) 0;
+    background: transparent;
+    border: none;
+    position: relative;
+    overflow: visible;
+  }
+
+  .video-featured__side--left,
+  .video-featured__side--right {
+    border-radius: 0;
+  }
+
+  .vf-deco--circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 1px solid var(--fratelli-primary);
+    opacity: 0.25;
+    animation: vf-pulse 3s ease-in-out infinite;
+  }
+
+  .vf-deco--line {
+    width: 1px;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, var(--fratelli-primary), transparent);
     opacity: 0.3;
   }
 
-  .fratelli-card__info {
-    padding: var(--space-m);
+  .vf-deco-text {
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--fratelli-primary);
+    text-align: center;
+    line-height: 1.6;
+    opacity: 0.5;
+  }
+
+  .vf-deco--dots {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xs);
+    gap: 10px;
+    align-items: center;
   }
 
-  .fratelli-card__title {
-    font-size: var(--step-1);
-    color: var(--fratelli-text);
-    font-weight: 700;
+  .vf-deco--dots::before,
+  .vf-deco--dots::after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--fratelli-primary);
+    opacity: 0.25;
   }
 
-  .fratelli-card__desc {
-    font-size: var(--step--1);
-    color: var(--fratelli-text);
-    opacity: 0.7;
-    line-height: 1.65;
+  @keyframes vf-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.15); opacity: 0.5; }
   }
 
-  .fratelli-card__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3xs);
-    margin-top: var(--space-2xs);
-  }
-
-  .fratelli-tag {
-    font-size: var(--step--2);
-    padding: 0.2em 0.6em;
+  .video-featured__main {
+    margin: 0;
+    flex-shrink: 0;
+    width: 360px;
+    background: #000;
     border: 1px solid var(--fratelli-border);
-    border-radius: var(--radius-sm);
+    transition: border-color var(--duration-fast) var(--ease-out);
+    overflow: hidden;
+  }
+
+  .video-featured:hover .video-featured__main {
+    border-color: var(--fratelli-primary);
+  }
+
+  .video-featured__main video {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .video-featured__main figcaption {
+    padding: 0.75rem 1rem;
+    font-size: var(--step--1);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
+    color: var(--fratelli-primary);
+    text-align: center;
+    font-weight: 600;
+  }
+
+  /* ── Video grid ── */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-m);
+  }
+
+  .video-card {
+    margin: 0;
+    border: 1px solid var(--fratelli-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--fratelli-bg);
+    transition: border-color var(--duration-fast) var(--ease-out);
+    cursor: pointer;
+  }
+
+  .video-card:hover {
+    border-color: var(--fratelli-primary);
+  }
+
+  .video-card video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    object-fit: cover;
+    background: #000;
+  }
+
+  .video-card figcaption {
+    padding: 0.75rem 1rem;
+    font-size: var(--step--2);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
     color: var(--fratelli-text);
     opacity: 0.6;
+    text-align: center;
   }
 
-  .fratelli-card__link {
-    display: inline-block;
-    margin-top: var(--space-xs);
-    font-size: var(--step--1);
+  /* ── Promo TV grid ── */
+  .promo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-l);
+  }
+
+  .promo-card {
+    margin: 0;
+    border: 1px solid var(--fratelli-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--fratelli-bg);
+    transition: border-color var(--duration-fast) var(--ease-out);
+    cursor: pointer;
+  }
+
+  .promo-card:hover {
+    border-color: var(--fratelli-primary);
+  }
+
+  .promo-card video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background: #000;
+  }
+
+  .promo-card figcaption {
+    padding: 0.75rem 1rem;
+    font-size: var(--step--2);
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--fratelli-primary);
-    transition: transform var(--duration-fast) var(--ease-out);
-  }
-
-  .fratelli-card__link:hover {
-    transform: translateX(4px);
+    letter-spacing: 0.06em;
+    color: var(--fratelli-text);
+    opacity: 0.6;
+    text-align: center;
   }
 
   /* ── CTA ── */
@@ -420,19 +1085,61 @@ import { fratelliProjects } from '../data/projects';
     transform: translateY(-2px);
   }
 
-  @media (max-width: 768px) {
-    .fratelli-numbers__grid {
-      grid-template-columns: 1fr 1fr;
+  /* ── Responsive ── */
+  @media (max-width: 1024px) {
+    .video-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
 
-    .fratelli-built__grid {
+    .video-featured {
+      max-width: 100%;
+    }
+
+    .video-featured__main {
+      width: 300px;
+    }
+
+    .video-featured__side {
+      max-width: 120px;
+    }
+
+    .media-grid--brand {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .fratelli-hero__content {
+      padding-top: calc(var(--space-l) + 78px);
+      padding-bottom: var(--space-xs);
+    }
+
+    .media-grid--logos,
+    .media-grid--brand {
+      grid-template-columns: 1fr;
+    }
+
+    .video-featured__side {
+      display: none;
+    }
+
+    .video-featured__main {
+      width: 100%;
+    }
+
+    .video-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .promo-grid {
       grid-template-columns: 1fr;
     }
   }
 
   @media (max-width: 480px) {
-    .fratelli-numbers__grid {
+    .video-grid {
       grid-template-columns: 1fr;
     }
   }
 </style>
+

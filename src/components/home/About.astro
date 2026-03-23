@@ -1,5 +1,4 @@
 ---
-import SectionHeading from '../global/SectionHeading.astro';
 import { experience, skills } from '../../data/experience';
 ---
 
@@ -7,11 +6,16 @@ import { experience, skills } from '../../data/experience';
   <div class="container">
     <div class="about__grid">
       <!-- Left: Photo + Identity -->
-      <div class="about__identity" data-animate="slide-left">
+      <div class="about__identity" id="about-identity" data-animate="slide-left">
         <div class="about__photo">
-          <div class="about__photo-placeholder">
-            <span class="mono">GL</span>
-          </div>
+          <img
+            class="about__photo-img"
+            src="/media/guillermo-lopez.jpeg"
+            alt="Guillermo López"
+            width="300"
+            height="400"
+            loading="lazy"
+          />
         </div>
         <div class="about__quick">
           <h3 class="about__name">Guillermo López</h3>
@@ -22,18 +26,15 @@ import { experience, skills } from '../../data/experience';
 
       <!-- Right: Bio + Experience + Skills -->
       <div class="about__content" data-animate="slide-right">
-        <SectionHeading label="Sobre mí" title="Perfil profesional" />
-
         <div class="about__bio">
           <p>
-            Grafista televisivo con más de 5 años de experiencia en cadenas nacionales
-            (Mediaset, RTVE, Movistar+). Actualmente en Mediaset España, donde combino
-            la rigurosidad del directo con la capacidad de crear piezas de alto impacto visual.
+            Llevo más de 5 años haciendo grafismo en directo para televisiones nacionales.
+            Mediaset, RTVE, Movistar+... ese tipo de presión donde no existe el "lo arreglo luego".
           </p>
           <p>
-            He integrado herramientas de inteligencia artificial en mis flujos de producción,
-            construyo plataformas web funcionales y soy cofundador de Fratelli Pazzi — un
-            negocio real que demuestra que entiendo marca, producto y sistema como una sola cosa.
+            En algún momento del camino me di cuenta de que mucho de lo que hacía era repetitivo.
+            Así que aprendí a automatizarlo. Después aprendí a hacer webs. Y después monté una pizzería.
+            Puede sonar raro, pero todo tiene que ver con lo mismo: resolver problemas y construir cosas que funcionen.
           </p>
         </div>
 
@@ -44,7 +45,12 @@ import { experience, skills } from '../../data/experience';
             {experience.map((exp) => (
               <div class="timeline__item">
                 <div class="timeline__header">
-                  <span class="timeline__company">{exp.company}</span>
+                  <div class="timeline__company-group">
+                    {exp.logo && (
+                      <img class="timeline__logo" src={exp.logo} alt={exp.company} width="44" height="44" loading="lazy" data-company={exp.company.toLowerCase().replace(/\s+/g, '-')} />
+                    )}
+                    <span class="timeline__company">{exp.company}</span>
+                  </div>
                   <span class="timeline__period mono">{exp.period}</span>
                 </div>
                 <span class="timeline__role">{exp.role}</span>
@@ -84,28 +90,19 @@ import { experience, skills } from '../../data/experience';
 
   /* Identity column */
   .about__identity {
-    position: sticky;
-    top: calc(var(--space-3xl) + 60px);
+    position: relative;
+    top: auto;
     display: flex;
     flex-direction: column;
     gap: var(--space-m);
   }
 
-  .about__photo-placeholder {
+  .about__photo-img {
     width: 100%;
     aspect-ratio: 3/4;
-    background: var(--color-surface);
+    object-fit: cover;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .about__photo-placeholder span {
-    font-size: var(--step-4);
-    color: var(--color-text-secondary);
-    opacity: 0.3;
   }
 
   .about__name {
@@ -131,19 +128,25 @@ import { experience, skills } from '../../data/experience';
   .about__content {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xl);
+    gap: var(--space-l);
   }
 
   .about__bio {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
     gap: var(--space-s);
     color: var(--color-text-secondary);
     line-height: 1.75;
   }
 
+  .about__bio p {
+    max-width: 60ch;
+  }
+
   .about__subtitle {
-    font-size: var(--step--2);
+    font-size: var(--step--1);
     text-transform: uppercase;
     letter-spacing: 0.15em;
     color: var(--color-accent);
@@ -170,9 +173,30 @@ import { experience, skills } from '../../data/experience';
   .timeline__header {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     gap: var(--space-s);
     margin-bottom: var(--space-3xs);
+  }
+
+  .timeline__company-group {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    min-width: 0;
+  }
+
+  .timeline__logo {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    border-radius: 6px;
+    flex-shrink: 0;
+    opacity: 0.85;
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
+
+  .timeline__item:hover .timeline__logo {
+    opacity: 1;
   }
 
   .timeline__company {
@@ -203,6 +227,7 @@ import { experience, skills } from '../../data/experience';
   .skill-group {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: var(--space-xs);
   }
 
@@ -216,6 +241,7 @@ import { experience, skills } from '../../data/experience';
   .skill-group__tags {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: var(--space-3xs);
   }
 
@@ -245,11 +271,6 @@ import { experience, skills } from '../../data/experience';
       position: static;
       flex-direction: row;
       align-items: center;
-    }
-
-    .about__photo-placeholder {
-      width: 120px;
-      flex-shrink: 0;
     }
 
     .timeline__header {

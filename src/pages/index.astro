@@ -9,8 +9,71 @@ import Contact from '../components/home/Contact.astro';
 
 <BaseLayout>
   <Hero />
+  <div class="glow glow--top" aria-hidden="true"></div>
   <ValueProposition />
   <AreasGrid />
   <About />
+  <div class="glow glow--bottom" aria-hidden="true"></div>
   <Contact />
 </BaseLayout>
+
+<style>
+  .glow {
+    position: relative;
+    height: 0;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .glow::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+  }
+
+  .glow--top::before {
+    top: -200px;
+    width: 70%;
+    height: 400px;
+    background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+  }
+
+  .glow--bottom::before {
+    top: -150px;
+    width: 60%;
+    height: 300px;
+    background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.06) 0%, transparent 70%);
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initPhotoPin() {
+    // Only pin on desktop (>768px)
+    if (window.innerWidth <= 768) return;
+
+    const identity = document.getElementById('about-identity');
+    const aboutSection = document.querySelector('.about');
+    if (!identity || !aboutSection) return;
+
+    // Kill previous instance if exists (View Transitions)
+    ScrollTrigger.getAll().forEach((st) => {
+      if (st.vars?.trigger === aboutSection && st.pin === identity) st.kill();
+    });
+
+    ScrollTrigger.create({
+      trigger: aboutSection,
+      start: 'top top+=80',
+      end: 'bottom bottom',
+      pin: identity,
+      pinSpacing: false,
+    });
+  }
+
+  document.addEventListener('astro:page-load', initPhotoPin);
+</script>

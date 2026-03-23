@@ -12,7 +12,7 @@ export const site = {
 export const social = {
   linkedin:
     'https://es.linkedin.com/in/guillermo-l%C3%B3pez-del-castillo-olivares-a05777201',
-  email: 'contacto@guillermolopez.dev',
+  email: 'guillelopez1999@hotmail.com',
 } as const;
 
 export const nav = [

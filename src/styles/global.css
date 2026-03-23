@@ -18,6 +18,8 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  width: 100%;
+  overflow-x: clip;
 }
 
 body {
@@ -27,7 +29,13 @@ body {
   line-height: 1.6;
   color: var(--color-text);
   background-color: var(--color-bg);
+  width: 100%;
   overflow-x: hidden;
+}
+
+main {
+  width: 100%;
+  overflow-x: clip;
 }
 
 /* ── Tipografía ── */
@@ -97,7 +105,7 @@ ul, ol {
 }
 
 .section {
-  padding-block: var(--space-3xl);
+  padding-block: var(--space-2xl);
 }
 
 /* ── Utilidades de texto ── */

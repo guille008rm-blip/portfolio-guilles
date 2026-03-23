@@ -13,6 +13,14 @@ export interface AreaProjects {
   projects: Project[];
 }
 
+export interface AutomationVisualiser {
+  title: string;
+  description: string;
+  tags: string[];
+  video: string;
+  poster: string;
+}
+
 export const grafismoProjects: Project[] = [
   {
     title: 'En Boca de Todos',
@@ -37,20 +45,30 @@ export const grafismoProjects: Project[] = [
   },
 ];
 
-export const automatizacionProjects: Project[] = [
+export const automatizacionVisualisers: AutomationVisualiser[] = [
   {
-    title: 'Pipeline de generación visual con IA',
+    title: 'Plantilla Cartelas',
     description:
-      'Workflow completo de producción visual: ideación con ChatGPT, generación de imagen con Nano Banana 2, vídeo con Kling, y postproducción final en After Effects.',
-    tags: ['ChatGPT', 'Nano Banana 2', 'Kling', 'After Effects'],
-    featured: true,
+      'Base editorial para titulares y bloques de información. Estructura modular con variables de texto, color y timing controladas por expresiones.',
+    tags: ['Plantilla', 'Expresiones', 'After Effects'],
+    video: '/media/automatizacion/cartelas-si.mp4',
+    poster: '/media/automatizacion/cartelas-si-poster.jpg',
   },
   {
-    title: 'Automatización de procesos gráficos',
+    title: 'Plantilla Comodines',
     description:
-      'Optimización de flujos de trabajo en producción gráfica televisiva mediante herramientas de IA generativa para acelerar la creación de assets.',
-    tags: ['IA Generativa', 'Productividad', 'Workflow'],
-    featured: true,
+      'Sistema modular para recursos de apoyo en directo. Del dato al asset final en segundos para mantener ritmo de emisión.',
+    tags: ['Directo', 'Workflow', 'Modular'],
+    video: '/media/automatizacion/comodines-si.mp4',
+    poster: '/media/automatizacion/comodines-si-poster.jpg',
+  },
+  {
+    title: 'Plantilla Quesitos',
+    description:
+      'Gráficos segmentados con acabado broadcast-ready. Variables de datos, colores automáticos y composición adaptable.',
+    tags: ['Broadcast', 'Automatizado', 'Datos'],
+    video: '/media/automatizacion/quesitos-si.mp4',
+    poster: '/media/automatizacion/quesitos-si-poster.jpg',
   },
 ];
 
@@ -64,10 +82,11 @@ export const desarrolloProjects: Project[] = [
     featured: true,
   },
   {
-    title: 'Web productora audiovisual',
+    title: 'Black Gum Studio',
     description:
-      'Plataforma web para productora audiovisual con secciones de paquetes de redes sociales, portfolio de trabajos, sistema de alquiler de equipo y gestión de servicios.',
-    tags: ['Plataforma', 'Audiovisual', 'Desarrollo Web'],
+      'Plataforma full-stack para productora audiovisual en Madrid: web pública, panel de administración con auth, sistema de pagos con Stripe y gestión de contenidos. En producción.',
+    tags: ['Next.js 14', 'TypeScript', 'Prisma', 'Stripe', 'Full-Stack'],
+    link: 'https://blackgumgroup.com/',
     featured: true,
   },
 ];

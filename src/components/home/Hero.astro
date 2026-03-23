@@ -4,6 +4,14 @@ import Button from '../global/Button.astro';
 
 <section class="hero">
   <div class="hero__bg">
+    <video
+      class="hero__reel"
+      id="hero-reel"
+      muted
+      playsinline
+      preload="metadata"
+    ></video>
+    <div class="hero__reel-overlay"></div>
     <div class="hero__gradient"></div>
     <div class="hero__grid"></div>
   </div>
@@ -20,9 +28,7 @@ import Button from '../global/Button.astro';
     </h1>
 
     <p class="hero__subtitle" data-animate="fade-up">
-      Creo imagen, sistema y producto. Desde la emisión en directo hasta
-      la automatización con IA, pasando por el diseño web y la gestión
-      de un negocio real.
+      Hago que las cosas se vean bien, funcionen solas y tengan sentido.
     </p>
 
     <div class="hero__actions" data-animate="fade-up">
@@ -31,11 +37,6 @@ import Button from '../global/Button.astro';
         Descargar CV ↓
       </Button>
     </div>
-  </div>
-
-  <div class="hero__scroll" aria-hidden="true">
-    <div class="hero__scroll-line"></div>
-    <span class="mono">scroll</span>
   </div>
 </section>
 
@@ -56,20 +57,48 @@ import Button from '../global/Button.astro';
     z-index: 0;
   }
 
+  .hero__reel {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+  }
+
+  .hero__reel.is-playing {
+    opacity: 0.2;
+  }
+
+  .hero__reel-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 80% 70% at 50% 50%,
+      transparent 0%,
+      var(--color-bg) 75%
+    );
+    z-index: 1;
+  }
+
   .hero__gradient {
     position: absolute;
     inset: 0;
+    z-index: 2;
     background:
-      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(59, 130, 246, 0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 20% 60%, rgba(59, 130, 246, 0.07) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(59, 130, 246, 0.10) 0%, transparent 50%);
   }
 
   .hero__grid {
     position: absolute;
     inset: 0;
+    z-index: 3;
     background-image:
-      linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
     background-size: 60px 60px;
     mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black, transparent);
     -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black, transparent);
@@ -81,6 +110,10 @@ import Button from '../global/Button.astro';
     z-index: 1;
     padding-top: calc(var(--space-3xl) + 80px);
     padding-bottom: var(--space-3xl);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .hero__label {
@@ -110,14 +143,16 @@ import Button from '../global/Button.astro';
     letter-spacing: -0.04em;
     color: var(--color-primary);
     margin-bottom: var(--space-l);
+    max-width: 100%;
   }
 
   .hero__title-accent {
     display: inline-block;
-    background: linear-gradient(135deg, #FAFAFA 30%, var(--color-accent));
+    background: linear-gradient(135deg, #FAFAFA 20%, var(--color-accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    filter: drop-shadow(0 0 40px rgba(59, 130, 246, 0.25));
   }
 
   .hero__subtitle {
@@ -126,35 +161,14 @@ import Button from '../global/Button.astro';
     color: var(--color-text-secondary);
     max-width: 52ch;
     margin-bottom: var(--space-xl);
+    text-align: center;
   }
 
   .hero__actions {
     display: flex;
+    justify-content: center;
     gap: var(--space-s);
     flex-wrap: wrap;
-  }
-
-  /* Scroll indicator */
-  .hero__scroll {
-    position: absolute;
-    bottom: var(--space-l);
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-xs);
-    color: var(--color-text-secondary);
-    font-size: var(--step--2);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-  }
-
-  .hero__scroll-line {
-    width: 1px;
-    height: 40px;
-    background: var(--color-accent);
-    animation: scrollDown 2s ease-in-out infinite;
   }
 
   @media (max-width: 768px) {
@@ -162,8 +176,83 @@ import Button from '../global/Button.astro';
       padding-top: calc(var(--space-2xl) + 60px);
     }
 
+    .hero__label {
+      max-width: min(92vw, 38ch);
+      text-wrap: balance;
+      justify-content: center;
+    }
+
+    .hero__title {
+      font-size: clamp(1.8rem, 1rem + 6vw, 3.6rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .hero__subtitle {
+      max-width: 30ch;
+      padding-inline: var(--space-2xs);
+    }
+
     .hero__actions {
       flex-direction: column;
     }
+
+    .hero__reel.is-playing {
+      opacity: 0.14;
+    }
   }
 </style>
+
+<script>
+  function initHeroReel() {
+    const video = document.getElementById('hero-reel') as HTMLVideoElement | null;
+    if (!video) return;
+    const heroVideo: HTMLVideoElement = video;
+
+    const videos = [
+      '/media/grafismo/ia/che-iglesias.mp4',
+      '/media/grafismo/ia/abascal-wars.mp4',
+      '/media/grafismo/ia/aforama.mp4',
+      '/media/grafismo/ia/begona-desafiante.mp4',
+      '/media/grafismo/ia/hulk-sanchez.mp4',
+      '/media/grafismo/ia/los-panceta.mp4',
+      '/media/grafismo/ia/paganos.mp4',
+      '/media/grafismo/ia/personas-bestias.mp4',
+      '/media/grafismo/ia/sanchez-barco.mp4',
+      '/media/grafismo/ia/sanchez-esqui.mp4',
+      '/media/grafismo/ia/sanchez-lightyear.mp4',
+      '/media/grafismo/ia/trileros-sanchez-trump.mp4',
+      '/media/grafismo/ia/vox-is-coming.mp4',
+      '/media/grafismo/ia/yolanda-oscars.mp4',
+    ];
+
+    let index = Math.floor(Math.random() * videos.length);
+
+    function playNext() {
+      // Fade out
+      heroVideo.classList.remove('is-playing');
+
+      setTimeout(() => {
+        heroVideo.src = videos[index];
+        index = (index + 1) % videos.length;
+
+        heroVideo.load();
+        heroVideo.play().then(() => {
+          heroVideo.classList.add('is-playing');
+        }).catch(() => {});
+      }, 1500); // wait for fade-out
+    }
+
+    heroVideo.addEventListener('ended', playNext);
+
+    // Start first video
+    heroVideo.src = videos[index];
+    index = (index + 1) % videos.length;
+    heroVideo.load();
+    heroVideo.play().then(() => {
+      heroVideo.classList.add('is-playing');
+    }).catch(() => {});
+  }
+
+  document.addEventListener('astro:page-load', initHeroReel);
+</script>

@@ -102,3 +102,8 @@
 [data-animate] {
   opacity: 0;
 }
+
+/* Stagger containers must be visible — GSAP animates the children, not the container */
+[data-animate="stagger"] {
+  opacity: 1;
+}

@@ -4,40 +4,36 @@ export interface Experience {
   period: string;
   description: string;
   tags: string[];
+  logo?: string;
 }
 
 export const experience: Experience[] = [
   {
-    company: 'Mediaset España',
-    role: 'Grafista — En Boca de Todos (Cuatro)',
-    period: 'Actualidad',
-    description:
-      'Grafismo en directo para el programa diario de actualidad. Diseño y ejecución de piezas gráficas, rótulos y elementos de emisión bajo la presión del directo.',
-    tags: ['Directo', 'After Effects', 'Photoshop'],
-  },
-  {
-    company: 'Mediaset España',
-    role: 'Grafista — Proyectos Especiales',
-    period: '2021 – Actualidad',
-    description:
-      'Gráfica para especial de Telecinco "Ana Obregón" en prime time. Cabecera del podcast "Infinity" para la plataforma de contenido de Mediaset.',
-    tags: ['Prime Time', 'Motion Graphics', 'Branding'],
-  },
-  {
-    company: 'RTVE',
+    company: 'Producciones Mandarina',
     role: 'Grafista',
-    period: 'Anterior',
+    period: 'Mar 2022 – Actualidad',
     description:
-      'Diseño y producción gráfica para la televisión pública española.',
-    tags: ['Broadcast', 'Diseño Gráfico', 'TV'],
+      'Grafismo en entorno audiovisual y televisivo. Nuevo formato en Cuatro. Diseño y ejecución de piezas gráficas, rótulos y elementos de emisión bajo la presión del directo.',
+    tags: ['Directo', 'After Effects', 'Photoshop', 'TV'],
+    logo: '/media/companies/mandarina.png',
   },
   {
-    company: 'Movistar+',
+    company: 'Catorce Comunicación',
     role: 'Grafista',
-    period: 'Anterior',
+    period: 'Oct 2023 – Mar 2024',
     description:
-      'Producción gráfica y motion design para la plataforma audiovisual de Movistar.',
-    tags: ['Plataforma', 'Motion Design', 'Post-producción'],
+      'Producción gráfica y motion design en régimen de jornada parcial y formato remoto.',
+    tags: ['Motion Graphics', 'Remoto', 'Diseño Gráfico'],
+    logo: '/media/companies/catorce.png',
+  },
+  {
+    company: 'ABC Live Experience',
+    role: 'Coordinador de personal',
+    period: 'Jul 2023 – Ago 2023',
+    description:
+      'Coordinador de HUB en la gira de festivales RBF. Gestión de personal y resolución de incidencias en directo.',
+    tags: ['Eventos', 'Coordinación', 'Festivales'],
+    logo: '/media/companies/abc-live.png',
   },
   {
     company: 'Fratelli Pazzi',
@@ -46,6 +42,34 @@ export const experience: Experience[] = [
     description:
       'Creación integral del negocio: identidad de marca, plataforma digital con pedidos online, programa de fidelización, y gestión operativa. Pizzería napolitana real en Las Rozas (Madrid).',
     tags: ['Emprendimiento', 'Branding', 'Desarrollo Web', 'Negocio'],
+    logo: '/media/companies/fratelli.png',
+  },
+  {
+    company: 'Miss Motion',
+    role: 'Grafista',
+    period: 'Jun 2021 – Dic 2021',
+    description:
+      'Grafismo y motion design para proyectos audiovisuales.',
+    tags: ['Motion Graphics', 'After Effects', 'Diseño'],
+    logo: '/media/companies/miss-motion.png',
+  },
+  {
+    company: 'Telefónica',
+    role: 'Grafista',
+    period: 'Nov 2020 – Feb 2021',
+    description:
+      'Producción gráfica y diseño para la plataforma audiovisual de Telefónica.',
+    tags: ['Plataforma', 'Motion Design', 'Post-producción'],
+    logo: '/media/companies/telefonica.png',
+  },
+  {
+    company: 'Mediaset España',
+    role: 'Colaboraciones — Fiesta de Mediaset',
+    period: 'Puntual',
+    description:
+      'Trabajos puntuales de grafismo para especiales y eventos de Mediaset.',
+    tags: ['Prime Time', 'Especiales', 'Broadcast'],
+    logo: '/media/companies/mediaset-fiesta.png',
   },
 ];
 

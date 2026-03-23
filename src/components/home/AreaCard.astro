@@ -16,9 +16,9 @@ const themeColors: Record<string, { gradient: string; accent: string; glow: stri
     glow: 'rgba(0, 212, 255, 0.15)',
   },
   automatizacion: {
-    gradient: 'linear-gradient(135deg, #F5F7FA 0%, #E8F5F0 100%)',
-    accent: '#00BFA5',
-    glow: 'rgba(0, 191, 165, 0.1)',
+    gradient: 'linear-gradient(135deg, #0D1117 0%, #161B22 100%)',
+    accent: '#39D353',
+    glow: 'rgba(57, 211, 83, 0.15)',
   },
   desarrollo: {
     gradient: 'linear-gradient(135deg, #F0EDE8 0%, #E8E4DF 100%)',
@@ -33,7 +33,7 @@ const themeColors: Record<string, { gradient: string; accent: string; glow: stri
 };
 
 const colors = themeColors[theme];
-const isLight = theme === 'automatizacion' || theme === 'desarrollo';
+const isLight = theme === 'desarrollo';
 ---
 
 <a

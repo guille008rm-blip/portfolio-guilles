@@ -5,7 +5,7 @@ interface Props {
   align?: 'left' | 'center';
 }
 
-const { label, title, align = 'left' } = Astro.props;
+const { label, title, align = 'center' } = Astro.props;
 ---
 
 <div class:list={['section-heading', `section-heading--${align}`]} data-animate="fade-up">
@@ -33,7 +33,7 @@ const { label, title, align = 'left' } = Astro.props;
 
   .section-heading__label {
     display: inline-block;
-    font-size: var(--step--2);
+    font-size: var(--step--1);
     text-transform: uppercase;
     letter-spacing: 0.15em;
     color: var(--color-accent);

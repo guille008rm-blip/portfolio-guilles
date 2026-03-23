@@ -1,139 +1,117 @@
 ---
 import SectionLayout from '../layouts/SectionLayout.astro';
-import { desarrolloProjects } from '../data/projects';
 ---
 
 <SectionLayout
   title="Desarrollo Web — Guillermo López"
-  description="Diseño y desarrollo de plataformas digitales funcionales, con criterio de producto y experiencia de usuario."
+  description="Diseño y desarrollo de productos digitales reales, con criterio visual y enfoque de producto."
   theme="desarrollo"
 >
   <!-- Hero -->
   <section class="dev-hero">
     <div class="dev-hero__content container">
-      <span class="dev-label mono" data-animate="fade-up">Producto · Interfaz · Experiencia</span>
+      <span class="dev-label mono" data-animate="fade-up">Producto digital · Diseño · Código</span>
 
       <h1 class="dev-hero__title" data-animate="fade-up">
-        Desarrollo<br />
-        <span class="dev-hero__accent">Web</span>
+        Construyo<br />
+        <span class="dev-hero__accent">productos digitales</span>
       </h1>
 
       <p class="dev-hero__subtitle" data-animate="fade-up">
-        Diseño y construyo plataformas digitales reales. No mockups bonitos
-        sin función: webs que resuelven problemas y que tienen criterio
-        visual de producto.
+        Vengo del diseño visual y pienso como diseñador, pero entrego
+        como desarrollador. Webs, plataformas y sistemas que funcionan
+        en producción — no en Figma.
       </p>
+
+      <span class="dev-hero__tech mono" data-animate="fade-up">
+        Next.js · React · TypeScript · Astro · Tailwind · Prisma · Node.js
+      </span>
     </div>
   </section>
 
-  <!-- Approach -->
-  <section class="dev-approach section">
-    <div class="container">
-      <div class="dev-approach__header" data-animate="fade-up">
-        <span class="dev-section-label mono">Enfoque</span>
-        <h2 class="dev-section-title">Diseño con criterio, código con propósito</h2>
-        <p class="dev-section-desc">
-          Cada proyecto web nace de entender el negocio, diseñar la experiencia correcta
-          y construirla con tecnología limpia y mantenible.
+  <!-- Proyecto 01 — Black Gum (banda oscura) -->
+  <section class="dev-casestudy">
+    <div class="casestudy-bg"></div>
+    <div class="casestudy-inner container" data-animate="fade-up">
+
+      <div class="casestudy-content">
+        <img src="/media/blackgum/logo-white.png" alt="Black Gum Studio" class="casestudy-logo" />
+
+        <div class="casestudy-status">
+          <span class="casestudy-pulse"></span>
+          <span class="casestudy-status__text mono">Construyendo ahora</span>
+        </div>
+
+        <p class="casestudy-desc">
+          Plataforma full-stack para una productora audiovisual en Madrid.
+          Web pública, panel de administración y sistema de pagos — todo
+          el stack, del diseño al deploy.
         </p>
-      </div>
 
-      <div class="dev-approach__grid" data-animate="stagger">
-        <div class="approach-card">
-          <span class="approach-card__number mono">01</span>
-          <h3 class="approach-card__title">Estrategia</h3>
-          <p class="approach-card__desc">Entender el negocio, el público y los objetivos antes de diseñar un solo pixel.</p>
+        <p class="casestudy-insight">
+          "Next.js 14 con App Router y Prisma. Panel admin propio — sin
+          WordPress, sin Strapi. Control total."
+        </p>
+
+        <span class="casestudy-tech mono">
+          Next.js 14 · TypeScript · React · Tailwind · Prisma · Stripe · Node.js
+        </span>
+
+        <a href="https://blackgumgroup.com/" target="_blank" rel="noopener noreferrer" class="casestudy-cta__link mono">
+          Ver blackgumgroup.com →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proyecto 02 — Fratelli Pazzi -->
+  <section class="dev-project-section section">
+    <div class="container">
+      <div class="project-block" data-animate="fade-up">
+        <div class="project-block__visual">
+          <div class="project-browser">
+            <div class="project-browser__bar">
+              <div class="browser-dots"><span></span><span></span><span></span></div>
+              <span class="browser-url mono">fratellipazzi.es</span>
+            </div>
+            <div class="project-browser__screen">
+              <img src="/media/fratelli/signage/final/cartel-entrada-v2.jpeg" alt="Cartel de Fratelli Pazzi en la pizzería" loading="lazy" />
+            </div>
+          </div>
         </div>
-        <div class="approach-card">
-          <span class="approach-card__number mono">02</span>
-          <h3 class="approach-card__title">Diseño UI/UX</h3>
-          <p class="approach-card__desc">Interfaces limpias, con jerarquía visual clara y experiencia de usuario cuidada.</p>
-        </div>
-        <div class="approach-card">
-          <span class="approach-card__number mono">03</span>
-          <h3 class="approach-card__title">Desarrollo</h3>
-          <p class="approach-card__desc">Código limpio, rendimiento optimizado y responsive real en todos los dispositivos.</p>
-        </div>
-        <div class="approach-card">
-          <span class="approach-card__number mono">04</span>
-          <h3 class="approach-card__title">Lanzamiento</h3>
-          <p class="approach-card__desc">Deploy, SEO básico y seguimiento post-lanzamiento para iterar sobre resultados.</p>
+        <div class="project-block__info">
+          <span class="project-status project-status--done mono">Proyecto terminado</span>
+          <h2 class="project-block__title">Fratelli Pazzi</h2>
+          <p class="project-block__desc">
+            Web completa para una pizzería napolitana real que cofundé
+            en Las Rozas, Madrid. E-commerce con menú interactivo,
+            sistema de pedidos y plataforma de fidelización.
+          </p>
+          <p class="project-block__insight">
+            "Diseñé toda la identidad visual antes de escribir una línea
+            de código — la web nace del sistema de marca, no al revés."
+          </p>
+          <div class="project-block__numbers mono">
+            <span>4.7★ Google</span>
+            <span class="project-separator">·</span>
+            <span>300+ clientes</span>
+            <span class="project-separator">·</span>
+            <span>Negocio real operando</span>
+          </div>
+          <a href="https://www.fratellipazzi.es" target="_blank" rel="noopener noreferrer" class="project-block__link mono">
+            Ver fratellipazzi.es →
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Projects -->
-  <section class="dev-projects section">
+  <!-- CTA -->
+  <section class="dev-cta section">
     <div class="container">
-      <div class="dev-projects__header" data-animate="fade-up">
-        <span class="dev-section-label mono">Proyectos</span>
-        <h2 class="dev-section-title">Webs reales, resultados reales</h2>
-      </div>
-
-      <div class="dev-projects__list" data-animate="stagger">
-        {desarrolloProjects.map((project) => (
-          <article class="dev-project">
-            <div class="dev-project__mockup">
-              <div class="dev-project__browser">
-                <div class="browser-dots">
-                  <span></span><span></span><span></span>
-                </div>
-                <div class="browser-url mono">
-                  {project.link ? new URL(project.link).hostname : 'proyecto.dev'}
-                </div>
-              </div>
-              <div class="dev-project__screen">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
-                </svg>
-              </div>
-            </div>
-            <div class="dev-project__info">
-              <h3 class="dev-project__title">{project.title}</h3>
-              <p class="dev-project__desc">{project.description}</p>
-              <div class="dev-project__tags">
-                {project.tags.map((tag) => (
-                  <span class="dev-tag mono">{tag}</span>
-                ))}
-              </div>
-              {project.link && (
-                <a href={project.link} target="_blank" rel="noopener noreferrer" class="dev-project__link mono">
-                  Ver web →
-                </a>
-              )}
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Tech -->
-  <section class="dev-tech section">
-    <div class="container">
-      <div class="dev-tech__header" data-animate="fade-up">
-        <span class="dev-section-label mono">Tecnología</span>
-        <h2 class="dev-section-title">Herramientas que uso</h2>
-      </div>
-
-      <div class="dev-tech__grid" data-animate="stagger">
-        <div class="tech-item">
-          <span class="tech-item__name">HTML / CSS</span>
-          <div class="tech-item__bar"><div class="tech-item__fill" style="width: 95%"></div></div>
-        </div>
-        <div class="tech-item">
-          <span class="tech-item__name">JavaScript</span>
-          <div class="tech-item__bar"><div class="tech-item__fill" style="width: 80%"></div></div>
-        </div>
-        <div class="tech-item">
-          <span class="tech-item__name">Astro</span>
-          <div class="tech-item__bar"><div class="tech-item__fill" style="width: 75%"></div></div>
-        </div>
-        <div class="tech-item">
-          <span class="tech-item__name">Diseño UI/UX</span>
-          <div class="tech-item__bar"><div class="tech-item__fill" style="width: 90%"></div></div>
-        </div>
+      <div class="dev-cta__inner" data-animate="fade-up">
+        <h2 class="dev-cta__title">¿Tienes un proyecto en mente?</h2>
+        <a href="/#contacto" class="dev-cta__link mono">Hablemos →</a>
       </div>
     </div>
   </section>
@@ -155,6 +133,10 @@ import { desarrolloProjects } from '../data/projects';
     z-index: 1;
     padding-top: calc(var(--space-3xl) + 100px);
     padding-bottom: var(--space-3xl);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .dev-label {
@@ -183,110 +165,40 @@ import { desarrolloProjects } from '../data/projects';
     font-size: var(--step-1);
     line-height: 1.5;
     color: var(--dev-text-secondary);
-    max-width: 50ch;
+    max-width: 48ch;
+    margin-bottom: var(--space-l);
   }
 
-  /* ── Section headings ── */
-  .dev-section-label {
-    display: block;
+  .dev-hero__tech {
     font-size: var(--step--2);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--dev-accent);
-    margin-bottom: var(--space-xs);
-  }
-
-  .dev-section-title {
-    font-size: var(--step-3);
-    color: var(--dev-primary);
-    margin-bottom: var(--space-s);
-  }
-
-  .dev-section-desc {
+    letter-spacing: 0.06em;
     color: var(--dev-text-secondary);
-    max-width: 55ch;
-    line-height: 1.7;
+    opacity: 0.5;
   }
 
-  /* ── Approach ── */
-  .dev-approach__header {
-    margin-bottom: var(--space-xl);
-  }
-
-  .dev-approach__grid {
+  /* ── Project block (Fratelli) ── */
+  .project-block {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-s);
-  }
-
-  .approach-card {
-    padding: var(--space-l);
-    border: 1px solid var(--dev-border);
-    border-radius: var(--radius-md);
-    background: var(--dev-surface);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-    transition: border-color var(--duration-fast) var(--ease-out);
-  }
-
-  .approach-card:hover {
-    border-color: var(--dev-accent);
-  }
-
-  .approach-card__number {
-    font-size: var(--step--2);
-    color: var(--dev-accent);
-    letter-spacing: 0.1em;
-  }
-
-  .approach-card__title {
-    font-size: var(--step-0);
-    color: var(--dev-primary);
-    font-weight: 700;
-  }
-
-  .approach-card__desc {
-    font-size: var(--step--1);
-    color: var(--dev-text-secondary);
-    line-height: 1.6;
-  }
-
-  /* ── Projects ── */
-  .dev-projects__header {
-    margin-bottom: var(--space-xl);
-  }
-
-  .dev-projects__list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-l);
-  }
-
-  .dev-project {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.1fr 0.9fr;
     gap: var(--space-xl);
     align-items: center;
   }
 
-  .dev-project:nth-child(even) {
-    direction: rtl;
-  }
-
-  .dev-project:nth-child(even) > * {
-    direction: ltr;
-  }
-
-  /* Browser mockup */
-  .dev-project__mockup {
+  .project-browser {
     border: 1px solid var(--dev-border);
     border-radius: var(--radius-md);
     overflow: hidden;
     background: var(--dev-surface);
+    transition: transform var(--duration-base) var(--ease-out),
+                box-shadow var(--duration-base) var(--ease-out);
   }
 
-  .dev-project__browser {
+  .project-browser:hover {
+    transform: scale(1.015);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+  }
+
+  .project-browser__bar {
     display: flex;
     align-items: center;
     gap: var(--space-s);
@@ -313,51 +225,82 @@ import { desarrolloProjects } from '../data/projects';
     opacity: 0.6;
   }
 
-  .dev-project__screen {
-    aspect-ratio: 16/10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--dev-accent);
-    opacity: 0.2;
+  .project-browser__screen {
+    overflow: hidden;
+    background: var(--dev-surface);
   }
 
-  .dev-project__info {
+  .project-browser__screen img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .project-block__info {
     display: flex;
     flex-direction: column;
     gap: var(--space-xs);
   }
 
-  .dev-project__title {
-    font-size: var(--step-2);
-    color: var(--dev-primary);
-    font-weight: 700;
+  .project-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    font-size: var(--step--2);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    width: fit-content;
+    padding: 0.3em 0.9em;
+    border-radius: 999px;
   }
 
-  .dev-project__desc {
+  .project-status--done {
+    color: var(--dev-accent);
+    border: 1px solid var(--dev-accent);
+    opacity: 0.8;
+  }
+
+  .project-block__title {
+    font-size: var(--step-3);
+    font-weight: 800;
+    color: var(--dev-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .project-block__desc {
     font-size: var(--step--1);
     color: var(--dev-text-secondary);
-    line-height: 1.65;
+    line-height: 1.7;
   }
 
-  .dev-project__tags {
+  .project-block__insight {
+    font-size: var(--step--1);
+    font-style: italic;
+    color: var(--dev-accent);
+    line-height: 1.6;
+    padding-left: var(--space-s);
+    border-left: 2px solid var(--dev-accent);
+    opacity: 0.85;
+  }
+
+  .project-block__numbers {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-3xs);
+    align-items: center;
+    gap: 0.5em;
+    font-size: var(--step--2);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--dev-primary);
     margin-top: var(--space-2xs);
   }
 
-  .dev-tag {
-    font-size: var(--step--2);
-    padding: 0.2em 0.6em;
-    border: 1px solid var(--dev-border);
-    border-radius: var(--radius-sm);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+  .project-separator {
     color: var(--dev-text-secondary);
+    opacity: 0.4;
   }
 
-  .dev-project__link {
+  .project-block__link {
     display: inline-block;
     margin-top: var(--space-xs);
     font-size: var(--step--1);
@@ -367,66 +310,174 @@ import { desarrolloProjects } from '../data/projects';
     transition: transform var(--duration-fast) var(--ease-out);
   }
 
-  .dev-project__link:hover {
+  .project-block__link:hover {
     transform: translateX(4px);
   }
 
-  /* ── Tech ── */
-  .dev-tech__header {
-    margin-bottom: var(--space-xl);
-  }
-
-  .dev-tech__grid {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-m);
-    max-width: 600px;
-  }
-
-  .tech-item {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3xs);
-  }
-
-  .tech-item__name {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: var(--step--1);
-    color: var(--dev-primary);
-  }
-
-  .tech-item__bar {
-    width: 100%;
-    height: 4px;
-    background: var(--dev-border);
-    border-radius: 2px;
+  /* ── Case Study — Black Gum (dark band) ── */
+  .dev-casestudy {
+    position: relative;
     overflow: hidden;
+    padding-block: var(--space-3xl);
+    background: #0b0b0b;
+    color: #f5f0e8;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
   }
 
-  .tech-item__fill {
-    height: 100%;
-    background: var(--dev-accent);
-    border-radius: 2px;
-    transition: width 1s var(--ease-out);
+  .casestudy-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('/media/blackgum/hero-bg.png');
+    background-size: cover;
+    background-position: center 30%;
+    opacity: 0.08;
+    filter: saturate(0.35) brightness(0.5);
+    pointer-events: none;
   }
 
+  .casestudy-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 70% at 50% 40%, transparent 30%, rgba(11,11,11,0.88) 100%),
+      linear-gradient(to bottom, rgba(11,11,11,0.75) 0%, transparent 25%, transparent 75%, rgba(11,11,11,0.9) 100%);
+  }
+
+  .casestudy-logo {
+    width: clamp(160px, 18vw, 240px);
+    height: auto;
+    filter: drop-shadow(0 0 30px rgba(199,66,46,0.2));
+  }
+
+  .casestudy-inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .casestudy-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-m);
+    max-width: 580px;
+    margin-inline: auto;
+  }
+
+  .casestudy-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    padding: 0.35em 1em;
+    border: 1px solid rgba(241,169,58,0.4);
+    border-radius: 999px;
+  }
+
+  .casestudy-pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #f1a93a;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  .casestudy-status__text {
+    font-size: var(--step--2);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #f1a93a;
+  }
+
+  .casestudy-desc {
+    font-size: var(--step-0);
+    line-height: 1.7;
+    color: #d7d1c5;
+  }
+
+  .casestudy-insight {
+    font-size: var(--step--1);
+    font-style: italic;
+    line-height: 1.6;
+    color: #f1a93a;
+    padding-left: var(--space-s);
+    border-left: 2px solid rgba(241,169,58,0.5);
+    text-align: left;
+    opacity: 0.85;
+    align-self: center;
+    max-width: 460px;
+  }
+
+  .casestudy-tech {
+    font-size: var(--step--2);
+    letter-spacing: 0.06em;
+    color: #d7d1c5;
+    opacity: 0.45;
+  }
+
+  .casestudy-cta__link {
+    display: inline-block;
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #0b0b0b;
+    background: linear-gradient(135deg, #c7422e, #f1a93a);
+    padding: 0.75em 2.2em;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    transition: all var(--duration-fast) var(--ease-out);
+    box-shadow: 0 4px 20px rgba(199,66,46,0.3);
+  }
+
+  .casestudy-cta__link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(199,66,46,0.45);
+  }
+
+  /* ── CTA ── */
+  .dev-cta__inner {
+    text-align: center;
+    padding-block: var(--space-l);
+  }
+
+  .dev-cta__title {
+    font-size: var(--step-2);
+    color: var(--dev-primary);
+    margin-bottom: var(--space-s);
+    font-weight: 700;
+  }
+
+  .dev-cta__link {
+    font-size: var(--step-0);
+    color: var(--dev-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+
+  .dev-cta__link:hover {
+    transform: translateX(6px);
+  }
+
+  /* ── Responsive ── */
   @media (max-width: 768px) {
-    .dev-approach__grid {
-      grid-template-columns: 1fr 1fr;
+    .dev-hero__title {
+      font-size: clamp(2.2rem, 1.2rem + 5vw, 4rem);
     }
 
-    .dev-project {
+    .project-block {
       grid-template-columns: 1fr;
     }
 
-    .dev-project:nth-child(even) {
-      direction: ltr;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .dev-approach__grid {
-      grid-template-columns: 1fr;
+    .casestudy-insight {
+      align-self: stretch;
+      max-width: 100%;
     }
   }
 </style>

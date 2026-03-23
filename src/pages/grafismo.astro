@@ -1,7 +1,5 @@
 ---
 import SectionLayout from '../layouts/SectionLayout.astro';
-import ProjectCard from '../components/grafismo/ProjectCard.astro';
-import { grafismoProjects } from '../data/projects';
 ---
 
 <SectionLayout
@@ -9,6 +7,9 @@ import { grafismoProjects } from '../data/projects';
   description="Grafismo en directo, motion graphics y gráfica televisiva para las principales cadenas de España."
   theme="grafismo"
 >
+  <!-- Particle background -->
+  <canvas class="grafismo-particles" id="grafismo-particles" aria-hidden="true"></canvas>
+
   <!-- Hero broadcast -->
   <section class="grafismo-hero">
     <div class="grafismo-hero__overlay">
@@ -22,10 +23,6 @@ import { grafismoProjects } from '../data/projects';
         <span class="grafismo-label mono">16:9 — 1080p</span>
       </div>
 
-      <div class="grafismo-hero__timecode mono" aria-hidden="true">
-        <span id="timecode">00:00:00:00</span>
-      </div>
-
       <h1 class="grafismo-hero__title" data-animate="fade-up">
         Grafismo<br />
         <span class="grafismo-hero__accent">en TV</span>
@@ -35,6 +32,10 @@ import { grafismoProjects } from '../data/projects';
         Emisión en directo. Motion graphics. Identidad televisiva.
         Más de 5 años creando la imagen que ves en pantalla.
       </p>
+
+      <div class="grafismo-hero__timecode mono" aria-hidden="true">
+        <span id="timecode">00:00:00:00</span>
+      </div>
 
       <div class="grafismo-hero__frame" aria-hidden="true">
         <div class="frame-corner frame-corner--tl"></div>
@@ -72,27 +73,263 @@ import { grafismoProjects } from '../data/projects';
     </div>
   </section>
 
-  <!-- Projects -->
-  <section class="grafismo-projects section">
+  <!-- Channel toggle + Video showcase -->
+  <section class="grafismo-showcase section">
     <div class="container">
-      <div class="grafismo-projects__header" data-animate="fade-up">
-        <span class="mono grafismo-section-label">Proyectos destacados</span>
+      <div class="grafismo-showcase__header" data-animate="fade-up">
+        <span class="mono grafismo-section-label">Trabajos en emisión</span>
         <h2 class="grafismo-section-title">Lo que sale en pantalla</h2>
         <p class="grafismo-section-desc">
           Cada proyecto es un equilibrio entre la presión del directo y la exigencia visual.
-          Estas son algunas de las piezas que definen mi trabajo en televisión.
+          Pasa el ratón sobre cualquier vídeo para reproducirlo.
         </p>
       </div>
 
-      <div class="grafismo-projects__grid" data-animate="stagger">
-        {grafismoProjects.map((project) => (
-          <ProjectCard
-            title={project.title}
-            description={project.description}
-            tags={project.tags}
-            featured={project.featured}
-          />
-        ))}
+      <!-- Channel selector -->
+      <div class="channel-switch" data-animate="fade-up">
+        <div class="channel-switch__track">
+          <button class="channel-switch__btn channel-switch__btn--active" data-channel="sin-ia" type="button">
+            <span class="channel-switch__signal"></span>
+            <span class="channel-switch__label">Sin IA</span>
+          </button>
+          <button class="channel-switch__btn" data-channel="ia" type="button">
+            <span class="channel-switch__signal"></span>
+            <span class="channel-switch__label">Con IA</span>
+          </button>
+          <button class="channel-switch__btn" data-channel="cabeceras" type="button">
+            <span class="channel-switch__signal"></span>
+            <span class="channel-switch__label">Producciones</span>
+          </button>
+          <button class="channel-switch__btn" data-channel="christmas" type="button">
+            <span class="channel-switch__signal"></span>
+            <span class="channel-switch__label">Corporativo</span>
+          </button>
+          <div class="channel-switch__indicator"></div>
+        </div>
+      </div>
+
+      <!-- Glitch overlay for channel transition -->
+      <div class="channel-glitch" id="channel-glitch" aria-hidden="true">
+        <div class="channel-glitch__rgb channel-glitch__rgb--r"></div>
+        <div class="channel-glitch__rgb channel-glitch__rgb--g"></div>
+        <div class="channel-glitch__rgb channel-glitch__rgb--b"></div>
+        <div class="channel-glitch__static"></div>
+        <div class="channel-glitch__bars"></div>
+        <div class="channel-glitch__text mono" id="glitch-channel-text">CH 01</div>
+      </div>
+
+      <!-- Sin IA grid -->
+      <div class="video-showcase" id="grid-sin-ia">
+        <figure class="gvideo-card">
+          <video preload="metadata" playsinline muted poster="/media/grafismo/sin-ia/cartela-1-poster.jpg">
+            <source src="/media/grafismo/sin-ia/cartela-1.mp4" type="video/mp4" />
+          </video>
+        </figure>
+        <figure class="gvideo-card">
+          <video preload="metadata" playsinline muted poster="/media/grafismo/sin-ia/discotecas-poster.jpg">
+            <source src="/media/grafismo/sin-ia/discotecas.mp4" type="video/mp4" />
+          </video>
+        </figure>
+        <figure class="gvideo-card">
+          <video preload="metadata" playsinline muted poster="/media/grafismo/sin-ia/elecciones-eeuu-poster.jpg">
+            <source src="/media/grafismo/sin-ia/elecciones-eeuu.mp4" type="video/mp4" />
+          </video>
+        </figure>
+        <figure class="gvideo-card">
+          <video preload="metadata" playsinline muted poster="/media/grafismo/sin-ia/eurocopa-poster.jpg">
+            <source src="/media/grafismo/sin-ia/eurocopa.mp4" type="video/mp4" />
+          </video>
+        </figure>
+        <figure class="gvideo-card">
+          <video preload="metadata" playsinline muted poster="/media/grafismo/sin-ia/graf-1-poster.jpg">
+            <source src="/media/grafismo/sin-ia/graf-1.mp4" type="video/mp4" />
+          </video>
+        </figure>
+        <figure class="gvideo-card">
+          <video preload="metadata" playsinline muted poster="/media/grafismo/sin-ia/narcolanchas-poster.jpg">
+            <source src="/media/grafismo/sin-ia/narcolanchas.mp4" type="video/mp4" />
+          </video>
+        </figure>
+        <figure class="gvideo-card">
+          <video preload="metadata" playsinline muted poster="/media/grafismo/sin-ia/aqui-la-tierra-poster.jpg">
+            <source src="/media/grafismo/sin-ia/aqui-la-tierra.mp4" type="video/mp4" />
+          </video>
+        </figure>
+        <figure class="gvideo-card">
+          <video preload="metadata" playsinline muted poster="/media/grafismo/sin-ia/aqui-la-tierra-2-poster.jpg">
+            <source src="/media/grafismo/sin-ia/aqui-la-tierra-2.mp4" type="video/mp4" />
+          </video>
+        </figure>
+      </div>
+
+      <!-- IA grid -->
+      <div class="video-showcase video-showcase--hidden" id="grid-ia">
+        <figure class="gvideo-card">
+          <video preload="metadata" playsinline muted poster="/media/grafismo/ia/che-iglesias-poster.jpg">
+            <source src="/media/grafismo/ia/che-iglesias.mp4" type="video/mp4" />
+          </video>
+        </figure>
+        <figure class="gvideo-card">
+          <video preload="metadata" playsinline muted poster="/media/grafismo/ia/abascal-wars-poster.jpg">
+            <source src="/media/grafismo/ia/abascal-wars.mp4" type="video/mp4" />
+          </video>
+        </figure>
+        <figure class="gvideo-card">
+          <video preload="metadata" playsinline muted poster="/media/grafismo/ia/aforama-poster.jpg">
+            <source src="/media/grafismo/ia/aforama.mp4" type="video/mp4" />
+          </video>
+        </figure>
+        <figure class="gvideo-card">
+          <video preload="metadata" playsinline muted poster="/media/grafismo/ia/begona-desafiante-poster.jpg">
+            <source src="/media/grafismo/ia/begona-desafiante.mp4" type="video/mp4" />
+          </video>
+        </figure>
+        <figure class="gvideo-card">
+          <video preload="metadata" playsinline muted poster="/media/grafismo/ia/hulk-sanchez-poster.jpg">
+            <source src="/media/grafismo/ia/hulk-sanchez.mp4" type="video/mp4" />
+          </video>
+        </figure>
+        <figure class="gvideo-card">
+          <video preload="metadata" playsinline muted poster="/media/grafismo/ia/los-panceta-poster.jpg">
+            <source src="/media/grafismo/ia/los-panceta.mp4" type="video/mp4" />
+          </video>
+        </figure>
+        <figure class="gvideo-card">
+          <video preload="metadata" playsinline muted poster="/media/grafismo/ia/paganos-poster.jpg">
+            <source src="/media/grafismo/ia/paganos.mp4" type="video/mp4" />
+          </video>
+        </figure>
+        <figure class="gvideo-card">
+          <video preload="metadata" playsinline muted poster="/media/grafismo/ia/sanchez-barco-poster.jpg">
+            <source src="/media/grafismo/ia/sanchez-barco.mp4" type="video/mp4" />
+          </video>
+        </figure>
+        <figure class="gvideo-card">
+          <video preload="metadata" playsinline muted poster="/media/grafismo/ia/sanchez-esqui-poster.jpg">
+            <source src="/media/grafismo/ia/sanchez-esqui.mp4" type="video/mp4" />
+          </video>
+        </figure>
+        <figure class="gvideo-card">
+          <video preload="metadata" playsinline muted poster="/media/grafismo/ia/sanchez-lightyear-poster.jpg">
+            <source src="/media/grafismo/ia/sanchez-lightyear.mp4" type="video/mp4" />
+          </video>
+        </figure>
+        <figure class="gvideo-card">
+          <video preload="metadata" playsinline muted poster="/media/grafismo/ia/trileros-sanchez-trump-poster.jpg">
+            <source src="/media/grafismo/ia/trileros-sanchez-trump.mp4" type="video/mp4" />
+          </video>
+        </figure>
+        <figure class="gvideo-card">
+          <video preload="metadata" playsinline muted poster="/media/grafismo/ia/vox-is-coming-poster.jpg">
+            <source src="/media/grafismo/ia/vox-is-coming.mp4" type="video/mp4" />
+          </video>
+        </figure>
+        <figure class="gvideo-card">
+          <video preload="metadata" playsinline muted poster="/media/grafismo/ia/yolanda-oscars-poster.jpg">
+            <source src="/media/grafismo/ia/yolanda-oscars.mp4" type="video/mp4" />
+          </video>
+        </figure>
+        <figure class="gvideo-card">
+          <video preload="metadata" playsinline muted poster="/media/grafismo/ia/ia-3-poster.jpg">
+            <source src="/media/grafismo/ia/ia-3.mp4" type="video/mp4" />
+          </video>
+        </figure>
+      </div>
+
+      <!-- Cabeceras grid (CH 03) -->
+      <div class="video-showcase video-showcase--hidden" id="grid-cabeceras">
+        <div class="cabecera-player">
+          <div class="cabecera-player__frame">
+            <div class="cabecera-player__corner cabecera-player__corner--tl"></div>
+            <div class="cabecera-player__corner cabecera-player__corner--tr"></div>
+            <div class="cabecera-player__corner cabecera-player__corner--bl"></div>
+            <div class="cabecera-player__corner cabecera-player__corner--br"></div>
+
+            <video
+              id="cabecera-video"
+              preload="metadata"
+              playsinline
+              controls
+              poster="/media/grafismo/cabeceras/cabecera-zapatero-poster.jpg"
+            >
+              <source src="/media/grafismo/cabeceras/cabecera-zapatero.mp4" type="video/mp4" />
+            </video>
+
+            <iframe
+              id="cabecera-youtube"
+              class="cabecera-player__youtube cabecera-player__youtube--hidden"
+              width="960"
+              height="540"
+              src="about:blank"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+
+            <button class="cabecera-player__fullscreen" id="cabecera-fullscreen" type="button" aria-label="Pantalla completa">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
+                <line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="cabecera-player__selector">
+            <button class="cabecera-player__prev" id="cabecera-prev" type="button" aria-label="Anterior">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+
+            <div class="cabecera-player__thumbs" id="cabecera-thumbs">
+              <button class="cabecera-thumb cabecera-thumb--active" data-index="0" type="button">
+                <img src="/media/grafismo/cabeceras/cabecera-zapatero-poster.jpg" alt="Cabecera Zapatero" />
+                <span class="mono">Cabecera Zapatero</span>
+              </button>
+              <button class="cabecera-thumb" data-index="1" type="button">
+                <img src="/media/grafismo/cabeceras/personas-bestias-poster.jpg" alt="Personas Bestias" />
+                <span class="mono">Personas Bestias</span>
+              </button>
+              <button class="cabecera-thumb" data-index="2" type="button">
+                <img src="https://img.youtube.com/vi/vYUjhbAhpTc/hqdefault.jpg" alt="Midas Alonso" />
+                <span class="mono">Midas Alonso</span>
+              </button>
+            </div>
+
+            <button class="cabecera-player__next" id="cabecera-next" type="button" aria-label="Siguiente">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Christmas grid (CH 04) -->
+      <div class="video-showcase video-showcase--hidden" id="grid-christmas">
+        <div class="christmas-intro">
+          <span class="mono grafismo-section-label">Diseño corporativo</span>
+          <h3 class="christmas-intro__title">Christmas — Producciones Mandarina</h3>
+          <p class="christmas-intro__desc">Diseño de tarjetas navideñas corporativas: del concepto digital al resultado impreso.</p>
+        </div>
+
+        <div class="christmas-pair">
+          <figure class="christmas-card">
+            <div class="christmas-card__badge mono">Diseño</div>
+            <img src="/media/grafismo/christmas/christmas-1.jpeg" alt="Christmas 1 — Diseño" loading="lazy" />
+          </figure>
+          <figure class="christmas-card christmas-card--photo">
+            <div class="christmas-card__badge mono">Impreso</div>
+            <img src="/media/grafismo/christmas/foto-christmas-1.jpeg" alt="Christmas 1 — Impreso" loading="lazy" />
+          </figure>
+        </div>
+
+        <div class="christmas-pair">
+          <figure class="christmas-card">
+            <div class="christmas-card__badge mono">Diseño</div>
+            <img src="/media/grafismo/christmas/christmas-2.jpeg" alt="Christmas 2 — Diseño" loading="lazy" />
+          </figure>
+          <figure class="christmas-card christmas-card--photo">
+            <div class="christmas-card__badge mono">Impreso</div>
+            <img src="/media/grafismo/christmas/foto-christmas-2.png" alt="Christmas 2 — Impreso" loading="lazy" />
+          </figure>
+        </div>
       </div>
     </div>
   </section>
@@ -107,20 +344,46 @@ import { grafismoProjects } from '../data/projects';
 
       <div class="grafismo-tools__grid" data-animate="stagger">
         <div class="tool-card">
+          <div class="tool-card__icon">
+            <img src="/media/logos/Adobe_After_Effects_CC_icon.svg" alt="After Effects" width="48" height="48" />
+          </div>
           <span class="tool-card__name">After Effects</span>
           <span class="tool-card__role mono">Motion & Compositing</span>
         </div>
         <div class="tool-card">
+          <div class="tool-card__icon">
+            <img src="/media/logos/Adobe_Photoshop_CC_icon.svg" alt="Photoshop" width="48" height="48" />
+          </div>
           <span class="tool-card__name">Photoshop</span>
           <span class="tool-card__role mono">Diseño & Retoque</span>
         </div>
         <div class="tool-card">
+          <div class="tool-card__icon">
+            <img src="/media/logos/Adobe_Illustrator_CC_icon.svg" alt="Illustrator" width="48" height="48" />
+          </div>
           <span class="tool-card__name">Illustrator</span>
           <span class="tool-card__role mono">Vectorial & Gráfica</span>
         </div>
         <div class="tool-card">
+          <div class="tool-card__icon">
+            <img src="/media/logos/Adobe_Premiere_Pro_CC_icon.svg" alt="Premiere Pro" width="48" height="48" />
+          </div>
           <span class="tool-card__name">Premiere Pro</span>
           <span class="tool-card__role mono">Edición & Montaje</span>
+        </div>
+        <div class="tool-card">
+          <div class="tool-card__icon">
+            <img src="/media/logos/ChatGPT_logo.svg" alt="ChatGPT" width="48" height="48" />
+          </div>
+          <span class="tool-card__name">ChatGPT</span>
+          <span class="tool-card__role mono">IA Generativa</span>
+        </div>
+        <div class="tool-card">
+          <div class="tool-card__icon">
+            <img src="/media/logos/freepik-logo-png-transparent.png" alt="Freepik" width="48" height="48" />
+          </div>
+          <span class="tool-card__name">Freepik</span>
+          <span class="tool-card__role mono">Recursos & Assets</span>
         </div>
       </div>
     </div>
@@ -135,6 +398,7 @@ import { grafismoProjects } from '../data/projects';
     min-height: 100dvh;
     display: flex;
     align-items: center;
+    padding-top: 80px;
     background: var(--grafismo-bg);
     overflow: hidden;
   }
@@ -165,12 +429,17 @@ import { grafismoProjects } from '../data/projects';
   .grafismo-hero__content {
     position: relative;
     z-index: 1;
-    padding-top: calc(var(--space-3xl) + 100px);
+    padding-top: var(--space-xl);
     padding-bottom: var(--space-3xl);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .grafismo-hero__labels {
     display: flex;
+    justify-content: center;
     gap: var(--space-m);
     margin-bottom: var(--space-xl);
   }
@@ -191,13 +460,12 @@ import { grafismoProjects } from '../data/projects';
   }
 
   .grafismo-hero__timecode {
-    position: absolute;
-    top: calc(var(--space-3xl) + 100px);
-    right: 0;
-    font-size: var(--step-0);
+    font-size: var(--step-1);
     color: var(--grafismo-primary);
-    opacity: 0.3;
-    letter-spacing: 0.1em;
+    opacity: 0.4;
+    letter-spacing: 0.15em;
+    text-align: center;
+    margin-top: var(--space-l);
   }
 
   .grafismo-hero__title {
@@ -207,6 +475,17 @@ import { grafismoProjects } from '../data/projects';
     letter-spacing: -0.04em;
     color: var(--grafismo-text);
     margin-bottom: var(--space-l);
+  }
+
+  @media (max-width: 768px) {
+    .grafismo-hero__title {
+      font-size: clamp(2rem, 1.2rem + 5.5vw, 3.2rem);
+    }
+
+    .grafismo-hero__subtitle {
+      font-size: var(--step--1);
+      max-width: 30ch;
+    }
   }
 
   .grafismo-hero__accent {
@@ -220,6 +499,7 @@ import { grafismoProjects } from '../data/projects';
     color: var(--grafismo-text);
     opacity: 0.65;
     max-width: 50ch;
+    text-align: center;
   }
 
   /* Frame corners */
@@ -237,29 +517,10 @@ import { grafismoProjects } from '../data/projects';
     opacity: 0.3;
   }
 
-  .frame-corner--tl {
-    top: 0; left: 0;
-    border-top: 1px solid;
-    border-left: 1px solid;
-  }
-
-  .frame-corner--tr {
-    top: 0; right: 0;
-    border-top: 1px solid;
-    border-right: 1px solid;
-  }
-
-  .frame-corner--bl {
-    bottom: 0; left: 0;
-    border-bottom: 1px solid;
-    border-left: 1px solid;
-  }
-
-  .frame-corner--br {
-    bottom: 0; right: 0;
-    border-bottom: 1px solid;
-    border-right: 1px solid;
-  }
+  .frame-corner--tl { top: 0; left: 0; border-top: 1px solid; border-left: 1px solid; }
+  .frame-corner--tr { top: 0; right: 0; border-top: 1px solid; border-right: 1px solid; }
+  .frame-corner--bl { bottom: 0; left: 0; border-bottom: 1px solid; border-left: 1px solid; }
+  .frame-corner--br { bottom: 0; right: 0; border-bottom: 1px solid; border-right: 1px solid; }
 
   /* ── Experience Bar ── */
   .grafismo-exp__bar {
@@ -304,17 +565,19 @@ import { grafismoProjects } from '../data/projects';
   /* ── Section headings ── */
   .grafismo-section-label {
     display: block;
-    font-size: var(--step--2);
+    font-size: var(--step--1);
     text-transform: uppercase;
     letter-spacing: 0.15em;
     color: var(--grafismo-primary);
     margin-bottom: var(--space-xs);
+    text-align: center;
   }
 
   .grafismo-section-title {
     font-size: var(--step-3);
     color: var(--grafismo-text);
     margin-bottom: var(--space-s);
+    text-align: center;
   }
 
   .grafismo-section-desc {
@@ -322,42 +585,690 @@ import { grafismoProjects } from '../data/projects';
     opacity: 0.6;
     max-width: 55ch;
     line-height: 1.7;
+    text-align: center;
+    margin-inline: auto;
   }
 
-  /* ── Projects Grid ── */
-  .grafismo-projects__header {
-    margin-bottom: var(--space-xl);
+  /* ── Channel Switch (TV toggle) ── */
+  .channel-switch {
+    display: flex;
+    justify-content: center;
+    margin: var(--space-xl) auto;
+    padding-inline: var(--space-s);
   }
 
-  .grafismo-projects__grid {
+  .channel-switch__track {
+    position: relative;
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--grafismo-border);
+    border-radius: var(--radius-md);
+    background: var(--grafismo-surface);
+    padding: 4px;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .channel-switch__btn {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    gap: var(--space-xs);
+    padding: 0.75em 1.2em;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    color: var(--grafismo-text);
+    opacity: 0.5;
+    white-space: nowrap;
+  }
+
+  .channel-switch__btn--active {
+    opacity: 1;
+    color: var(--grafismo-bg);
+  }
+
+  .channel-switch__signal {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--grafismo-text);
+    opacity: 0.3;
+    transition: all 0.3s ease;
+  }
+
+  .channel-switch__btn--active .channel-switch__signal {
+    background: var(--grafismo-accent);
+    opacity: 1;
+    box-shadow: 0 0 8px rgba(255, 23, 68, 0.6);
+    animation: rec-blink 1.5s ease-in-out infinite;
+  }
+
+  @keyframes rec-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .channel-switch__label {
+    font-family: 'Syne Variable', sans-serif;
+    font-size: var(--step-0);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .channel-switch__badge {
+    font-size: var(--step--2);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    opacity: 0.6;
+  }
+
+  .channel-switch__btn--active .channel-switch__badge {
+    opacity: 1;
+  }
+
+  .channel-switch__indicator {
+    position: absolute;
+    top: 4px;
+    height: calc(100% - 8px);
+    background: var(--grafismo-primary);
+    border-radius: calc(var(--radius-md) - 2px);
+    transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 0;
+  }
+
+  /* ── Glitch transition overlay ── */
+  .channel-glitch {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .channel-glitch.glitch--active {
+    opacity: 1;
+    visibility: visible;
+    animation: glitch-master 0.7s steps(6) forwards;
+  }
+
+  /* RGB chromatic split layers */
+  .channel-glitch__rgb {
+    position: absolute;
+    inset: 0;
+    mix-blend-mode: screen;
+    opacity: 0;
+  }
+
+  .glitch--active .channel-glitch__rgb--r {
+    background: rgba(255, 0, 0, 0.15);
+    animation: glitch-rgb-r 0.7s steps(3) forwards;
+  }
+
+  .glitch--active .channel-glitch__rgb--g {
+    background: rgba(0, 255, 0, 0.1);
+    animation: glitch-rgb-g 0.7s steps(4) forwards;
+  }
+
+  .glitch--active .channel-glitch__rgb--b {
+    background: rgba(0, 100, 255, 0.15);
+    animation: glitch-rgb-b 0.7s steps(3) forwards;
+  }
+
+  @keyframes glitch-rgb-r {
+    0%   { opacity: 0; transform: translate(0, 0); }
+    10%  { opacity: 1; transform: translate(-8px, 2px); }
+    25%  { opacity: 0.8; transform: translate(12px, -3px); }
+    40%  { opacity: 1; transform: translate(-5px, 1px); }
+    60%  { opacity: 0.6; transform: translate(6px, -1px); }
+    80%  { opacity: 0.3; transform: translate(-2px, 0); }
+    100% { opacity: 0; transform: translate(0, 0); }
+  }
+
+  @keyframes glitch-rgb-g {
+    0%   { opacity: 0; transform: translate(0, 0); }
+    15%  { opacity: 0.8; transform: translate(6px, -4px); }
+    30%  { opacity: 1; transform: translate(-10px, 2px); }
+    50%  { opacity: 0.7; transform: translate(4px, 3px); }
+    70%  { opacity: 0.4; transform: translate(-3px, -1px); }
+    100% { opacity: 0; transform: translate(0, 0); }
+  }
+
+  @keyframes glitch-rgb-b {
+    0%   { opacity: 0; transform: translate(0, 0); }
+    12%  { opacity: 1; transform: translate(10px, 3px); }
+    28%  { opacity: 0.9; transform: translate(-8px, -2px); }
+    45%  { opacity: 1; transform: translate(5px, -4px); }
+    65%  { opacity: 0.5; transform: translate(-4px, 2px); }
+    85%  { opacity: 0.2; transform: translate(2px, 0); }
+    100% { opacity: 0; transform: translate(0, 0); }
+  }
+
+  .channel-glitch__static {
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        rgba(0, 212, 255, 0.06) 1px,
+        transparent 2px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        rgba(255, 255, 255, 0.02) 1px,
+        transparent 3px
+      );
+    mix-blend-mode: screen;
+  }
+
+  .channel-glitch__static::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.6'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
+    opacity: 0;
+  }
+
+  .glitch--active .channel-glitch__static::before {
+    animation: glitch-noise 0.7s steps(8) forwards;
+  }
+
+  @keyframes glitch-noise {
+    0%   { opacity: 0; }
+    10%  { opacity: 0.9; }
+    20%  { opacity: 0.4; }
+    35%  { opacity: 1; }
+    50%  { opacity: 0.7; }
+    65%  { opacity: 0.5; }
+    80%  { opacity: 0.2; }
+    100% { opacity: 0; }
+  }
+
+  .channel-glitch__bars {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 2px,
+      rgba(0, 0, 0, 0.25) 2px,
+      rgba(0, 0, 0, 0.25) 4px
+    );
+    opacity: 0;
+  }
+
+  .glitch--active .channel-glitch__bars {
+    animation: glitch-bars 0.7s steps(4) forwards;
+  }
+
+  @keyframes glitch-bars {
+    0%   { opacity: 0; transform: translateY(0); }
+    15%  { opacity: 0.8; transform: translateY(-30%); }
+    30%  { opacity: 1; transform: translateY(15%); }
+    50%  { opacity: 0.7; transform: translateY(-10%); }
+    70%  { opacity: 0.4; transform: translateY(5%); }
+    100% { opacity: 0; transform: translateY(0); }
+  }
+
+  /* Channel number text flash */
+  .channel-glitch__text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(4rem, 3rem + 6vw, 10rem);
+    font-weight: 800;
+    color: white;
+    opacity: 0;
+    text-shadow:
+      3px 0 rgba(255, 0, 0, 0.7),
+      -3px 0 rgba(0, 100, 255, 0.7),
+      0 0 40px rgba(0, 212, 255, 0.5);
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+
+  .glitch--active .channel-glitch__text {
+    animation: glitch-ch-text 0.7s steps(3) forwards;
+  }
+
+  @keyframes glitch-ch-text {
+    0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+    12%  { opacity: 1; transform: translate(-48%, -52%) scale(1.05); }
+    25%  { opacity: 0.8; transform: translate(-53%, -48%) scale(1); }
+    40%  { opacity: 1; transform: translate(-50%, -50%) scale(1.02); }
+    55%  { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+    75%  { opacity: 0.2; transform: translate(-50%, -50%) scale(0.98); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+  }
+
+  @keyframes glitch-master {
+    0%   { opacity: 0; background: rgba(5, 5, 16, 0.97); }
+    8%   { opacity: 1; background: rgba(255, 255, 255, 0.15); }
+    16%  { opacity: 1; background: rgba(5, 5, 16, 0.95); }
+    25%  { opacity: 1; background: rgba(0, 212, 255, 0.12); }
+    35%  { opacity: 1; background: rgba(255, 255, 255, 0.2); }
+    45%  { opacity: 1; background: rgba(5, 5, 16, 0.9); }
+    55%  { opacity: 0.9; background: rgba(0, 212, 255, 0.08); }
+    65%  { opacity: 0.7; background: rgba(5, 5, 16, 0.7); }
+    78%  { opacity: 0.4; background: rgba(5, 5, 16, 0.4); }
+    90%  { opacity: 0.15; background: rgba(5, 5, 16, 0.2); }
+    100% { opacity: 0; visibility: hidden; }
+  }
+
+  /* ── Video showcase grid ── */
+  .grafismo-showcase__header {
+    margin-bottom: var(--space-l);
+    text-align: center;
+  }
+
+  .video-showcase {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: var(--space-m);
+    transition: opacity 0.3s ease;
+  }
+
+  .video-showcase--hidden {
+    display: none;
+  }
+
+  .video-showcase--fade-out {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* ── Cabecera Player (CH 03) ── */
+  .cabecera-player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-l);
+    grid-column: 1 / -1;
+  }
+
+  .cabecera-player__frame {
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+    border: 1px solid var(--grafismo-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: #000;
+  }
+
+  .cabecera-player__frame video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    background: #000;
+  }
+
+  .cabecera-player__corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: var(--grafismo-primary);
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  .cabecera-player__youtube {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    background: #000;
+  }
+
+  .cabecera-player__youtube--hidden {
+    display: none;
+  }
+
+  .cabecera-player__corner--tl { top: 8px; left: 8px; border-top: 2px solid; border-left: 2px solid; }
+  .cabecera-player__corner--tr { top: 8px; right: 8px; border-top: 2px solid; border-right: 2px solid; }
+  .cabecera-player__corner--bl { bottom: 8px; left: 8px; border-bottom: 2px solid; border-left: 2px solid; }
+  .cabecera-player__corner--br { bottom: 8px; right: 8px; border-bottom: 2px solid; border-right: 2px solid; }
+
+  .cabecera-player__fullscreen {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 3;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--grafismo-border);
+    border-radius: var(--radius-sm);
+    color: var(--grafismo-primary);
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cabecera-player__fullscreen:hover {
+    background: rgba(0, 212, 255, 0.15);
+    border-color: var(--grafismo-primary);
+  }
+
+  .cabecera-player__selector {
+    display: flex;
+    align-items: center;
+    gap: var(--space-m);
+    width: 100%;
+    max-width: 960px;
+  }
+
+  .cabecera-player__prev,
+  .cabecera-player__next {
+    flex-shrink: 0;
+    background: var(--grafismo-surface);
+    border: 1px solid var(--grafismo-border);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--grafismo-text);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .cabecera-player__prev:hover,
+  .cabecera-player__next:hover {
+    border-color: var(--grafismo-primary);
+    color: var(--grafismo-primary);
+    background: rgba(0, 212, 255, 0.08);
+  }
+
+  .cabecera-player__thumbs {
+    display: flex;
+    gap: var(--space-s);
+    flex: 1;
+    justify-content: center;
+  }
+
+  .cabecera-thumb {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2xs);
+    background: none;
+    border: 2px solid var(--grafismo-border);
+    border-radius: var(--radius-md);
+    padding: 4px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    opacity: 0.5;
+  }
+
+  .cabecera-thumb:hover {
+    opacity: 0.8;
+    border-color: var(--grafismo-primary);
+  }
+
+  .cabecera-thumb--active {
+    opacity: 1;
+    border-color: var(--grafismo-primary);
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.25);
+  }
+
+  .cabecera-thumb img {
+    width: 160px;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: calc(var(--radius-md) - 4px);
+  }
+
+  .cabecera-thumb span {
+    font-size: var(--step--2);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--grafismo-text);
+    opacity: 0.7;
+  }
+
+  .cabecera-thumb--active span {
+    color: var(--grafismo-primary);
+    opacity: 1;
+  }
+
+  /* ── Video cards ── */
+  .gvideo-card {
+    margin: 0;
+    position: relative;
+    border: 1px solid var(--grafismo-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--grafismo-surface);
+    cursor: pointer;
+    transition: border-color var(--duration-fast) var(--ease-out),
+                transform var(--duration-fast) var(--ease-out);
+  }
+
+  .gvideo-card:hover {
+    border-color: var(--grafismo-primary);
+    transform: translateY(-2px);
+  }
+
+  .gvideo-card video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background: #000;
+  }
+
+  .gvideo-card figcaption {
+    padding: 0.75rem 1rem;
+    font-size: var(--step--2);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--grafismo-text);
+    opacity: 0.6;
+    text-align: center;
+    transition: color 0.2s ease;
+  }
+
+  .gvideo-card:hover figcaption {
+    color: var(--grafismo-primary);
+    opacity: 1;
+  }
+
+  /* Play indicator overlay */
+  .gvideo-card::after {
+    content: '▶';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translate(0, calc(-0.75rem));
+    font-size: 2rem;
+    color: white;
+    opacity: 0;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .gvideo-card:hover::after {
+    opacity: 0.7;
+  }
+
+  .gvideo-card.is-playing::after {
+    opacity: 0;
+  }
+
+  /* ── Christmas Cards (CH 04) ── */
+  #grid-christmas {
+    display: none;
+    flex-direction: column;
+    gap: var(--space-xl);
+    max-width: 960px;
+    margin-inline: auto;
+  }
+
+  #grid-christmas:not(.video-showcase--hidden) {
+    display: flex;
+  }
+
+  .christmas-intro {
+    text-align: center;
+    margin-bottom: var(--space-s);
+  }
+
+  .christmas-intro__title {
+    font-size: var(--step-2);
+    color: var(--grafismo-text);
+    margin-bottom: var(--space-2xs);
+  }
+
+  .christmas-intro__desc {
+    color: var(--grafismo-text);
+    opacity: 0.6;
+    max-width: 50ch;
+    margin-inline: auto;
+    line-height: 1.6;
+  }
+
+  .christmas-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-m);
+    align-items: start;
+  }
+
+  .christmas-card {
+    margin: 0;
+    position: relative;
+    border: 1px solid var(--grafismo-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--grafismo-surface);
+    transition: border-color var(--duration-fast) var(--ease-out),
+                transform var(--duration-fast) var(--ease-out);
+  }
+
+  .christmas-card:hover {
+    border-color: var(--grafismo-primary);
+    transform: translateY(-2px);
+  }
+
+  .christmas-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .christmas-card__badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 2;
+    font-size: var(--step--2);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 0.25em 0.7em;
+    border-radius: var(--radius-sm);
+    background: rgba(0, 0, 0, 0.7);
+    color: var(--grafismo-primary);
+    border: 1px solid var(--grafismo-border);
+    backdrop-filter: blur(4px);
+  }
+
+  .christmas-card--photo .christmas-card__badge {
+    color: var(--grafismo-accent);
+    border-color: rgba(255, 23, 68, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    .christmas-pair {
+      grid-template-columns: 1fr;
+    }
   }
 
   /* ── Tools Grid ── */
   .grafismo-tools__header {
     margin-bottom: var(--space-xl);
+    text-align: center;
   }
 
   .grafismo-tools__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: var(--space-s);
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-m);
   }
 
   .tool-card {
-    padding: var(--space-m);
+    padding: var(--space-l) var(--space-m);
     border: 1px solid var(--grafismo-border);
     border-radius: var(--radius-md);
     display: flex;
     flex-direction: column;
-    gap: var(--space-3xs);
-    transition: border-color var(--duration-fast) var(--ease-out);
+    align-items: center;
+    text-align: center;
+    gap: var(--space-2xs);
+    transition: border-color var(--duration-fast) var(--ease-out),
+                background var(--duration-fast) var(--ease-out),
+                transform var(--duration-fast) var(--ease-out);
+    background: rgba(255, 255, 255, 0.02);
   }
 
   .tool-card:hover {
     border-color: var(--grafismo-primary);
+    background: rgba(0, 212, 255, 0.04);
+    transform: translateY(-4px);
+  }
+
+  .tool-card__icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-3xs);
+    border-radius: var(--radius-sm);
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+
+  .tool-card:hover .tool-card__icon {
+    transform: scale(1.1);
+  }
+
+  .tool-card__icon img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.15));
+  }
+
+  .tool-card:hover .tool-card__icon img {
+    filter: drop-shadow(0 0 12px rgba(0, 212, 255, 0.3));
+  }
+
+  .tool-card__icon--text {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #9999FF 0%, #00005B 100%);
+    border-radius: 10px;
+    font-family: 'Syne Variable', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: #fff;
   }
 
   .tool-card__name {
@@ -374,7 +1285,31 @@ import { grafismoProjects } from '../data/projects';
     color: var(--grafismo-primary);
   }
 
-  @media (max-width: 640px) {
+  /* ── Particle canvas ── */
+  .grafismo-particles {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Ensure all sections sit above the canvas */
+  .grafismo-hero,
+  .grafismo-exp,
+  .grafismo-showcase,
+  .grafismo-tools {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .grafismo-tools__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
     .grafismo-hero__labels {
       flex-wrap: wrap;
       gap: var(--space-xs);
@@ -388,29 +1323,382 @@ import { grafismoProjects } from '../data/projects';
       display: none;
     }
 
-    .grafismo-projects__grid {
+    .channel-switch__badge {
+      display: none;
+    }
+
+    .video-showcase {
       grid-template-columns: 1fr;
+    }
+
+    .cabecera-thumb img {
+      width: 100px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .channel-switch {
+      padding-inline: 0;
+    }
+
+    .channel-switch__track {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      width: 100%;
+    }
+
+    .channel-switch__indicator {
+      display: none;
+    }
+
+    .channel-switch__btn {
+      padding: 0.6em 0.8em;
+      gap: 6px;
+      justify-content: center;
+      border-radius: calc(var(--radius-md) - 2px);
+      white-space: normal;
+      text-align: center;
+      min-height: 48px;
+    }
+
+    .channel-switch__btn--active {
+      background: var(--grafismo-primary);
+    }
+
+    .channel-switch__label {
+      font-size: var(--step--1);
+    }
+
+    .channel-switch__signal {
+      width: 6px;
+      height: 6px;
+    }
+
+    .channel-glitch__text {
+      font-size: clamp(1.35rem, 0.9rem + 3.3vw, 2.4rem);
+      letter-spacing: 0.05em;
+      max-width: 92vw;
+      text-align: center;
+      overflow-wrap: anywhere;
+      white-space: normal;
+    }
+
+    .cabecera-player__selector {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .cabecera-player__thumbs {
+      flex-wrap: wrap;
     }
   }
 </style>
 
 <script>
-  function initTimecode() {
-    const el = document.getElementById('timecode');
-    if (!el) return;
+  let grafismoAbort: AbortController | null = null;
 
-    let frame = 0;
-    function update() {
-      const totalSeconds = Math.floor(frame / 25);
-      const h = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
-      const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
-      const s = String(totalSeconds % 60).padStart(2, '0');
-      const f = String(frame % 25).padStart(2, '0');
-      el.textContent = `${h}:${m}:${s}:${f}`;
-      frame++;
-      requestAnimationFrame(update);
+  function initGrafismo() {
+    // Clean previous listeners when navigating with Astro View Transitions.
+    if (grafismoAbort) grafismoAbort.abort();
+    grafismoAbort = new AbortController();
+    const { signal } = grafismoAbort;
+
+    /* ── Timecode ── */
+    const tcEl = document.getElementById('timecode');
+    if (tcEl) {
+      let frame = 0;
+      (function updateTC() {
+        const t = Math.floor(frame / 25);
+        const h = String(Math.floor(t / 3600)).padStart(2, '0');
+        const m = String(Math.floor((t % 3600) / 60)).padStart(2, '0');
+        const s = String(t % 60).padStart(2, '0');
+        const f = String(frame % 25).padStart(2, '0');
+        tcEl.textContent = `${h}:${m}:${s}:${f}`;
+        frame++;
+        requestAnimationFrame(updateTC);
+      })();
     }
-    update();
+
+    /* ── Channel switch ── */
+    const btns = document.querySelectorAll<HTMLButtonElement>('.channel-switch__btn');
+    const indicator = document.querySelector<HTMLElement>('.channel-switch__indicator');
+    const glitch = document.getElementById('channel-glitch');
+    const gridSinIa = document.getElementById('grid-sin-ia');
+    const gridIa = document.getElementById('grid-ia');
+    const gridCabeceras = document.getElementById('grid-cabeceras');
+    const gridChristmas = document.getElementById('grid-christmas');
+    const allGrids = [gridSinIa, gridIa, gridCabeceras, gridChristmas];
+    const channelMap: Record<string, number> = { 'sin-ia': 0, 'ia': 1, 'cabeceras': 2, 'christmas': 3 };
+
+    let currentChannel = 'sin-ia';
+    let switching = false;
+
+    function moveIndicator(btn: HTMLElement) {
+      if (!indicator) return;
+      const track = btn.parentElement!;
+      const trackRect = track.getBoundingClientRect();
+      const btnRect = btn.getBoundingClientRect();
+      indicator.style.left = (btnRect.left - trackRect.left) + 'px';
+      indicator.style.width = btnRect.width + 'px';
+    }
+
+    // Position indicator on the initial active button
+    const initialActive = document.querySelector<HTMLButtonElement>('.channel-switch__btn--active');
+    if (initialActive) moveIndicator(initialActive);
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const ch = btn.dataset.channel;
+        if (!ch || ch === currentChannel || switching) return;
+        switching = true;
+
+        // Update active button
+        btns.forEach(b => b.classList.remove('channel-switch__btn--active'));
+        btn.classList.add('channel-switch__btn--active');
+
+        // Move indicator
+        moveIndicator(btn);
+
+        // Pause all playing videos
+        document.querySelectorAll('.gvideo-card video').forEach(v => {
+          const vid = v as HTMLVideoElement;
+          vid.pause();
+          vid.currentTime = 0;
+          vid.muted = true;
+        });
+
+        // Trigger glitch
+        if (glitch) {
+          glitch.classList.remove('glitch--active');
+          void glitch.offsetWidth; // force reflow
+
+          // Update channel text
+          const chText = document.getElementById('glitch-channel-text');
+          if (chText) chText.textContent = ch === 'ia' ? 'CON IA' : ch === 'cabeceras' ? 'PRODUCCIONES' : ch === 'christmas' ? 'CORPORATIVO' : 'SIN IA';
+
+          glitch.classList.add('glitch--active');
+        }
+
+        // Pause cabecera video if leaving CH 03
+        const cabVid = document.getElementById('cabecera-video') as HTMLVideoElement;
+        if (cabVid) { cabVid.pause(); cabVid.currentTime = 0; }
+
+        // Switch grids during the glitch peak
+        setTimeout(() => {
+          allGrids.forEach(g => { if (g) g.classList.add('video-showcase--hidden'); });
+          const target = ch === 'ia' ? gridIa : ch === 'cabeceras' ? gridCabeceras : ch === 'christmas' ? gridChristmas : gridSinIa;
+          if (target) target.classList.remove('video-showcase--hidden');
+
+          currentChannel = ch!;
+          switching = false;
+        }, 350);
+      }, { signal });
+    });
+
+    window.addEventListener('resize', () => {
+      const active = document.querySelector<HTMLButtonElement>('.channel-switch__btn--active');
+      if (active) moveIndicator(active);
+    }, { passive: true, signal });
+
+    /* ── Hover autoplay ── */
+    document.querySelectorAll('.gvideo-card').forEach(card => {
+      const vid = card.querySelector('video');
+      if (!vid) return;
+
+      card.addEventListener('mouseenter', () => {
+        vid.muted = false;
+        vid.play().catch(() => {});
+        card.classList.add('is-playing');
+      }, { signal });
+
+      card.addEventListener('mouseleave', () => {
+        vid.pause();
+        vid.load();
+        vid.muted = true;
+        card.classList.remove('is-playing');
+      }, { signal });
+    });
+
+    /* ── Cabecera carousel ── */
+    const cabVideo = document.getElementById('cabecera-video') as HTMLVideoElement;
+    const cabThumbs = document.querySelectorAll<HTMLButtonElement>('.cabecera-thumb');
+    const cabPrev = document.getElementById('cabecera-prev');
+    const cabNext = document.getElementById('cabecera-next');
+    const cabFS = document.getElementById('cabecera-fullscreen');
+
+    const cabeceraList: { src: string; poster: string; youtube?: boolean }[] = [
+      { src: '/media/grafismo/cabeceras/cabecera-zapatero.mp4', poster: '/media/grafismo/cabeceras/cabecera-zapatero-poster.jpg' },
+      { src: '/media/grafismo/cabeceras/personas-bestias.mp4', poster: '/media/grafismo/cabeceras/personas-bestias-poster.jpg' },
+      { src: 'vYUjhbAhpTc', poster: 'https://img.youtube.com/vi/vYUjhbAhpTc/hqdefault.jpg', youtube: true },
+    ];
+    let cabIndex = 0;
+    const cabYoutube = document.getElementById('cabecera-youtube') as HTMLIFrameElement;
+
+    function setCabecera(idx: number) {
+      if (idx < 0 || idx >= cabeceraList.length || !cabVideo) return;
+      cabIndex = idx;
+      const item = cabeceraList[idx];
+
+      if (item.youtube) {
+        cabVideo.pause();
+        cabVideo.style.display = 'none';
+        if (cabYoutube) {
+          cabYoutube.src = `https://www.youtube-nocookie.com/embed/${item.src}?rel=0`;
+          cabYoutube.classList.remove('cabecera-player__youtube--hidden');
+        }
+      } else {
+        if (cabYoutube) {
+          cabYoutube.classList.add('cabecera-player__youtube--hidden');
+          cabYoutube.src = 'about:blank';
+        }
+        cabVideo.style.display = '';
+        cabVideo.pause();
+        cabVideo.querySelector('source')!.src = item.src;
+        cabVideo.poster = item.poster;
+        cabVideo.load();
+      }
+
+      cabThumbs.forEach((t, i) => t.classList.toggle('cabecera-thumb--active', i === idx));
+    }
+
+    cabThumbs.forEach(t => {
+      t.addEventListener('click', () => setCabecera(Number(t.dataset.index)), { signal });
+    });
+
+    cabPrev?.addEventListener('click', () => setCabecera((cabIndex - 1 + cabeceraList.length) % cabeceraList.length), { signal });
+    cabNext?.addEventListener('click', () => setCabecera((cabIndex + 1) % cabeceraList.length), { signal });
+
+    cabFS?.addEventListener('click', () => {
+      if (!cabVideo) return;
+      if (cabVideo.requestFullscreen) cabVideo.requestFullscreen();
+    }, { signal });
   }
-  document.addEventListener('astro:page-load', initTimecode);
+
+  document.addEventListener('astro:page-load', initGrafismo);
+
+  /* ── Particle system ── */
+  function initParticles() {
+    const canvas = document.getElementById('grafismo-particles') as HTMLCanvasElement;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let w = 0, h = 0;
+    let particles: { x: number; y: number; vx: number; vy: number; r: number; a: number; pulse: number; speed: number }[] = [];
+    let mouse = { x: -9999, y: -9999 };
+    let raf = 0;
+
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+
+    function createParticles() {
+      const count = Math.min(Math.floor((w * h) / 12000), 120);
+      particles = [];
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.15 - 0.1,
+          r: Math.random() * 1.8 + 0.4,
+          a: Math.random() * 0.5 + 0.1,
+          pulse: Math.random() * Math.PI * 2,
+          speed: Math.random() * 0.02 + 0.008,
+        });
+      }
+    }
+
+    function draw() {
+      ctx!.clearRect(0, 0, w, h);
+
+      for (const p of particles) {
+        // Drift
+        p.x += p.vx;
+        p.y += p.vy;
+        p.pulse += p.speed;
+
+        // Wrap around
+        if (p.x < -10) p.x = w + 10;
+        if (p.x > w + 10) p.x = -10;
+        if (p.y < -10) p.y = h + 10;
+        if (p.y > h + 10) p.y = -10;
+
+        // Mouse repulsion
+        const dx = p.x - mouse.x;
+        const dy = p.y - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          const force = (120 - dist) / 120 * 0.8;
+          p.x += (dx / dist) * force;
+          p.y += (dy / dist) * force;
+        }
+
+        // Pulsing alpha
+        const alpha = p.a * (0.6 + 0.4 * Math.sin(p.pulse));
+
+        // Draw particle
+        ctx!.beginPath();
+        ctx!.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx!.fillStyle = `rgba(0, 212, 255, ${alpha})`;
+        ctx!.fill();
+
+        // Glow for bigger particles
+        if (p.r > 1.2) {
+          ctx!.beginPath();
+          ctx!.arc(p.x, p.y, p.r * 3, 0, Math.PI * 2);
+          ctx!.fillStyle = `rgba(0, 212, 255, ${alpha * 0.1})`;
+          ctx!.fill();
+        }
+      }
+
+      // Draw connection lines between nearby particles
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 100) {
+            const lineAlpha = (1 - dist / 100) * 0.08;
+            ctx!.beginPath();
+            ctx!.moveTo(particles[i].x, particles[i].y);
+            ctx!.lineTo(particles[j].x, particles[j].y);
+            ctx!.strokeStyle = `rgba(0, 212, 255, ${lineAlpha})`;
+            ctx!.lineWidth = 0.5;
+            ctx!.stroke();
+          }
+        }
+      }
+
+      raf = requestAnimationFrame(draw);
+    }
+
+    resize();
+    createParticles();
+    draw();
+
+    window.addEventListener('resize', () => {
+      resize();
+      createParticles();
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    document.addEventListener('mouseleave', () => {
+      mouse.x = -9999;
+      mouse.y = -9999;
+    });
+
+    // Cleanup on page transition
+    document.addEventListener('astro:before-preparation', () => {
+      cancelAnimationFrame(raf);
+    }, { once: true });
+  }
+
+  document.addEventListener('astro:page-load', initParticles);
 </script>

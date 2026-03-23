@@ -65,14 +65,14 @@
   --grafismo-muted:   #1A1A3A;
   --grafismo-border:  rgba(0, 212, 255, 0.15);
 
-  /* ── Automatización e IA ── */
-  --auto-bg:      #F5F7FA;
-  --auto-surface: #FFFFFF;
-  --auto-text:    #2D2D3A;
-  --auto-text-secondary: #6B7280;
-  --auto-primary: #1A1A2E;
-  --auto-accent:  #00BFA5;
-  --auto-border:  rgba(0, 0, 0, 0.08);
+  /* ── Automatización ── */
+  --auto-bg:      #0D1117;
+  --auto-surface: #161B22;
+  --auto-text:    #E6EDF3;
+  --auto-text-secondary: #8B949E;
+  --auto-primary: #E6EDF3;
+  --auto-accent:  #39D353;
+  --auto-border:  rgba(255, 255, 255, 0.08);
 
   /* ── Desarrollo Web ── */
   --dev-bg:      #F0EDE8;
