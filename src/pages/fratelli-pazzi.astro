@@ -7,16 +7,7 @@ import SectionLayout from '../layouts/SectionLayout.astro';
   description="La historia real de Fratelli Pazzi: desde el primer boceto del logo hasta la pizzería napolitana funcionando en Las Rozas."
   theme="fratelli"
 >
-  <!-- Preloader -->
-  <div class="fratelli-loader" id="fratelli-loader">
-    <div class="loader-inner">
-      <span class="loader-logo">Fratelli Pazzi</span>
-      <div class="loader-bar"><div class="loader-bar__fill" id="loader-fill"></div></div>
-      <span class="loader-text mono" id="loader-text">Cargando material…</span>
-    </div>
-  </div>
-
-  <!-- Page content (hidden until loaded) -->
+  <!-- Page content -->
   <div class="fratelli-page" id="fratelli-page">
 
     <!-- Particle background -->
@@ -247,56 +238,9 @@ import SectionLayout from '../layouts/SectionLayout.astro';
   </div><!-- /.fratelli-page -->
 </SectionLayout>
 
-<!-- Preloader + hover-play script -->
+<!-- Hover-play script -->
 <script>
   function initFratelli() {
-    const loader = document.getElementById('fratelli-loader');
-    const page = document.getElementById('fratelli-page');
-    const fill = document.getElementById('loader-fill');
-    const text = document.getElementById('loader-text');
-    if (!loader || !page) return;
-
-    const images = Array.from(page.querySelectorAll('img'));
-    const videos = Array.from(page.querySelectorAll('video'));
-    const total = images.length + videos.length;
-    let loaded = 0;
-
-    function tick() {
-      loaded++;
-      const pct = Math.round((loaded / total) * 100);
-      if (fill) fill.style.width = pct + '%';
-      if (text) text.textContent = `${pct}%`;
-      if (loaded >= total) reveal();
-    }
-
-    function reveal() {
-      loader.classList.add('loader--done');
-      page.classList.add('page--visible');
-      loader.addEventListener('transitionend', () => {
-        loader.style.display = 'none';
-      }, { once: true });
-    }
-
-    // Preload images
-    images.forEach((img) => {
-      if (img.complete) { tick(); return; }
-      img.addEventListener('load', tick, { once: true });
-      img.addEventListener('error', tick, { once: true });
-    });
-
-    // Preload videos (wait for poster + first frame via loadeddata)
-    videos.forEach((vid) => {
-      if (vid.readyState >= 2) { tick(); return; }
-      vid.addEventListener('loadeddata', tick, { once: true });
-      vid.addEventListener('error', tick, { once: true });
-    });
-
-    // Safety fallback — reveal after 8s no matter what
-    setTimeout(() => { if (loaded < total) reveal(); }, 8000);
-
-    // If nothing to load, reveal instantly
-    if (total === 0) reveal();
-
     // Hover autoplay for all video containers (featured + cards)
     document.querySelectorAll('.video-card, .video-featured, .promo-card').forEach((container) => {
       const vid = container.querySelector('video');
@@ -504,70 +448,11 @@ import SectionLayout from '../layouts/SectionLayout.astro';
 </script>
 
 <style>
-  /* ── Preloader ── */
-  .fratelli-loader {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--fratelli-bg, #1E1F1F);
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-  }
-
-  .fratelli-loader.loader--done {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
-
-  .loader-inner {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-  }
-
-  .loader-logo {
-    font-family: 'Syne Variable', 'Syne', sans-serif;
-    font-size: clamp(1.8rem, 1.2rem + 3vw, 3rem);
-    font-weight: 800;
-    color: var(--fratelli-primary, #D37968);
-    letter-spacing: -0.02em;
-  }
-
-  .loader-bar {
-    width: clamp(180px, 40vw, 300px);
-    height: 3px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .loader-bar__fill {
-    height: 100%;
-    width: 0%;
-    background: var(--fratelli-primary, #D37968);
-    transition: width 0.2s ease;
-    border-radius: 2px;
-  }
-
-  .loader-text {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: rgba(255, 255, 255, 0.5);
-  }
-
-  /* Page hidden until loaded */
+  /* Page */
   .fratelli-page {
     position: relative;
     isolation: isolate;
     background: var(--fratelli-bg);
-    opacity: 0;
-    transition: opacity 0.5s ease;
   }
 
   .fratelli-particles {
@@ -632,10 +517,6 @@ import SectionLayout from '../layouts/SectionLayout.astro';
       );
   }
 
-  .fratelli-page.page--visible {
-    opacity: 1;
-  }
-
   /* ── Hero ── */
   .fratelli-hero {
     position: relative;
@@ -660,17 +541,13 @@ import SectionLayout from '../layouts/SectionLayout.astro';
   .hero-anim {
     opacity: 0;
     transform: translateY(24px);
-    animation: none;
-  }
-
-  .page--visible .hero-anim {
     animation: hero-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
-  .page--visible .hero-anim--1 { animation-delay: 0.15s; }
-  .page--visible .hero-anim--2 { animation-delay: 0.3s; }
-  .page--visible .hero-anim--3 { animation-delay: 0.45s; }
-  .page--visible .hero-anim--4 { animation-delay: 0.6s; }
+  .hero-anim--1 { animation-delay: 0.15s; }
+  .hero-anim--2 { animation-delay: 0.3s; }
+  .hero-anim--3 { animation-delay: 0.45s; }
+  .hero-anim--4 { animation-delay: 0.6s; }
 
   @keyframes hero-fade-up {
     to { opacity: 1; transform: translateY(0); }

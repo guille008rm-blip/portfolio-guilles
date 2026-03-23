@@ -2,7 +2,7 @@
 **/*.mov
 **/reel-promo-cabramelizada-v1.mp4
 
-# Non-web folders
-cv
-remotion
+# Non-web folders (source files, not public/)
+/cv
+/remotion
 setup-github.ps1
