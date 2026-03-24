@@ -9,6 +9,9 @@ import { nav } from '../../data/site';
     </a>
 
     <nav class="header__nav" id="nav" aria-label="Navegación principal">
+      <button class="header__close" id="nav-close" aria-label="Cerrar menú" type="button">
+        <span aria-hidden="true">×</span>
+      </button>
       <ul class="header__links">
         {nav.map((item) => (
           <li>
@@ -175,6 +178,29 @@ import { nav } from '../../data/site';
     transform: translateY(-7px) rotate(-45deg);
   }
 
+  .header__close {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--color-primary);
+    cursor: pointer;
+    font-size: 2rem;
+    line-height: 1;
+    padding: 0;
+    transition: background var(--duration-fast) var(--ease-out),
+                border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .header__close:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--color-accent);
+  }
+
   /* Mobile */
   @media (max-width: 768px) {
     .header__burger {
@@ -203,6 +229,14 @@ import { nav } from '../../data/site';
       pointer-events: none;
       transition: opacity var(--duration-base) var(--ease-out),
                   visibility var(--duration-base) var(--ease-out);
+    }
+
+    .header__close {
+      display: inline-flex;
+      position: absolute;
+      top: calc(var(--space-s) + env(safe-area-inset-top));
+      right: var(--space-m);
+      z-index: 1;
     }
 
     .header__nav.open {
@@ -250,6 +284,17 @@ import { nav } from '../../data/site';
     .header--light .header__link {
       color: #1a1a1a;
     }
+
+    .header--light .header__close {
+      background: rgba(0, 0, 0, 0.03);
+      color: #1a1a1a;
+      border-color: rgba(0, 0, 0, 0.15);
+    }
+
+    .header--light .header__close:hover {
+      background: rgba(0, 0, 0, 0.08);
+      border-color: rgba(0, 0, 0, 0.3);
+    }
   }
 </style>
 
@@ -265,8 +310,9 @@ import { nav } from '../../data/site';
     const header = document.getElementById('header');
     const burger = document.getElementById('burger');
     const nav = document.getElementById('nav');
+    const closeButton = document.getElementById('nav-close');
 
-    if (!header || !burger || !nav) return;
+    if (!header || !burger || !nav || !closeButton) return;
 
     // Reset menu state (fixes View Transitions leaving menu open)
     burger.setAttribute('aria-expanded', 'false');
@@ -303,6 +349,10 @@ import { nav } from '../../data/site';
       nav.classList.toggle('open', !isOpen);
       header.classList.toggle('menu-open', !isOpen);
       document.body.style.overflow = !isOpen ? 'hidden' : '';
+    }, { signal });
+
+    closeButton.addEventListener('click', () => {
+      closeMenu();
     }, { signal });
 
     // Close on link click
