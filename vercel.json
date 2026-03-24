@@ -5,5 +5,13 @@
   "outputDirectory": "dist",
   "git": {
     "deploymentEnabled": true
-  }
+  },
+  "headers": [
+    {
+      "source": "/cv/(.*).pdf",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    }
+  ]
 }
