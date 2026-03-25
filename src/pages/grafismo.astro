@@ -1507,7 +1507,7 @@ import SectionLayout from '../layouts/SectionLayout.astro';
       if (!vid) return;
 
       card.addEventListener('mouseenter', () => {
-        vid.muted = false;
+        vid.muted = true;
         vid.play().catch(() => {});
         card.classList.add('is-playing');
       }, { signal });
@@ -1517,6 +1517,15 @@ import SectionLayout from '../layouts/SectionLayout.astro';
         vid.load();
         vid.muted = true;
         card.classList.remove('is-playing');
+      }, { signal });
+
+      card.addEventListener('click', () => {
+        if (vid.paused) {
+          vid.muted = true;
+          vid.play().catch(() => {});
+          card.classList.add('is-playing');
+        }
+        vid.muted = !vid.muted;
       }, { signal });
     });
 

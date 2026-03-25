@@ -246,13 +246,20 @@ import SectionLayout from '../layouts/SectionLayout.astro';
       const vid = container.querySelector('video');
       if (!vid) return;
       container.addEventListener('mouseenter', () => {
-        vid.muted = false;
+        vid.muted = true;
         vid.play().catch(() => {});
       });
       container.addEventListener('mouseleave', () => {
         vid.pause();
         vid.currentTime = 0;
         vid.muted = true;
+      });
+      container.addEventListener('click', () => {
+        if (vid.paused) {
+          vid.muted = true;
+          vid.play().catch(() => {});
+        }
+        vid.muted = !vid.muted;
       });
     });
   }
